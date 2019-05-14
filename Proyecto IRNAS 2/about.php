@@ -2,6 +2,32 @@
 session_start()
 ?>
 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <title>Gestión de biblioteca: Libros</title>
+</head>
+
+<body>
+<?php	
+	include_once("cabecera.php");
+?>
+<main>
+
+<h3>Información</h2>
+
+<ul>
+<li>Conocer los conceptos básicos de la Ingeniería del Software.</li>
+<li>Conocer los conceptos básicos de los Sistemas de Información.</li>
+<li>Conocer los conceptos básicos de Gestión de Proyectos.</li>
+<li>Conocer los conceptos básicos de Control de Versiones.</li>
+<li>Ser capaz de manejar una herramienta de gestión de proyectos.</li>
+<li>Ser capaz de manejar una herramienta de control de versiones.</li>
+<li>Ser capaz de estudiar un dominio de problema, unos procesos de negocio y elaborar unos requisitos básicos.</li>
+<li>Ser capaz de analizar requisitos mediante el desarrollo de modelos conceptuales.</li>
 <li>Conocer el Modelo Relacional de datos.</li>
 <li>Ser capaz de transformar modelos conceptuales en modelos relacionales.</li>
 <li>Conocer el lenguaje SQL.</li>
