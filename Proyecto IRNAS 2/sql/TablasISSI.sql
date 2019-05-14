@@ -77,10 +77,9 @@ Telefono CHAR(9) NOT NULL,
 Proveedor INTEGER);
 
 CREATE TABLE Usuarios(
-ID_US INTEGER,
 Nombre VARCHAR(50) NOT NULL,
-Recurso VARCHAR(50),
-Almacen VARCHAR(50));
+Password VARCHAR(50) NOT NULL,
+Tipo VARCHAR(50) NOT NULL);
 
 CREATE TABLE Proveedores_Recursos(
 Proveedor INTEGER,
@@ -102,7 +101,7 @@ ALTER TABLE Responsables_Compra ADD PRIMARY KEY (ID_RC);
 ALTER TABLE Pedidos ADD PRIMARY KEY (ID_PD);
 ALTER TABLE Proveedores ADD PRIMARY KEY (ID_PR);
 ALTER TABLE Telefonos ADD PRIMARY KEY (ID_TF);
-ALTER TABLE Usuarios ADD PRIMARY KEY (ID_US);
+ALTER TABLE Usuarios ADD PRIMARY KEY (Nombre);
 ALTER TABLE Proveedores_Recursos ADD PRIMARY KEY (Proveedor,Recurso,Almacen);
 ALTER TABLE Avisos_Responsable ADD PRIMARY KEY (Responsable, Aviso);
 
@@ -115,7 +114,6 @@ ALTER TABLE Avisos ADD FOREIGN KEY (Recurso, Almacen) REFERENCES Recursos (Nombr
 ALTER TABLE Pedidos ADD FOREIGN KEY (Proveedor) REFERENCES Proveedores;
 ALTER TABLE Pedidos ADD FOREIGN KEY (ResponsableCompra) REFERENCES Responsables_Compra;
 ALTER TABLE Telefonos ADD FOREIGN KEY (Proveedor) REFERENCES Proveedores;
-ALTER TABLE Usuarios ADD FOREIGN KEY (Recurso, Almacen) REFERENCES Recursos (Nombre, Almacen);
 ALTER TABLE Proveedores_Recursos ADD FOREIGN KEY (Proveedor) REFERENCES Proveedores;
 ALTER TABLE Proveedores_Recursos ADD FOREIGN KEY (Recurso, Almacen) REFERENCES Recursos (Nombre, Almacen);
 ALTER TABLE Avisos_Responsable ADD FOREIGN KEY (Responsable) REFERENCES Responsables_Compra;
@@ -123,7 +121,8 @@ ALTER TABLE Avisos_Responsable ADD FOREIGN KEY (Aviso) REFERENCES Avisos;
 
 --Añadir restricciones de tablas
 ALTER TABLE Almacenes ADD CONSTRAINT CK_TipoCamara CHECK (TipoCamara IN ('NORMAL', 'CAMARA FRIO', 'CAMARA IN-VITRO'));
-ALTER TABLE Recursos ADD CONSTRAINT CK_Tipo CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
+ALTER TABLE Recursos ADD CONSTRAINT CK_Tipo_Recurso CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
+ALTER TABLE Usuarios ADD CONSTRAINT CK_Tipo_Usuario CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
 
 --Declaracion Secuencias
 CREATE SEQUENCE sec_posiciones;
@@ -134,7 +133,6 @@ CREATE SEQUENCE sec_responsables;
 CREATE SEQUENCE sec_pedidos;
 CREATE SEQUENCE sec_proveedores;
 CREATE SEQUENCE sec_telefonos;
-CREATE SEQUENCE sec_usuarios;
 
 --Declaracion Triggers asociados a Secuencias
 
@@ -207,14 +205,5 @@ FOR EACH ROW
 BEGIN
     SELECT sec_telefonos.NEXTVAL INTO
     :NEW.ID_TF FROM DUAL;
-END;
-/
-
-CREATE OR REPLACE TRIGGER crea_id_usuarios
-BEFORE INSERT ON Usuarios
-FOR EACH ROW
-BEGIN
-    SELECT sec_usuarios.NEXTVAL INTO
-    :NEW.ID_US FROM DUAL;
 END;
 /
