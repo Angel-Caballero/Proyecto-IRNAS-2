@@ -7,7 +7,6 @@
      */
 
  function alta_usuario($conexion,$usuario) {
-	$fechaNacimiento = date('d/m/Y', strtotime($usuario["fechaNacimiento"]));
 
 	try {
 		$consulta = "CALL INSERTAR_USUARIO(:nif, :nombre, :ape, :dir, :mun, :fec, :email, :pass, :perfil)";
