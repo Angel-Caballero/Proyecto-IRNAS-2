@@ -4,6 +4,13 @@
   	include_once("gestionBD.php");
  	include_once("gestionarUsuarios.php");
 	
+	 if (!isset($_SESSION['login']))
+	 Header("Location: login.php");
+ 	else {
+	 if (isset($_SESSION["Usuario"]
+		$Usuario = $_SESSION["Usuario"]));
+	 }
+
 	if (isset($_POST['submit'])){
 		$email= $_POST['email'];
 		$pass = $_POST['pass'];
