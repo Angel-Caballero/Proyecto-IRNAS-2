@@ -7,10 +7,10 @@
 	 if (!isset($_SESSION['login']))
 	 Header("Location: login.php");
  	else {
-	 if (isset($_SESSION["Usuario"]
-		$Usuario = $_SESSION["Usuario"]));
+	 if (isset($_SESSION["Usuario"])){
+		$Usuario = $_SESSION['Usuario'];
 	 }
-
+	}
 	if (isset($_POST['submit'])){
 		$email= $_POST['email'];
 		$pass = $_POST['pass'];
@@ -58,7 +58,6 @@
 		<input type="submit" name="submit" value="submit" />
 	</form>
 		
-	<p>¿No estás registrado? <a href="form_alta_usuario.php">¡Registrate!</a></p>
 </main>
 
 <?php
