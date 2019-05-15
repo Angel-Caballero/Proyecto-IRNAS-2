@@ -7,20 +7,14 @@
      */
 
  function alta_usuario($conexion,$usuario) {
-	$fechaNacimiento = date('d/m/Y', strtotime($usuario["fechaNacimiento"]));
 
 	try {
-		$consulta = "CALL INSERTAR_USUARIO(:nif, :nombre, :ape, :dir, :mun, :fec, :email, :pass, :perfil)";
+		$consulta = "CALL INSERTAR_USUARIO(:nombre, :pass, :email, :tipo)";
 		$stmt=$conexion->prepare($consulta);
-		$stmt->bindParam(':nif',$usuario["nif"]);
 		$stmt->bindParam(':nombre',$usuario["nombre"]);
-		$stmt->bindParam(':ape',$usuario["apellidos"]);
-		$stmt->bindParam(':dir',$usuario["calle"]);
-		$stmt->bindParam(':mun',$usuario["municipio"]);
-		$stmt->bindParam(':fec',$fechaNacimiento);
-		$stmt->bindParam(':email',$usuario["email"]);
 		$stmt->bindParam(':pass',$usuario["pass"]);
-		$stmt->bindParam(':perfil',$usuario["perfil"]);
+		$stmt->bindParam(':email',$usuario["email"]);
+		$stmt->bindParam(':tipo',$usuario["tipo"]);
 		
 		$stmt->execute();
 		
@@ -31,28 +25,11 @@
     }
 }
  
-function asignar_generos_usuario($conexion, $nifUsuario, $generos) {
-	$consulta = "CALL INSERTAR_GENERO_USUARIO(:genero, :usuario)";
-	
-	try{
-		$stmt=$conexion->prepare($consulta);
-		foreach ($generos as $genero){
-			$stmt->bindParam(':genero',$genero);
-			$stmt->bindParam(':usuario',$nifUsuario);
-			$stmt->execute();
-		}
 
-		return true;
-	}catch(PDOException $e){
-		return false;
-	}
-  }
-
-  
-function consultarUsuario($conexion,$email,$pass) {
- 	$consulta = "SELECT COUNT(*) AS TOTAL FROM USUARIOS WHERE EMAIL=:email AND PASS=:pass";
+function consultarUsuario($conexion,$nombre,$pass) {
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
 	$stmt = $conexion->prepare($consulta);
-	$stmt->bindParam(':email',$email);
+	$stmt->bindParam(':nombre',$nombre);
 	$stmt->bindParam(':pass',$pass);
 	$stmt->execute();
 	return $stmt->fetchColumn();
