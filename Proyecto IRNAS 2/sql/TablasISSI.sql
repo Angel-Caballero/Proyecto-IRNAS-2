@@ -79,6 +79,7 @@ Proveedor INTEGER);
 CREATE TABLE Usuarios(
 Nombre VARCHAR(50) NOT NULL,
 Password VARCHAR(50) NOT NULL,
+Email VARCHAR(50),
 Tipo VARCHAR(50) NOT NULL);
 
 CREATE TABLE Proveedores_Recursos(
