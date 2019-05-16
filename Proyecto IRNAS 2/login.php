@@ -46,7 +46,7 @@
 	
 	<!-- The HTML login form -->
 	<form action="login.php" method="post">
-		<div><label for="nombre">Nombre: </label><input type="text" name="nombre" id="nombre" /></div>
+		<div><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" /></div>
 		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
 		<input type="submit" name="submit" value="submit" />
 	</form>
