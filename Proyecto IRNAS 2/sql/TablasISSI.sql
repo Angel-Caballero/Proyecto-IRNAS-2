@@ -91,7 +91,7 @@ CREATE TABLE Avisos_Responsable(
 Responsable INTEGER,
 Aviso INTEGER);
 
---Añadir Primary Keys
+--Aï¿½adir Primary Keys
 ALTER TABLE Recursos ADD PRIMARY KEY (Nombre, Almacen);
 ALTER TABLE Almacenes ADD PRIMARY KEY (Nombre);
 ALTER TABLE Posiciones ADD PRIMARY KEY (ID_PS);
@@ -106,7 +106,7 @@ ALTER TABLE Usuarios ADD PRIMARY KEY (Nombre);
 ALTER TABLE Proveedores_Recursos ADD PRIMARY KEY (Proveedor,Recurso,Almacen);
 ALTER TABLE Avisos_Responsable ADD PRIMARY KEY (Responsable, Aviso);
 
---Añadir Foreign Keys
+--Aï¿½adir Foreign Keys
 ALTER TABLE Recursos ADD FOREIGN KEY (Almacen) REFERENCES Almacenes;
 ALTER TABLE Posiciones ADD FOREIGN KEY (Recurso, Almacen) REFERENCES Recursos (Nombre, Almacen);
 ALTER TABLE Temperatura_Ambiente ADD FOREIGN KEY (Almacen) REFERENCES Almacenes;
@@ -120,10 +120,10 @@ ALTER TABLE Proveedores_Recursos ADD FOREIGN KEY (Recurso, Almacen) REFERENCES R
 ALTER TABLE Avisos_Responsable ADD FOREIGN KEY (Responsable) REFERENCES Responsables_Compra;
 ALTER TABLE Avisos_Responsable ADD FOREIGN KEY (Aviso) REFERENCES Avisos;
 
---Añadir restricciones de tablas
+--Aï¿½adir restricciones de tablas
 ALTER TABLE Almacenes ADD CONSTRAINT CK_TipoCamara CHECK (TipoCamara IN ('NORMAL', 'CAMARA FRIO', 'CAMARA IN-VITRO'));
 ALTER TABLE Recursos ADD CONSTRAINT CK_Tipo_Recurso CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
-ALTER TABLE Usuarios ADD CONSTRAINT CK_Tipo_Usuario CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
+ALTER TABLE Usuarios ADD CONSTRAINT CK_Tipo_Usuario CHECK (Tipo IN('TRABAJADOR', 'ADMINISTRADOR'));
 
 --Declaracion Secuencias
 CREATE SEQUENCE sec_posiciones;
