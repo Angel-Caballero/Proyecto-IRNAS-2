@@ -15,8 +15,8 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/biblio.css" />
-  <title>Gestión de biblioteca: ¡Se ha producido un problema!</title>
+  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <title>Gestión de almacén: ¡Se ha producido un problema!</title>
 </head>
 <body>	
 	
