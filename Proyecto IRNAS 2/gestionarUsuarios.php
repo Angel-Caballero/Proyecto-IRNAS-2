@@ -18,7 +18,7 @@
 		
 		$stmt->execute();
 		
-		return asignar_generos_usuario($conexion, $usuario["nif"], $usuario["generoLiterario"]);
+		return true;
 	} catch(PDOException $e) {
 		return false;
 		// Si queremos visualizar la excepción durante la depuración: $e->getMessage();

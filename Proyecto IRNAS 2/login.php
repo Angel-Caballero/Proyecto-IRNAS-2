@@ -4,19 +4,12 @@
   	include_once("gestionBD.php");
  	include_once("gestionarUsuarios.php");
 	
-	 if (!isset($_SESSION['login']))
-	 Header("Location: login.php");
- 	else {
-	 if (isset($_SESSION["Usuario"])){
-		$Usuario = $_SESSION['Usuario'];
-	 }
-	}
-	if (isset($_POST['submit'])){
-		$email= $_POST['email'];
+	 if (isset($_POST['submit'])){
+		$nombre= $_POST['nombre'];
 		$pass = $_POST['pass'];
 
 		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$email,$pass);
+		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
 		cerrarConexionBD($conexion);	
 	
 		if ($num_usuarios == 0)
@@ -33,7 +26,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/biblio.css" />
+  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
   <title>Base de Datos: Login</title>
 </head>
 
@@ -53,7 +46,7 @@
 	
 	<!-- The HTML login form -->
 	<form action="login.php" method="post">
-		<div><label for="email">Email: </label><input type="text" name="email" id="email" /></div>
+		<div><label for="nombre">Nombre: </label><input type="text" name="nombre" id="nombre" /></div>
 		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
 		<input type="submit" name="submit" value="submit" />
 	</form>
