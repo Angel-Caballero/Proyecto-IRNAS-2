@@ -123,7 +123,7 @@ ALTER TABLE Avisos_Responsable ADD FOREIGN KEY (Aviso) REFERENCES Avisos;
 --A�adir restricciones de tablas
 ALTER TABLE Almacenes ADD CONSTRAINT CK_TipoCamara CHECK (TipoCamara IN ('NORMAL', 'CAMARA FRIO', 'CAMARA IN-VITRO'));
 ALTER TABLE Recursos ADD CONSTRAINT CK_Tipo_Recurso CHECK (Tipo IN('REACTIVO', 'FUNGIBLE', 'BIOLOGICO'));
-ALTER TABLE Usuarios ADD CONSTRAINT CK_Tipo_Usuario CHECK (Tipo IN('TRABAJADOR', 'ADMIISTRADOR'));
+ALTER TABLE Usuarios ADD CONSTRAINT CK_Tipo_Usuario CHECK (Tipo IN('TRABAJADOR', 'ADMINISTRADOR'));
 
 --Declaracion Secuencias
 CREATE SEQUENCE sec_posiciones;
