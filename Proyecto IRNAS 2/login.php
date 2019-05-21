@@ -15,7 +15,7 @@
 		if ($num_usuarios == 0)
 			$login = "error";	
 		else {
-			$_SESSION['login'] = $email;
+			$_SESSION['login'] = $nombre;
 			Header("Location: index.php");
 		}	
 	}

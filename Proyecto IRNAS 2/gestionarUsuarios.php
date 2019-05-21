@@ -9,7 +9,7 @@
  function alta_usuario($conexion,$usuario) {
 
 	try {
-		if ($usuario["tipo"] == 'TRABAJADOR') {
+		if ($usuario["tipo"] == 'ADMINISTRADOR') {
 			$consulta = "CALL INSERTAR_USUARIO(:nombre, :pass, :email, :tipo)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$usuario["nombre"]);
@@ -34,13 +34,31 @@
     }
 }
  
-
 function consultarUsuario($conexion,$nombre,$pass) {
+	try{
  	$consulta = "SELECT COUNT(*) AS TOTAL FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->bindParam(':nombre',$nombre);
 	$stmt->bindParam(':pass',$pass);
 	$stmt->execute();
 	return $stmt->fetchColumn();
+} catch(PDOException $e) {
+	return $e->getMessage();
+	}
 }
 
+function consultarTipoUsuario($conexion,$nombre) {
+	try{
+	$consulta = "SELECT TIPO FROM USUARIOS WHERE NOMBRE=:nombre";
+ $stmt = $conexion->prepare($consulta);
+ $stmt->bindParam(':nombre',$nombre);
+ $stmt->execute();
+ $result = $stmt->fetch();
+ 
+ return $result["TIPO"];
+} catch(PDOException $e) {
+ return $e->getMessage();
+ }
+}
+
+?>
