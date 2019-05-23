@@ -4,21 +4,8 @@
   	include_once("gestionBD.php");
  	include_once("gestionarUsuarios.php");
 	
-	 if (isset($_POST['submit'])){
-		$nombre= $_POST['nombre'];
-		$pass = $_POST['pass'];
-
-		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
-		cerrarConexionBD($conexion);	
-	
-		if ($num_usuarios == 0)
-			$login = "error";	
-		else {
-			$_SESSION['login'] = $nombre;
-			Header("Location: index.php");
-		}	
-	}
+    if(!isset($_SESSION['login'])){
+        Header("Location: login.php");}
 
 ?>
 
