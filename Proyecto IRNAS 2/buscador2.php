@@ -34,7 +34,7 @@ if (!isset($_SESSION['login'])){
     <link rel="stylesheet" type="text/css" href="css/almacen.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script type="text/javascript" src="./js/boton.js"></script>
-  <title>Gestión de biblioteca: Lista de Libros</title>
+  <title>Gestión de Almacénes: Lista de Almacénes</title>
 </head>
 
 <body>
