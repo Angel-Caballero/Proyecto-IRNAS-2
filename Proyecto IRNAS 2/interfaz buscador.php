@@ -14,7 +14,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/almacen.css" />
-  <title>Base de Datos: Login</title>
+  <title>Base de Datos: Buscador</title>
 </head>
 
 <body>
@@ -22,8 +22,8 @@
 	include_once("cabecera.php");
 ?>
 <section>
-	<form action="gestionarBusquedas.php" method="GET">		    
-		<input type="search" placeholder="Buscar...">		    	
+	<form action="gestionarBusquedas.php" method="GET">	    
+		<input type="search" placeholder="Buscar...">
         <button type="submit">Buscar</button>
         <fieldset>
             <label>
