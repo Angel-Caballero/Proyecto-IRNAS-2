@@ -12,9 +12,7 @@
   }
   
   .dropdown {
-    float: right;
-    position: relative;
-    display: block;
+    margin-left: auto
   }
   
   .dropdown-content {
