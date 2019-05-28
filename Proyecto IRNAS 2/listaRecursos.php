@@ -28,6 +28,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <link rel="stylesheet" type="text/css" href="css/menu.css" />
   <link rel="icon" href="images/icono.png"/>
   <title>Base de Datos: Login</title>
 </head>
@@ -38,21 +39,39 @@
 	include_once("cabecera.php");
 ?>
 
+<?php
+	include_once("menu.php");
+?>
+
 <main>
-	<?php if (isset($login)) {
-		echo "<div class=\"error\">";
-		echo "Error en la contraseña o no existe el usuario.";
-		echo "</div>";
-	}	
-	?>
-	
-	<!-- The HTML login form -->
-	<form action="login.php" method="post" class="centrado">
-		<div><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" /></div>
-		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
-		<input type="submit" name="submit" value="submit" />
-	</form>
-		
+
+<form action=".php">
+  <select name="paginado">
+    <option value="1">10</option>
+    <option value="2">20</option>
+    <option value="3">30</option>
+    <option value="4">40</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+
+<div>
+<table style="width:100%">
+  <tr>
+    <td>Recurso</td>
+    <td>Tipo</td> 
+    <td>Almacen</td>
+  </tr>
+</table>
+</div>
+
+<section class="paginacion">
+	<ul>
+		<li><a href="http://"></a>Pagina1</li>
+	</ul>
+</section>
+
 </main>
 </div>
 <?php
