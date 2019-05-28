@@ -7,9 +7,13 @@
 	 if (isset($_POST['submit'])){
 		$nombre= $_POST['nombre'];
 		$pass = $_POST['pass'];
-
+	
 		$conexion = crearConexionBD();
 		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
+
+		
+  	 	$tipo = consultarTipoUsuario($conexion, $usuario);
+	 
 		cerrarConexionBD($conexion);	
 	
 		if ($num_usuarios == 0)
@@ -18,6 +22,11 @@
 			$_SESSION['login'] = $nombre;
 			Header("Location: interfazBuscador.php");
 		}	
+
+		if($tipo == "ADMINISTRADOR"){
+			$privilegios = true;
+			$_SESSION['privilegios'] = $privilegios;
+		  }
 	}
 
 ?>
