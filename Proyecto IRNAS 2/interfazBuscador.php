@@ -40,11 +40,14 @@ require_once ("gestionarUsuarios.php");
 <body>
 <?php
     include_once("cabecera.php");
+?>
+<div class="cuerpo">
+<?php
     include_once("menu.php");
 ?>
-<section>
+<div>
 	<form action="gestionarBusquedas.php" method="GET">	    
-		<input type="search" placeholder="Buscar..." value="search">
+		<input type="search" placeholder="Buscar..." name="search">
         <button type="submit">Buscar</button>
             <label>
                 <input type="radio" name="tipo" value="Almacenes"> Almacenes
@@ -53,7 +56,8 @@ require_once ("gestionarUsuarios.php");
                 <input type="radio" name="tipo" value="Recursos"> Recursos
             </label>
 	</form>
-</section>
+   </div>
+   </div>
 <?php
 	include_once("pie.php");
 ?>
