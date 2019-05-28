@@ -23,7 +23,7 @@
 ?>
 <section>
 	<form action="gestionarBusquedas.php" method="GET">	    
-		<input type="search" placeholder="Buscar...">
+		<input type="search" placeholder="Buscar..." value="search">
         <button type="submit">Buscar</button>
         <fieldset>
             <label>

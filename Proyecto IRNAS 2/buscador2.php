@@ -34,7 +34,7 @@ if (!isset($_SESSION['login'])){
     <link rel="stylesheet" type="text/css" href="css/almacen.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script type="text/javascript" src="./js/boton.js"></script>
-  <title>Gestión de Almacénes: Lista de Almacénes</title>
+  <title>Base de Datos: Buscador</title>
 </head>
 
 <body>
@@ -46,6 +46,20 @@ include_once ("cabecera.php");
 include_once ("menu.php");
 ?>
 
+<section>
+	<form action="gestionarBusquedas.php" method="GET">	    
+		<input type="search" placeholder="Buscar..." value="search">
+        <button type="submit">Buscar</button>
+        <fieldset>
+            <label>
+                <input type="radio" name="tipo" value="Almacenes"> Almacenes
+            </label>
+            <label>
+                <input type="radio" name="tipo" value="Recursos"> Recursos
+            </label>
+        </fieldset>
+	</form>
+</section>
 
 
 
