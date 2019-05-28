@@ -14,12 +14,6 @@ require_once ("gestionarUsuarios.php");
 
 	$conexion = crearConexionBD();
 
-  //  $tipo = consultarTipoUsuario($conexion, $usuario);
-   // if($tipo == "ADMINISTRADOR"){
-    //   $privilegios = true;
-    //    $_SESSION['privilegios'] = $privilegios;
-   // }
-
 	cerrarConexionBD($conexion);
 
 ?>
