@@ -56,12 +56,13 @@
 	?>
 	
 	<!-- The HTML login form -->
-	<form action="login.php" method="post" class="centrado">
-		<div style="max-width:250px;"><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" class="prueba"/></div>
-		<div style="max-width:250px;"><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
+<div class="centrado" style="max-width:250px; flex-direction:column; margin: 15px auto 0 auto">
+	<form action="login.php" method="post">
+		<label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" class="prueba"/>
+		<label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" />
 		<input type="submit" name="submit" value="Enviar" />
 	</form>
-		
+</div>	
 </main>
 </div>
 <?php

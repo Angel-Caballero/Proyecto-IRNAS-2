@@ -36,15 +36,15 @@ require_once ("gestionarUsuarios.php");
 <?php
     include_once("cabecera.php");
 ?>
-<div class="centrado">
+<div class="centrado" style="flex-direction:column">
 <?php
     include_once("menu.php");
 ?>
-<div>
-	<form action="gestionarBusquedas.php" method="GET">	    
+<div class="centrado" style="max-width:500px; flex-direction:column">
+	<form  action="gestionarBusquedas.php" method="GET">	    
 		<input type="search" placeholder="Buscar..." name="search">
     <input type="submit" name="submit" value="Buscar" />
-        <div>
+        <div class="centrado">
             <label>
                 <input type="radio" name="tipo" value="Almacenes"> Almacenes
             </label>
