@@ -14,11 +14,11 @@ require_once ("gestionarUsuarios.php");
 
 	$conexion = crearConexionBD();
 
-    $tipo = consultarTipoUsuario($conexion, $usuario);
-    if($tipo == "ADMINISTRADOR"){
-        $privilegios = true;
-        $_SESSION['privilegios'] = $privilegios;
-    }
+  //  $tipo = consultarTipoUsuario($conexion, $usuario);
+   // if($tipo == "ADMINISTRADOR"){
+    //   $privilegios = true;
+    //    $_SESSION['privilegios'] = $privilegios;
+   // }
 
 	cerrarConexionBD($conexion);
 
@@ -31,14 +31,16 @@ require_once ("gestionarUsuarios.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Hay que indicar el fichero externo de estilos -->
     <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<script type="text/javascript" src="./js/boton.js"></script>
+	<script type="text/javascript" src="./js/menu.js"></script>
   <title>Base de Datos: Buscador</title>
 </head>
 
 <body>
 <?php
-	include_once("cabecera.php");
+    include_once("cabecera.php");
+    include_once("menu.php");
 ?>
 <section>
 	<form action="gestionarBusquedas.php" method="GET">	    
