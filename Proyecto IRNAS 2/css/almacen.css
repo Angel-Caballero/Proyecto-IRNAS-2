@@ -1,11 +1,39 @@
-footer{
-	margin-top: 300%;
-	border-top: 5px solid brown;
-	text-align:center;
-	clear: both;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+body{
+	position: relative;
+	min-height: 100vh;
+	margin:0;
+	background-color:pink;
 }
 
+.cabecera{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top:16px;
+}
 
+#logo{
+	width:7.5em;
+	height: 7.5em;
+}
+
+.centrado{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:15px;
+	flex-direction: column;
+}
+
+footer{
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 2.5rem;
+border-top: 5px solid brown;
+text-align:center;
+}
+
+.contenido{
+	padding-bottom: 2.5rem;
+}

@@ -26,12 +26,14 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <link rel="icon" href="images/icono.png"/>
   <title>Base de Datos: Login</title>
 </head>
 
 <body>
-
+<div class="contenido">
 <?php
 	include_once("cabecera.php");
 ?>
@@ -45,14 +47,14 @@
 	?>
 	
 	<!-- The HTML login form -->
-	<form action="login.php" method="post">
+	<form action="login.php" method="post" class="centrado">
 		<div><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" /></div>
 		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
 		<input type="submit" name="submit" value="submit" />
 	</form>
 		
 </main>
-
+</div>
 <?php
 	include_once("pie.php");
 ?>
