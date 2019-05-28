@@ -48,9 +48,9 @@
 	
 	<!-- The HTML login form -->
 	<form action="login.php" method="post" class="centrado">
-		<div><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" /></div>
-		<div><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
-		<input type="submit" name="submit" value="submit" />
+		<div style="max-width:250px;"><label for="nombre">Nombre de Usuario: </label><input type="text" name="nombre" id="nombre" class="prueba"/></div>
+		<div style="max-width:250px;"><label for="pass">Contraseña: </label><input type="password" name="pass" id="pass" /></div>
+		<input type="submit" name="submit" value="Enviar" />
 	</form>
 		
 </main>
