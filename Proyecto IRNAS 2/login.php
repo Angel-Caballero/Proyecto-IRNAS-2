@@ -16,7 +16,7 @@
 			$login = "error";	
 		else {
 			$_SESSION['login'] = $nombre;
-			Header("Location: index.php");
+			Header("Location: interfazBuscador.php");
 		}	
 	}
 
