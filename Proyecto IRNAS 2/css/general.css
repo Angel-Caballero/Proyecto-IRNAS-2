@@ -41,7 +41,7 @@ background-color: bisque;
 	padding-bottom: 2.5rem;
 }
 
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=search]{
 	width: 100%;
 	max-width: 250px;
 	padding: 12px 20px;
@@ -63,15 +63,3 @@ input[type=text], input[type=password]{
 	border-radius: 4px;
 	cursor: pointer;
   }
-
-.cuerpo{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.cuerpo div{
-	margin-top: 20px;
-
-}

@@ -24,9 +24,8 @@ require_once ("gestionarUsuarios.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Hay que indicar el fichero externo de estilos -->
-  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <link rel="stylesheet" type="text/css" href="css/general.css" />
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script type="text/javascript" src="./js/menu.js"></script>
   <title>Base de Datos: Buscador</title>
   <link rel="icon" href="images/icono.png"/>
@@ -37,14 +36,14 @@ require_once ("gestionarUsuarios.php");
 <?php
     include_once("cabecera.php");
 ?>
-<div class="cuerpo">
+<div class="centrado">
 <?php
     include_once("menu.php");
 ?>
 <div>
 	<form action="gestionarBusquedas.php" method="GET">	    
 		<input type="search" placeholder="Buscar..." name="search">
-        <button type="submit">Buscar</button>
+    <input type="submit" name="submit" value="Buscar" />
         <div>
             <label>
                 <input type="radio" name="tipo" value="Almacenes"> Almacenes
