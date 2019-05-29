@@ -1,6 +1,6 @@
 <footer>
 	<div style="height:100%; width:100%" class="centrado">
-	<span><a href="about.php" style="text-decoration:none; color:white;">Informacion</a>
+	<span><a href="about.php" style="color:white;">Informacion</a>
 	Copyright &copy; 2019 IRNAS (CSIC) - Todos los derechos reservados</span>
 </div>
 </footer>

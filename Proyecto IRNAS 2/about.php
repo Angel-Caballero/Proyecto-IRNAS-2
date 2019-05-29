@@ -7,7 +7,9 @@ session_start()
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/general.css" />
+  <link rel="icon" href="images/icono.png"/>
   <title>Gestión de biblioteca: Libros</title>
 </head>
 
