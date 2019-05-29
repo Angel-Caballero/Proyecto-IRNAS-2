@@ -41,15 +41,15 @@ require_once ("gestionarUsuarios.php");
     include_once("menu.php");
 ?>
 <div class="centrado" style="max-width:500px; flex-direction:column">
-	<form  action="gestionarBusquedas.php" method="GET">	    
+	<form  action="controlador_buscador.php" method="post">	    
 		<input type="search" placeholder="Buscar..." name="search">
     <input type="submit" name="submit" value="Buscar" />
         <div class="centrado">
             <label>
-                <input type="radio" name="tipo" value="Almacenes"> Almacenes
+                <input type="radio" name="tipo" value="Almacen" required> Almacenes
             </label>
             <label>
-                <input type="radio" name="tipo" value="Recursos"> Recursos
+                <input type="radio" name="tipo" value="Recurso"> Recursos
             </label>
             </div>
 	</form>
