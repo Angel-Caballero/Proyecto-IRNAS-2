@@ -38,7 +38,7 @@ background-color: #292829;
 	padding-bottom: 2.5rem;
 }
 
-input[type=text], input[type=password], input[type=search]{
+input,select{
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;

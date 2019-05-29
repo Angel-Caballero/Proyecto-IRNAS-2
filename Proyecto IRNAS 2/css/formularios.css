@@ -1,0 +1,40 @@
+ul {
+    list-style-type: none;
+    margin: 15px 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #6D3333;
+  }
+  
+  li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  li:hover {
+    background-color: #8A3F3F;
+  }
+
+
+.formulario{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width:80%;
+  margin:auto;
+}
+form > div{
+  width:35%;
+  margin: 0 10px;
+}
+
+@media (max-width: 500px){
+  form > div{
+    width:200px;
+  }
+}
