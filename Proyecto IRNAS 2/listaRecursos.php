@@ -1,24 +1,20 @@
 <?php
 	session_start();
-  	
-  	include_once("gestionBD.php");
- 	include_once("gestionarUsuarios.php");
-	
-	 if (isset($_POST['submit'])){
-		$nombre= $_POST['nombre'];
-		$pass = $_POST['pass'];
 
-		$conexion = crearConexionBD();
-		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
-		cerrarConexionBD($conexion);	
+	require_once ("gestionBD.php");
+	require_once ("gestionarBusquedas.php");
+	require_once ("gestionarUsuarios.php");
 	
-		if ($num_usuarios == 0)
-			$login = "error";	
-		else {
-			$_SESSION['login'] = $nombre;
-			Header("Location: index.php");
-		}	
-	}
+	//if (!isset($_SESSION['login'])){
+		//  Header("Location: login.php");
+	//}else{
+		//  $usuario = $_SESSION['login'];
+	//}
+	
+	
+		$conexion = crearConexionBD();
+	
+		cerrarConexionBD($conexion);
 
 ?>
 
@@ -28,9 +24,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/general.css" />
-  <link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<script type="text/javascript" src="./js/menu.js"></script>
   <link rel="icon" href="images/icono.png"/>
-  <title>Base de Datos: Login</title>
+  <title>Base de Datos: Lista de Recursos</title>
 </head>
 
 <body>
@@ -38,7 +35,7 @@
 <?php
 	include_once("cabecera.php");
 ?>
-
+<div class="centrado" style="flex-direction:column;">
 <?php
 	include_once("menu.php");
 ?>
@@ -73,6 +70,7 @@
 </section>
 
 </main>
+</div>
 </div>
 <?php
 	include_once("pie.php");
