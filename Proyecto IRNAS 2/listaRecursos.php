@@ -38,13 +38,11 @@
 <?php
 	include_once("cabecera.php");
 ?>
-
+<div class="centrado" style="flex-direction:column">
 <?php
 	include_once("menu.php");
 ?>
-
-<main>
-
+<div>
 <form action=".php">
   <select name="paginado">
     <option value="1">10</option>
@@ -52,19 +50,16 @@
     <option value="3">30</option>
     <option value="4">40</option>
   </select>
-  <br><br>
   <input type="submit">
 </form>
-
-<div>
-<table style="width:100%">
+</div>
+<table style="width:90%;">
   <tr>
     <td>Recurso</td>
     <td>Tipo</td> 
     <td>Almacen</td>
   </tr>
 </table>
-</div>
 
 <section class="paginacion">
 	<ul>
@@ -72,7 +67,7 @@
 	</ul>
 </section>
 
-</main>
+</div>
 </div>
 <?php
 	include_once("pie.php");
