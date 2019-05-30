@@ -25,6 +25,7 @@ if (!isset($_SESSION['login'])){
   <link rel="stylesheet" type="text/css" href="css/general.css" />
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
   <link rel="stylesheet" type="text/css" href="css/formularios.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/formularios.js"></script>
   <link rel="icon" href="images/icono.png"/>
@@ -57,18 +58,18 @@ if (!isset($_SESSION['login'])){
     <option value="laboratorio1">Laboratorio 1</option>
     <option value="laboratorio2">Laboratorio 2</option>
 </select></div>
-   <div> <label for="tipo-recurso">Tipo recurso</label><select name="tipo-recurso">
+   <div> <label for="tipo-recurso">Tipo recurso</label><select id="tiporecurso" name="tipo-recurso">
       <option value="Compuesto quimico">Compuesto químico</option>
       <option value="Fungible y kits">Fungible y kits</option>
       <option value="Material biologico">Material biológico</option>
 </select></div>
     <div><label for="posicion">Posición</label><input type="text" name="posicion"></div>
-    <div><label for="unidades">Unidades</label><input type="number" name="unidades"></div>
-    <div><label for="formula">Fórmula química</label><input type="text" name="formula"></div>
-    <div><label for="cantidad">Cantidad</label><input type="number" name="cantidad"></div>
-    <div><label for="reserva">Reserva mínima</label><input type="number" name="reserva"></div>
-    <div><label for="ficha">Ficha seguridad</label><input type="file" name="ficha"></div>
-    <div><label for="proveedores">Proveedores</label><select name="proveedores" multiple>
+    <div><label for="unidades">Unidades</label><input id="unidades" type="number" name="unidades"></div>
+    <div><label for="formula">Fórmula química</label><input id="formula" type="text" name="formula"></div>
+    <div><label for="cantidad">Cantidad</label><input id="cantidad" type="number" name="cantidad"></div>
+    <div><label for="reserva">Reserva mínima</label><input id="reserva" type="number" name="reserva"></div>
+    <div><label for="ficha">Ficha seguridad</label><input id="ficha" type="file" name="ficha"></div>
+    <div><label for="proveedores">Proveedores</label><select id="proveedores" name="proveedores" multiple>
       <option value="proveedor1">Proveedor 1</option>
       <option value="proveedor2">Proveedor 2</option>
       <option value="proveedor3">Proveedor 3</option>
@@ -110,11 +111,11 @@ if (!isset($_SESSION['login'])){
     <option value="laboratorio2">Laboratorio 2</option>
 </select></div>
 <div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
-<div><label for="tipo">Tipo</label><select name="tipo">
+<div><label for="tipo">Tipo</label><select id="tipo" name="tipo">
 <option value="estanteria">Estanteria</option>
 <option value="cajonera">Cajonera</option>
 </select></div>
-<div><label for="temperatura">Temperatura</label><input type="number" name="temperatura"></div>
+<div><label for="temperatura">Temperatura</label><input id="temperatura" type="number" name="temperatura"></div>
 <input type="submit" name="enviar" value="Enviar">
 </form>
 </div>

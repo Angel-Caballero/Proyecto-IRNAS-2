@@ -37,3 +37,39 @@ function usuario(){
     document.getElementById("mobiliario").style.display = "none";
     document.getElementById("usuario").style.display = "block";
 }
+
+$(document).ready(function(){
+    $("#tiporecurso").change(function(){
+      if($("#tiporecurso").val() == "Fungible y kits"){
+        $("#unidades").prop('disabled', false);
+        $("#formula").prop('disabled', 'disabled');
+        $("#cantidad").prop('disabled', false);
+        $("#reserva").prop('disabled', false);
+        $("#ficha").prop('disabled', 'disabled');
+        $("#proveedores").prop('disabled', false);
+      } else if($("#tiporecurso").val() == "Material biologico"){
+        $("#unidades").prop('disabled', 'disabled');
+        $("#formula").prop('disabled', 'disabled');
+        $("#cantidad").prop('disabled', 'disabled');
+        $("#reserva").prop('disabled', 'disabled');
+        $("#ficha").prop('disabled', 'disabled');
+        $("#proveedores").prop('disabled', 'disabled');
+      } else{
+        $("#unidades").prop('disabled', false);
+        $("#formula").prop('disabled', false);
+        $("#cantidad").prop('disabled', false);
+        $("#reserva").prop('disabled', false);
+        $("#ficha").prop('disabled', false);
+        $("#proveedores").prop('disabled', false);
+      }
+    });
+    $("#mobiliario input[name='tipo-mobiliario']").change(function(){
+        if($("#mobiliario input[name='tipo-mobiliario']").val() == "ambiente"){
+            $("#tipo").prop('disabled', false);
+            $("#temperatura").prop('disabled','disabled');
+        } else if($("#mobiliario input[name='tipo-mobiliario']").val() == "frio"){
+            $("#tipo").prop('disabled', 'disabled');
+            $("#temperatura").prop('disabled',false);
+        }
+    });
+  });
