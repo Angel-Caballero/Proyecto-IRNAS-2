@@ -12,7 +12,7 @@
 		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
 
 		
-  	 	//$tipo = consultarTipoUsuario($conexion, $nombre, $pass);
+  	 	$tipo = consultarTipoUsuario($conexion, $nombre, $pass);
 	 
 		cerrarConexionBD($conexion);	
 	

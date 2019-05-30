@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+require_once ("gestionBD.php");
+require_once ("gestionarBusquedas.php");
+require_once ("gestionarUsuarios.php");
+
+if (!isset($_SESSION['login'])){
+    Header("Location: login.php");
+}else{
+    $usuario = $_SESSION['login'];
+}
+
+
+	$conexion = crearConexionBD();
+
+	cerrarConexionBD($conexion);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
