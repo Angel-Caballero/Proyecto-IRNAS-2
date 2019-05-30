@@ -12,7 +12,7 @@
 		$num_usuarios = consultarUsuario($conexion,$nombre,$pass);
 
 		
-  	 	$tipo = consultarTipoUsuario($conexion, $usuario);
+  	 	//$tipo = consultarTipoUsuario($conexion, $nombre, $pass);
 	 
 		cerrarConexionBD($conexion);	
 	
@@ -20,13 +20,13 @@
 			$login = "error";	
 		else {
 			$_SESSION['login'] = $nombre;
+			if($tipo == "ADMINISTRADOR"){
+				$privilegios = true;
+				$_SESSION['privilegios'] = $privilegios;
+			  }
 			Header("Location: interfazBuscador.php");
 		}	
 
-		if($tipo == "ADMINISTRADOR"){
-			$privilegios = true;
-			$_SESSION['privilegios'] = $privilegios;
-		  }
 	}
 
 ?>

@@ -47,11 +47,13 @@ function consultarUsuario($conexion,$nombre,$pass) {
 	}
 }
 
-function consultarTipoUsuario($conexion,$nombre) {
+function consultarTipoUsuario($conexion,$nombre,$pass) {
 	try{
-	$consulta = "SELECT TIPO FROM USUARIOS WHERE NOMBRE=:nombre";
+$consulta = "SELECT TIPO AS TOTAL FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
  $stmt = $conexion->prepare($consulta);
  $stmt->bindParam(':nombre',$nombre);
+ 
+	$stmt->bindParam(':pass',$pass);
  $stmt->execute();
  $result = $stmt->fetch();
  
