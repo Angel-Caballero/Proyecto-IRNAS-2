@@ -55,7 +55,6 @@ $consulta = "SELECT TIPO FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
 	$stmt->bindParam(':pass',$pass);
  $stmt->execute();
  $result = $stmt->fetch();
- //
  return $result["TIPO"];
 } catch(PDOException $e) {
  return $e->getMessage();
