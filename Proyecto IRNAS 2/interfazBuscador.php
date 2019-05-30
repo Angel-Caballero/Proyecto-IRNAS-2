@@ -45,12 +45,8 @@ require_once ("gestionarUsuarios.php");
 		<input type="search" placeholder="Buscar..." name="search">
     <input type="submit" name="submit" value="Buscar" />
         <div class="centrado">
-            <label>
-                <input type="radio" name="tipo" value="Almacen" required> Almacenes
-            </label>
-            <label>
-                <input type="radio" name="tipo" value="Recurso"> Recursos
-            </label>
+            <label>Almacenes</label><input type="radio" name="tipo" value="Almacen" required>
+            <label>Recursos</label><input type="radio" name="tipo" value="Recurso"> 
             </div>
 	</form>
    </div>
