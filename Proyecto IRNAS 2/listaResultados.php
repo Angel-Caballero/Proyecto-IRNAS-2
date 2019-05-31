@@ -5,11 +5,11 @@
 	require_once ("gestionarBusquedas.php");
 	require_once ("gestionarUsuarios.php");
 
-	//if (!isset($_SESSION['login'])){
-		//  Header("Location: login.php");
-	//}else{
-		//  $usuario = $_SESSION['login'];
-	//}
+	if (!isset($_SESSION['login'])){
+		  Header("Location: login.php");
+	}else{
+		  $usuario = $_SESSION['login'];
+	}
 
 
 		$conexion = crearConexionBD();
