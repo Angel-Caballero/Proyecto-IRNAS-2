@@ -50,7 +50,7 @@ if (!isset($_SESSION['login'])){
 </ul>
 </div>
 <div id="recurso">
-  <form action="" method="post" class="formulario">
+  <form action="" method="post" class="formulario" name="recurso">
     <div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
 <div><label for="almacen">Almacén</label><select name="almacen">
     <option value="almacen1">Almacén 1</option>
@@ -79,16 +79,18 @@ if (!isset($_SESSION['login'])){
 </form>
 </div>
 <div id="proveedor">
-<form action="" method="post" class="formulario">
+<form action="" method="post" class="formulario" name="proveedor">
 <div><label for="nombre-empresa">Nombre empresa</label><input type="text" name="nombre-empresa"></div>
 <div><label for="nombre-comercial">Nombre comercial</label><input type="text" name="nombre-comercial"></div>
 <div><label for="email">Email</label><input type="email" name="email"></div>
-<div><label for="telefonos">Teléfonos</label><input type="text" name="teléfonos"></div>
+<div><label for="telefono1">Teléfono 1</label><input type="text" name="teléfono1"></div>
+<div><label for="telefono2">Teléfono 2</label><input type="text" name="teléfono2"></div>
+<div><label for="telefono3">Teléfono 3</label><input type="text" name="teléfono3"></div>
 <input type="submit" name="enviar" value="Enviar">
 </form>
 </div>
 <div id="almacen">
-<form action="" method="post" class="formulario">
+<form action="" method="post" class="formulario" name="almacen">
 <div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
 <div><label for="tipo-iluminacion">Tipo iluminación</label><input type="text" name="tipo-iluminacion"></div>
 <div><label for="temperatura">Temperatura</label><input type="number" name="temperatura"></div>
@@ -101,7 +103,7 @@ if (!isset($_SESSION['login'])){
 </form>
 </div>
 <div id="mobiliario">
-<form action="" method="post" class="formulario">
+<form action="" method="post" class="formulario" name="mobiliario">
 <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente<input id="ambiente" type="radio" name="tipo-mobiliario" value="ambiente"></div>
 <div class="centrado" style="margin-bottom:8px;">Equipo de frío<input id="frio" type="radio" name="tipo-mobiliario" value="frio"></div>
 <div><label for="almacen">Almacén</label><select name="almacen">
@@ -120,10 +122,10 @@ if (!isset($_SESSION['login'])){
 </form>
 </div>
 <div id="usuario">
-<form action="" method="post" class="formulario">
-<div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
-<div><label for="password">Contraseña</label><input type="password" name="password"></div>
-<div><label for="email">Email</label><input type="text" name="email"></div>
+<form action="" method="post" class="formulario" name="usuario">
+<div><label for="nombre">Nombre</label><input type="text" name="nombre" required></div>
+<div><label for="password">Contraseña</label><input type="password" name="password" required></div>
+<div><label for="email">Email</label><input type="email" name="email" required></div>
 <div class="centrado"><label for="responsable">Responsable de compra</label><input type="checkbox" name="responsable"></div>
 <input type="submit" name="enviar" value="Enviar">
 </form>
