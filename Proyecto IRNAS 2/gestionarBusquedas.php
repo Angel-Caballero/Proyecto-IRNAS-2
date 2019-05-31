@@ -2,6 +2,7 @@
 
 function buscarRecursos($conexion, $nombre){
     try{
+		//	"SELECT * FROM RECURSOS WHERE NOMBRE LIKE :nombre ORDER BY NOMBRE";
 		$consulta = "SELECT * FROM RECURSOS WHERE NOMBRE LIKE :nombre";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nombre',$nombre);	
@@ -9,7 +10,8 @@ function buscarRecursos($conexion, $nombre){
 		
 		return $stmt;
 	}catch(PDOException $e) {
-		return $e->getMessage();
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
     }
 }
 
@@ -22,7 +24,8 @@ function buscarAlmacenes($conexion, $nombre){
 		
 		return $stmt;
 	}catch(PDOException $e) {
-		return $e->getMessage();
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
     }
 }
 
@@ -35,7 +38,8 @@ function recursosEnAlmacen($conexion, $almacen){
 	
 	return $stmt;
 }catch(PDOException $e) {
-	return $e->getMessage();
+	$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
 	}
 }
 ?>
