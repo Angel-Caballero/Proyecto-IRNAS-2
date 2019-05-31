@@ -34,4 +34,9 @@ function validarDatosUsuario($conexion, $nuevoAlmacen){
 	}else if(!isset($nuevoAlmacen["tipo-iluminacion"])){
         $expresion = '/^[a-z]$/'
             if(preg_match($expresion, $value)){ echo 'El tipo de iluminacion es correcto'; }else{$errores[] = "<p> El tipo de iluminacion no puede tener numeros</p>"; })
+}
+    if($nuevoAlmacen["tipo-camara"] != "Almacen" &&
+		$nuevoAlmacen["tipo-camara"] != "invitro" && 
+		$nuevoAlmacen["tipo-camara"] != "frio") {
+		$errores[] = "<p>El tipo de camara debe ser Almacen, invitro o frio</p>";
 ?>
