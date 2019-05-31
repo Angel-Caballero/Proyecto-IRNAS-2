@@ -4,6 +4,7 @@
 	require_once ("gestionBD.php");
 	require_once ("gestionarBusquedas.php");
 	require_once ("gestionarUsuarios.php");
+	require_once ("paginacion_busqueda.php");
 
 	if (!isset($_SESSION['login'])){
 		  Header("Location: login.php");
@@ -15,8 +16,9 @@
 		$conexion = crearConexionBD();
   // ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 	// ¿Hay una sesión activa?
-	if (isset($_SESSION["paginacion"]))
+	if (isset($_SESSION["paginacion"])){
 		$paginacion = $_SESSION["paginacion"];
+	}
 	
 	$pagina_seleccionada = isset($_GET["PAG_NUM"]) ? (int)$_GET["PAG_NUM"] : (isset($paginacion) ? (int)$paginacion["PAG_NUM"] : 1);
 	$pag_tam = isset($_GET["PAG_TAM"]) ? (int)$_GET["PAG_TAM"] : (isset($paginacion) ? (int)$paginacion["PAG_TAM"] : 5);
@@ -30,25 +32,20 @@
 	$conexion = crearConexionBD();
 	if(isset($_SESSION['recurso'])){
 		$query = $_SESSION['recurso'];
-		unset($_SESSION['recurso']);
-
+		unset($_SESSION['almacen']);
 	}
 	else if(isset($_SESSION['almacen'])){
 		$query = $_SESSION['almacen'];
-		unset($_SESSION['almacen']);
-		
+		unset($_SESSION['recurso']);
 	}
-	// La consulta que ha de paginarse
-	$query = 'SELECT AUTORES.OID_AUTOR, AUTORES.APELLIDOS, AUTORES.NOMBRE, ' 
-			. 'LIBROS.OID_LIBRO, LIBROS.TITULO, AUTORIAS.OID_AUTORIA ' 
-			. 'FROM AUTORES, LIBROS, AUTORIAS ' 
-			. 'WHERE ' . 'AUTORES.OID_AUTOR = AUTORIAS.OID_AUTOR AND ' 
-			. 'LIBROS.OID_LIBRO = AUTORIAS.OID_LIBRO ' 
-			. 'ORDER BY APELLIDOS, NOMBRE, OID_AUTORIA';
-
+	$query = 'SELECT * ' 
+			. 'FROM USUARIOS '  
+			. 'ORDER BY NOMBRE';
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
 	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
-	$total_registros = total_consulta($conexion, $query);
+	
+	//$total_registros = total_consulta($conexion, $query);
+	$total_registros = total_consulta_prueba($conexion, $query);
 	$total_paginas = (int)($total_registros / $pag_tam);
 
 	if ($total_registros % $pag_tam > 0)		$total_paginas++;
@@ -60,7 +57,8 @@
 	$paginacion["PAG_TAM"] = $pag_tam;
 	$_SESSION["paginacion"] = $paginacion;
 
-	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+	//$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+	$filas = consulta_paginada_prueba($conexion, $query, $pagina_seleccionada, $pag_tam);
 		cerrarConexionBD($conexion);
 
 ?>
@@ -86,36 +84,65 @@
 <?php
 	include_once("menu.php");
 ?>
-<div>
-<form action=".php">
-  <select name="paginado">
-    <option value="1">10</option>
-    <option value="2">20</option>
-    <option value="3">30</option>
-    <option value="4">40</option>
-  </select>
-  <input type="submit">
-</form>
+<nav>
+
+<div id="enlaces">
+
+	<?php
+
+		for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+
+			if ( $pagina == $pagina_seleccionada) { 	?>
+
+				<span class="current"><?php echo $pagina; ?></span>
+
+	<?php }	else { ?>
+
+				<a href="listaResultados.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+	<?php } ?>
+
 </div>
+<form method="get" action="listaRecursos.php">
+
+	<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
+
+	Mostrando
+
+	<input id="PAG_TAM" name="PAG_TAM" type="number"
+
+		min="1" max="<?php echo $total_registros; ?>"
+
+		value="<?php echo $pag_tam?>" autofocus="autofocus" />
+
+	entradas de <?php echo $total_registros?>
+
+	<input type="submit" value="Cambiar">
+
+</form>
+
+</nav>
 <table style="width:90%;">
   <tr>
 		<?php if(isset($_SESSION["almacen"])){ ?>
-    <td>Almacen</td>
-    <td>Tipo de camara</td>
-		<td>Temperatura</td>
+    <th>Almacen</th>
+    <th>Tipo de camara</th>
+		<th>Temperatura</th>
 		<?php } else if(isset($_SESSION["recurso"])){?>
-		<td>Recurso</td>
-    <td>Almacen</td>
-		<td>Tipo</td>
+		<th>Recurso</th>
+    <th>Almacen</th>
+		<th>Tipo</th>
 		<?php } ?>
+	</tr>
+	
+	<?php foreach($filas as $fila){ ?>
+		<tr>
+    <td><?php echo $fila["NOMBRE"]; ?></td>
+    <td><?php echo $fila["EMAIL"]; ?></td> 
+    <td><?php echo $fila["TIPO"]; ?></td>
   </tr>
+	<?php } ?>
 </table>
-
-<section class="paginacion">
-	<ul>
-		<li><a href="http://"></a>Pagina1</li>
-	</ul>
-</section>
 
 </div>
 </div>
