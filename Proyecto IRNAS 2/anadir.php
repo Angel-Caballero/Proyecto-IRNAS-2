@@ -42,7 +42,7 @@ if (!isset($_SESSION['login'])){
 ?>
 <div style="width:100%">
 <ul>
-  <li onclick="recurso()">Recurso</li>
+  <li onclick="recurso()" class="activo">Recurso</li>
   <li onclick="proveedor()">Proveedor</li>
   <li onclick="almacen()">Almacén</li>
   <li onclick="mobiliario()">Mobiliario</li>
@@ -102,8 +102,8 @@ if (!isset($_SESSION['login'])){
 </div>
 <div id="mobiliario">
 <form action="" method="post" class="formulario">
-<div class="centrado" style="margin-bottom:8px;">Temperatura ambiente<input type="radio" name="tipo-mobiliario" value="ambiente"></div>
-<div class="centrado" style="margin-bottom:8px;">Equipo de frío<input type="radio" name="tipo-mobiliario" value="frio"></div>
+<div class="centrado" style="margin-bottom:8px;">Temperatura ambiente<input id="ambiente" type="radio" name="tipo-mobiliario" value="ambiente"></div>
+<div class="centrado" style="margin-bottom:8px;">Equipo de frío<input id="frio" type="radio" name="tipo-mobiliario" value="frio"></div>
 <div><label for="almacen">Almacén</label><select name="almacen">
     <option value="almacen1">Almacén 1</option>
     <option value="almacen2">Almacén 2</option>

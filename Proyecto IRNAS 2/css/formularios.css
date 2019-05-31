@@ -33,6 +33,10 @@ form > div{
   margin: 0 10px;
 }
 
+.activo{
+  background-color:#2f726a;
+}
+
 @media (max-width: 500px){
   form > div{
     width:200px;

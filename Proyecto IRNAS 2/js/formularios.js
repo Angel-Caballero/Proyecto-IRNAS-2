@@ -63,13 +63,19 @@ $(document).ready(function(){
         $("#proveedores").prop('disabled', false);
       }
     });
-    $("#mobiliario input[name='tipo-mobiliario']").change(function(){
-        if($("#mobiliario input[name='tipo-mobiliario']").val() == "ambiente"){
+    $("input[name=tipo-mobiliario]").change(function(){
+        if($("#ambiente").is(":checked")){
             $("#tipo").prop('disabled', false);
             $("#temperatura").prop('disabled','disabled');
-        } else if($("#mobiliario input[name='tipo-mobiliario']").val() == "frio"){
+        } else if($("#frio").is(":checked")){
             $("#tipo").prop('disabled', 'disabled');
             $("#temperatura").prop('disabled',false);
         }
+    });
+    $("li").click(function(){
+      if (!$(this).hasClass("activo")) {
+        $("li.activo").removeClass("activo");
+        $(this).addClass("activo");
+      }
     });
   });
