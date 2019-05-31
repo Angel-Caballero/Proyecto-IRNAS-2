@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION["formulario"])) {
+if (isset($_SESSION["formularioUsuario"])) {
     $nuevoUsuario["nombre"] = $_REQUEST["nombre"];
     $nuevoUsuario["email"] = $_REQUEST["email"];
     $nuevoUsuario["pass"] = $_REQUEST["pass"];
-    $_SESSION["formulario"] = $nuevoUsuario;		
+    $_SESSION["formularioUsuario"] = $nuevoUsuario;		
 }
 
 else 
