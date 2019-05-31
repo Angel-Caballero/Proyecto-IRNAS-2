@@ -1,14 +1,17 @@
 <?php
 session_start();
-if (isset($_SESSION["formulario"])) {
-    $nuevoProveedor["nombre"] = $_REQUEST["nombre"];
+if (isset($_SESSION["proveedor"])) {
+    $nuevoProveedor["nombre-empresa"] = $_REQUEST["nombre_empresa"];
+    $nuevoProveedor["nombre-comercial"] = $_REQUEST["nombre-comercial"];
     $nuevoProveedor["email"] = $_REQUEST["email"];
-    $nuevoProveedor["pass"] = $_REQUEST["pass"];
-    $_SESSION["formulario"] = $nuevoProveedor;		
+    $nuevoProveedor["telefono1"] = $_REQUEST["telefono1"];
+    $nuevoProveedor["telefono2"] = $_REQUEST["telefono2"];
+    $nuevoProveedor["telefono3"] = $_REQUEST["telefono3"]
+    $_SESSION["proveedor"] = $nuevoProveedor;		
 }
 
 else 
-    Header("Location: form_alta_usuario.php");
+    Header("Location: añadir.php");
 
     $conexion = crearConexionBD(); 
 	$errores = validarDatosProveedor($conexion, $nuevoProveedor);
