@@ -11,6 +11,12 @@ if (!isset($_SESSION['login'])){
     $usuario = $_SESSION['login'];
 }
 
+if (isset($_SESSION['almacen'])){
+  unset($_SESSION['almacen']);
+}else if (isset($_SESSION['recurso'])){
+  unset($_SESSION['recurso']);
+}
+
 
 	$conexion = crearConexionBD();
 

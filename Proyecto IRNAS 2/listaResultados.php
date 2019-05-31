@@ -52,9 +52,15 @@
 </div>
 <table style="width:90%;">
   <tr>
-    <td>Recurso</td>
-    <td>Tipo</td>
+		<?php if(isset($_SESSION["almacen"])){ ?>
     <td>Almacen</td>
+    <td>Tipo de camara</td>
+		<td>Temperatura</td>
+		<?php } else if(isset($_SESSION["recurso"])){?>
+		<td>Recurso</td>
+    <td>Almacen</td>
+		<td>Tipo</td>
+		<?php } ?>
   </tr>
 </table>
 
