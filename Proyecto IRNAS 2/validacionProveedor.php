@@ -34,7 +34,7 @@ function validarDatosProveedor($conexion, $nuevoProveedor){
     if($nuevoProveedor["email"]==""){ 
 		$errores[] = "<p>El email no puede estar vacío</p>";
 	}else if(!filter_var($nuevoProveedor["email"], FILTER_VALIDATE_EMAIL)){
-        $errores[] = "<p>El email es incorrecto: " . $nuevoUsuario["email"]. "</p>";
+        $errores[] = "<p>El email es incorrecto: " . $nuevoProveedor["email"]. "</p>";
         
     if(!isset($nuevoProveedor["telefono1"])){
     $expresion = '/^[9|6|7][0-9]{8}$/'
