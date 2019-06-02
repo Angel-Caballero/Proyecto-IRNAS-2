@@ -2,7 +2,6 @@
 
 function buscarRecursos($conexion, $nombre){
     try{
-		//	"SELECT * FROM RECURSOS WHERE NOMBRE LIKE :nombre ORDER BY NOMBRE";
 		$consulta = "SELECT * FROM RECURSOS WHERE NOMBRE LIKE :nombre";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nombre',$nombre);	
