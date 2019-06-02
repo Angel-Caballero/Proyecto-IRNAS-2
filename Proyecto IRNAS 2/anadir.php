@@ -15,7 +15,7 @@ if (!isset($_SESSION["formularioUsuario"])) {
 else
 $nuevoUsuario = $_SESSION["formularioUsuario"];
 
-if (isset($_SESSION["formularioRecurso"])) {
+if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso["nombre"] = '';
   $nuevoRecurso["almacen"] = '';
   $nuevoRecurso["tipo-recurso"] = '';
@@ -32,7 +32,7 @@ if (isset($_SESSION["formularioRecurso"])) {
 else
 $nuevoRecurso = $_SESSION["formularioRecurso"];
 
-if (isset($_SESSION["formularioProveedor"])) {
+if (!isset($_SESSION["formularioProveedor"])) {
   $nuevoProveedor["nombre-empresa"] = '';
   $nuevoProveedor["nombre-comercial"] = '';
   $nuevoProveedor["email"] = '';
@@ -45,7 +45,7 @@ if (isset($_SESSION["formularioProveedor"])) {
 else
 $nuevoProveedor = $_SESSION["formularioProveedor"];
 
-if (isset($_SESSION["formularioMobiliario"])) {
+if (!isset($_SESSION["formularioMobiliario"])) {
   $nuevoMobiliario["tipo-mobiliario"] = '';
   $nuevoMobiliario["almacen"] = '';
   $nuevoMobiliario["nombre"] = '';
@@ -57,7 +57,7 @@ if (isset($_SESSION["formularioMobiliario"])) {
 else
 $nuevoMobiliario = $_SESSION["formularioMobiliario"];
 
-if (isset($_SESSION["formularioAlmacen"])) {
+if (!isset($_SESSION["formularioAlmacen"])) {
   $nuevoAlmacen["nombre"] = '';
   $nuevoAlmacen["tipo-iluminacion"] = '';
   $nuevoAlmacen["temperatura"] = '';
@@ -114,7 +114,7 @@ if (!isset($_SESSION['login'])){
 </div>
 <!--Formulario de recurso-->
 <div id="recurso">
-  <form action="" id="recurso-form" method="post" class="formulario">
+  <form action="validacionRecurso.php" id="recurso-form" method="post" class="formulario">
     
     <div><label for="recurso-nombre">Nombre</label>
     <input id="recurso-nombre" name="recurso-nombre" type="text" required></div>
@@ -166,7 +166,7 @@ if (!isset($_SESSION['login'])){
 
 <!--Formulario de proveedor-->
 <div id="proveedor">
-  <form action="" id="proveedor-form" method="post" class="formulario">
+  <form action="validacionProveedor.php" id="proveedor-form" method="post" class="formulario">
 
     <div><label for="proveedor-nombre-empresa">Nombre empresa</label>
     <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa"type="text"></div>
@@ -192,7 +192,7 @@ if (!isset($_SESSION['login'])){
 
 <!--Formulario de almacen-->
 <div id="almacen">
-  <form action="" id="almacen-form" method="post" class="formulario">
+  <form action="validacionAlmacen.php" id="almacen-form" method="post" class="formulario">
 
     <div><label for="almacen-nombre">Nombre</label>
     <input id="almacen-nombre" name="almacen-nombre" type="text" required></div>
@@ -216,7 +216,7 @@ if (!isset($_SESSION['login'])){
 
 <!--Formulario de mobiliario-->
 <div id="mobiliario">
-  <form action="" id="mobiliario-form" method="post" class="formulario">
+  <form action="validacionMobiliario.php" id="mobiliario-form" method="post" class="formulario">
 
     <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente
     <input id="mobiliario-tipo-ambiente" name="tipo-mobiliario" type="radio" value="ambiente"></div>
@@ -250,7 +250,7 @@ if (!isset($_SESSION['login'])){
 
 <!--Formulario de usuario-->
 <div id="usuario">
-  <form action="" id="usuario-form" method="post" class="formulario">
+  <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
     <div><label for="usuario-nombre">Nombre</label>
     <input id="usuario-nombre" name="usuario-nombre" type="text" minlength="5" maxlength="40" required></div>
