@@ -19,7 +19,7 @@ session_start()
 ?>
 <main>
 
-<h3>Información</h2>
+<h3>Información</h3>
 
 <ul>
 <li>Esto es una pagina web de gestión de recursos</li>
