@@ -1,4 +1,4 @@
-function recurso(){
+function recursoform(){
     document.getElementById("recurso").style.display = "block";
     document.getElementById("proveedor").style.display = "none";
     document.getElementById("almacen").style.display = "none";
@@ -6,7 +6,7 @@ function recurso(){
     document.getElementById("usuario").style.display = "none";
 }
 
-function proveedor(){
+function proveedorform(){
     document.getElementById("recurso").style.display = "none";
     document.getElementById("proveedor").style.display = "block";
     document.getElementById("almacen").style.display = "none";
@@ -14,7 +14,7 @@ function proveedor(){
     document.getElementById("usuario").style.display = "none";
 }
 
-function almacen(){
+function almacenform(){
     document.getElementById("recurso").style.display = "none";
     document.getElementById("proveedor").style.display = "none";
     document.getElementById("almacen").style.display = "block";
@@ -22,7 +22,7 @@ function almacen(){
     document.getElementById("usuario").style.display = "none";
 }
 
-function mobiliario(){
+function mobiliarioform(){
     document.getElementById("recurso").style.display = "none";
     document.getElementById("proveedor").style.display = "none";
     document.getElementById("almacen").style.display = "none";
@@ -30,7 +30,7 @@ function mobiliario(){
     document.getElementById("usuario").style.display = "none";
 }
 
-function usuario(){
+function usuarioform(){
     document.getElementById("recurso").style.display = "none";
     document.getElementById("proveedor").style.display = "none";
     document.getElementById("almacen").style.display = "none";
@@ -39,37 +39,37 @@ function usuario(){
 }
 
 $(document).ready(function(){
-    $("#tiporecurso").change(function(){
-      if($("#tiporecurso").val() == "Fungible y kits"){
-        $("#unidades").prop('disabled', false);
-        $("#formula").prop('disabled', 'disabled');
-        $("#cantidad").prop('disabled', false);
-        $("#reserva").prop('disabled', false);
-        $("#ficha").prop('disabled', 'disabled');
-        $("#proveedores").prop('disabled', false);
-      } else if($("#tiporecurso").val() == "Material biologico"){
-        $("#unidades").prop('disabled', 'disabled');
-        $("#formula").prop('disabled', 'disabled');
-        $("#cantidad").prop('disabled', 'disabled');
-        $("#reserva").prop('disabled', 'disabled');
-        $("#ficha").prop('disabled', 'disabled');
-        $("#proveedores").prop('disabled', 'disabled');
+    $("#recurso-tipo").change(function(){
+      if($("#recurso-tipo").val() == "Fungible y kits"){
+        $("#recurso-unidades").prop('disabled', false);
+        $("#recurso-formula").prop('disabled', 'disabled');
+        $("#recurso-cantidad").prop('disabled', false);
+        $("#recurso-reserva").prop('disabled', false);
+        $("#recurso-ficha").prop('disabled', 'disabled');
+        $("#recurso-proveedores").prop('disabled', false);
+      } else if($("#recurso-tipo").val() == "Material biologico"){
+        $("#recurso-unidades").prop('disabled', 'disabled');
+        $("#recurso-formula").prop('disabled', 'disabled');
+        $("#recurso-cantidad").prop('disabled', 'disabled');
+        $("#recurso-reserva").prop('disabled', 'disabled');
+        $("#recurso-ficha").prop('disabled', 'disabled');
+        $("#recurso-proveedores").prop('disabled', 'disabled');
       } else{
-        $("#unidades").prop('disabled', false);
-        $("#formula").prop('disabled', false);
-        $("#cantidad").prop('disabled', false);
-        $("#reserva").prop('disabled', false);
-        $("#ficha").prop('disabled', false);
-        $("#proveedores").prop('disabled', false);
+        $("#recurso-unidades").prop('disabled', false);
+        $("#recurso-formula").prop('disabled', false);
+        $("#recurso-cantidad").prop('disabled', false);
+        $("#recurso-reserva").prop('disabled', false);
+        $("#recurso-ficha").prop('disabled', false);
+        $("#recurso-proveedores").prop('disabled', false);
       }
     });
     $("input[name=tipo-mobiliario]").change(function(){
-        if($("#ambiente").is(":checked")){
-            $("#tipo").prop('disabled', false);
-            $("#temperatura").prop('disabled','disabled');
-        } else if($("#frio").is(":checked")){
-            $("#tipo").prop('disabled', 'disabled');
-            $("#temperatura").prop('disabled',false);
+        if($("#mobiliario-tipo-ambiente").is(":checked")){
+            $("#mobiliario-tipo").prop('disabled', false);
+            $("#mobiliario-temperatura").prop('disabled','disabled');
+        } else if($("#mobiliario-tipo-frio").is(":checked")){
+            $("#mobiliario-tipo").prop('disabled', 'disabled');
+            $("#mobiliario-temperatura").prop('disabled',false);
         }
     });
     $("li").click(function(){

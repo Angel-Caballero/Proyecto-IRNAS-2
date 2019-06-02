@@ -5,6 +5,69 @@ require_once ("gestionBD.php");
 require_once ("gestionarBusquedas.php");
 require_once ("gestionarUsuarios.php");
 
+if (!isset($_SESSION["formularioUsuario"])) {
+  $nuevoUsuario["nombre"] = '';
+  $nuevoUsuario["email"] = '';
+  $nuevoUsuario["pass"] = '';
+  $_SESSION["formularioUsuario"] = $nuevoUsuario;		
+}
+
+else
+$nuevoUsuario = $_SESSION["formularioUsuario"];
+
+if (isset($_SESSION["formularioRecurso"])) {
+  $nuevoRecurso["nombre"] = '';
+  $nuevoRecurso["almacen"] = '';
+  $nuevoRecurso["tipo-recurso"] = '';
+  $nuevoRecurso["posicion"] = '';
+  $nuevoRecurso["unidades"] = '';
+  $nuevoRecurso["formula"] = '';
+  $nuevoRecurso["cantidad"] = '';
+  $nuevoRecurso["reserva"] = '';
+  $nuevoRecurso["ficha"] = '';
+  $nuevoRecurso["proveedores"] = '';
+  $_SESSION["formularioRecurso"] = $nuevoRecurso;		
+}
+
+else
+$nuevoRecurso = $_SESSION["formularioRecurso"];
+
+if (isset($_SESSION["formularioProveedor"])) {
+  $nuevoProveedor["nombre-empresa"] = '';
+  $nuevoProveedor["nombre-comercial"] = '';
+  $nuevoProveedor["email"] = '';
+  $nuevoProveedor["telefono1"] = '';
+  $nuevoProveedor["telefono2"] = '';
+  $nuevoProveedor["telefono3"] = '';
+  $_SESSION["formularioProveedor"] = $nuevoProveedor;	
+}
+
+else
+$nuevoProveedor = $_SESSION["formularioProveedor"];
+
+if (isset($_SESSION["formularioMobiliario"])) {
+  $nuevoMobiliario["tipo-mobiliario"] = '';
+  $nuevoMobiliario["almacen"] = '';
+  $nuevoMobiliario["nombre"] = '';
+  $nuevoMobiliario["tipo"] = '';
+  $nuevoMobiliario["temperatura"] = '';
+  $_SESSION["formularioMobiliario"] = $nuevoMobiliario;
+}
+
+else
+$nuevoMobiliario = $_SESSION["formularioMobiliario"];
+
+if (isset($_SESSION["formularioAlmacen"])) {
+  $nuevoAlmacen["nombre"] = '';
+  $nuevoAlmacen["tipo-iluminacion"] = '';
+  $nuevoAlmacen["temperatura"] = '';
+  $nuevoAlmacen["tipo-camara"] = '';
+  $_SESSION["formularioAlmacen"] = $nuevoAlmacen;		
+}
+
+else
+$nuevoAlmacen = $_SESSION["formularioAlmacen"];
+
 if (!isset($_SESSION['login'])){
     Header("Location: login.php");
 }else{
@@ -31,7 +94,7 @@ if (!isset($_SESSION['login'])){
   <link rel="icon" href="images/icono.png"/>
   <title>Añadir Recursos</title>
 </head>
-<body onload="recurso()">
+<body onload="recursoform()">
 <div class="contenido">
 <?php
 	include_once("cabecera.php");
@@ -42,94 +105,169 @@ if (!isset($_SESSION['login'])){
 ?>
 <div style="width:100%">
 <ul>
-  <li onclick="recurso()" class="activo">Recurso</li>
-  <li onclick="proveedor()">Proveedor</li>
-  <li onclick="almacen()">Almacén</li>
-  <li onclick="mobiliario()">Mobiliario</li>
-  <li onclick="usuario()">Usuario</li>
+  <li onclick="recursoform()" class="activo">Recurso</li>
+  <li onclick="proveedorform()">Proveedor</li>
+  <li onclick="almacenform()">Almacén</li>
+  <li onclick="mobiliarioform()">Mobiliario</li>
+  <li onclick="usuarioform()">Usuario</li>
 </ul>
 </div>
+<!--Formulario de recurso-->
 <div id="recurso">
-  <form action="" method="post" class="formulario" name="recurso">
-    <div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
-<div><label for="almacen">Almacén</label><select name="almacen">
-    <option value="almacen1">Almacén 1</option>
-    <option value="almacen2">Almacén 2</option>
-    <option value="laboratorio1">Laboratorio 1</option>
-    <option value="laboratorio2">Laboratorio 2</option>
-</select></div>
-   <div> <label for="tipo-recurso">Tipo recurso</label><select id="tiporecurso" name="tipo-recurso">
+  <form action="" id="recurso-form" method="post" class="formulario">
+    
+    <div><label for="recurso-nombre">Nombre</label>
+    <input id="recurso-nombre" name="recurso-nombre" type="text" required></div>
+
+    <div><label for="recurso-almacen">Almacén</label>
+    <select id="recurso-almacen" name="recurso-almacen">
+      <option value="almacen1">Almacén 1</option>
+      <option value="almacen2">Almacén 2</option>
+      <option value="laboratorio1">Laboratorio 1</option>
+      <option value="laboratorio2">Laboratorio 2</option>
+    </select></div>
+
+    <div><label for="recurso-tipo">Tipo recurso</label>
+    <select id="recurso-tipo" name="recurso-tipo">
       <option value="Compuesto quimico">Compuesto químico</option>
       <option value="Fungible y kits">Fungible y kits</option>
       <option value="Material biologico">Material biológico</option>
-</select></div>
-    <div><label for="posicion">Posición</label><input type="text" name="posicion"></div>
-    <div><label for="unidades">Unidades</label><input id="unidades" type="number" name="unidades"></div>
-    <div><label for="formula">Fórmula química</label><input id="formula" type="text" name="formula"></div>
-    <div><label for="cantidad">Cantidad</label><input id="cantidad" type="number" name="cantidad"></div>
-    <div><label for="reserva">Reserva mínima</label><input id="reserva" type="number" name="reserva"></div>
-    <div><label for="ficha">Ficha seguridad</label><input id="ficha" type="file" name="ficha"></div>
-    <div><label for="proveedores">Proveedores</label><select id="proveedores" name="proveedores" multiple>
+    </select></div>
+
+    <div><label for="recurso-posicion">Posición</label>
+    <input id="recurso-posicion" name="recurso-posicion" type="text" required></div>
+    
+    <div><label for="recurso-unidades">Unidades</label>
+    <input id="recurso-unidades" name="recurso-unidades" type="number"></div>
+    
+    <div><label for="recurso-formula">Fórmula química</label>
+    <input id="recurso-formula" name="recurso-formula" type="text"></div>
+    
+    <div><label for="recurso-cantidad">Cantidad</label>
+    <input id="recurso-cantidad" name="recurso-cantidad" type="number"></div>
+    
+    <div><label for="recurso-reserva">Reserva mínima</label>
+    <input id="recurso-reserva" name="recurso-reserva" type="number"></div>
+    
+    <div><label for="recurso-ficha">Ficha seguridad</label>
+    <input id="recurso-ficha" name="recurso-ficha" type="file"></div>
+    
+    <div><label for="recurso-proveedores">Proveedores</label>
+    <select id="recurso-proveedores" name="recurso-proveedores" multiple>
       <option value="proveedor1">Proveedor 1</option>
       <option value="proveedor2">Proveedor 2</option>
       <option value="proveedor3">Proveedor 3</option>
       <option value="proveedor4">Proveedor 4</option>
-</select></div>
+    </select></div>
+    
     <input type="submit" name="enviar" value="Enviar">
-</form>
+  </form>
 </div>
+
+<!--Formulario de proveedor-->
 <div id="proveedor">
-<form action="" method="post" class="formulario" name="proveedor">
-<div><label for="nombre-empresa">Nombre empresa</label><input type="text" name="nombre-empresa"></div>
-<div><label for="nombre-comercial">Nombre comercial</label><input type="text" name="nombre-comercial"></div>
-<div><label for="email">Email</label><input type="email" name="email"></div>
-<div><label for="telefono1">Teléfono 1</label><input type="text" name="teléfono1"></div>
-<div><label for="telefono2">Teléfono 2</label><input type="text" name="teléfono2"></div>
-<div><label for="telefono3">Teléfono 3</label><input type="text" name="teléfono3"></div>
-<input type="submit" name="enviar" value="Enviar">
-</form>
+  <form action="" id="proveedor-form" method="post" class="formulario">
+
+    <div><label for="proveedor-nombre-empresa">Nombre empresa</label>
+    <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa"type="text"></div>
+
+    <div><label for="proveedor-nombre-comercial">Nombre comercial</label>
+    <input name="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" required></div>
+
+    <div><label for="proveedor-email">Email</label>
+    <input name="proveedor-email" name="proveedor-email" type="email" required></div>
+
+    <div><label for="proveedor-proveedor-telefono1">Teléfono 1</label>
+    <input name="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="[0-9]{9}"required></div>
+
+    <div><label for="proveedor-telefono2">Teléfono 2</label>
+    <input name="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="[0-9]{9}"></div>
+
+    <div><label for="proveedor-telefono3">Teléfono 3</label>
+    <input name="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="[0-9]{9}"></div>
+
+    <input type="submit" name="enviar" value="Enviar">
+  </form>
 </div>
+
+<!--Formulario de almacen-->
 <div id="almacen">
-<form action="" method="post" class="formulario" name="almacen">
-<div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
-<div><label for="tipo-iluminacion">Tipo iluminación</label><input type="text" name="tipo-iluminacion"></div>
-<div><label for="temperatura">Temperatura</label><input type="number" name="temperatura"></div>
-<div><label for="tipo-camara">Tipo cámara</label><select name="tipo-camara">
-<option value="Almacen">Almacén</option>
-<option value="invitro">Cámara in vitro</option>
-<option value="frio">Cámara frío</option>
-</select></div>
-<input type="submit" name="enviar" value="Enviar">
-</form>
+  <form action="" id="almacen-form" method="post" class="formulario">
+
+    <div><label for="almacen-nombre">Nombre</label>
+    <input id="almacen-nombre" name="almacen-nombre" type="text" required></div>
+
+    <div><label for="almacen-tipo-iluminacion">Tipo iluminación</label>
+    <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+"required></div>
+
+    <div><label for="almacen-temperatura">Temperatura</label>
+    <input id="almacen-temperatura" name="almacen-temperatura" type="number"></div>
+
+    <div><label for="almacen-tipo-camara">Tipo cámara</label>
+    <select id="almacen-tipo-camara" name="tipo-camara">
+      <option value="Almacen">Almacén</option>
+      <option value="invitro">Cámara in vitro</option>
+      <option value="frio">Cámara frío</option>
+    </select></div>
+
+    <input type="submit" name="enviar" value="Enviar">
+  </form>
 </div>
+
+<!--Formulario de mobiliario-->
 <div id="mobiliario">
-<form action="" method="post" class="formulario" name="mobiliario">
-<div class="centrado" style="margin-bottom:8px;">Temperatura ambiente<input id="ambiente" type="radio" name="tipo-mobiliario" value="ambiente"></div>
-<div class="centrado" style="margin-bottom:8px;">Equipo de frío<input id="frio" type="radio" name="tipo-mobiliario" value="frio"></div>
-<div><label for="almacen">Almacén</label><select name="almacen">
-    <option value="almacen1">Almacén 1</option>
-    <option value="almacen2">Almacén 2</option>
-    <option value="laboratorio1">Laboratorio 1</option>
-    <option value="laboratorio2">Laboratorio 2</option>
-</select></div>
-<div><label for="nombre">Nombre</label><input type="text" name="nombre"></div>
-<div><label for="tipo">Tipo</label><select id="tipo" name="tipo">
-<option value="estanteria">Estanteria</option>
-<option value="cajonera">Cajonera</option>
-</select></div>
-<div><label for="temperatura">Temperatura</label><input id="temperatura" type="number" name="temperatura"></div>
-<input type="submit" name="enviar" value="Enviar">
-</form>
+  <form action="" id="mobiliario-form" method="post" class="formulario">
+
+    <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente
+    <input id="mobiliario-tipo-ambiente" name="tipo-mobiliario" type="radio" value="ambiente"></div>
+
+    <div class="centrado" style="margin-bottom:8px;">Equipo de frío
+    <input id="mobiliario-tipo-frio" name="tipo-mobiliario" type="radio" value="frio"></div>
+
+    <div><label for="mobiliario-almacen">Almacén</label>
+    <select id="mobiliario-almacen" name="mobiliario-almacen" required>
+        <option value="almacen1">Almacén 1</option>
+        <option value="almacen2">Almacén 2</option>
+        <option value="laboratorio1">Laboratorio 1</option>
+        <option value="laboratorio2">Laboratorio 2</option>
+    </select></div>
+
+    <div><label for="mobiliario-nombre">Nombre</label>
+    <input id="mobiliario-nombre" name="mobiliario-nombre"type="text"></div>
+
+    <div><label for="mobiliario-tipo">Tipo</label>
+    <select id="mobiliario-tipo" name="mobiliario-tipo">
+      <option value="estanteria">Estanteria</option>
+      <option value="cajonera">Cajonera</option>
+    </select></div>
+
+    <div><label for="mobiliario-temperatura">Temperatura</label>
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number"></div>
+
+    <input type="submit" name="enviar" value="Enviar">
+  </form>
 </div>
+
+<!--Formulario de usuario-->
 <div id="usuario">
-<form action="" method="post" class="formulario" name="usuario">
-<div><label for="nombre">Nombre</label><input type="text" name="nombre" required></div>
-<div><label for="password">Contraseña</label><input type="password" name="password" required></div>
-<div><label for="email">Email</label><input type="email" name="email" required></div>
-<div class="centrado"><label for="responsable">Responsable de compra</label><input type="checkbox" name="responsable"></div>
-<input type="submit" name="enviar" value="Enviar">
-</form>
+  <form action="" id="usuario-form" method="post" class="formulario">
+
+    <div><label for="usuario-nombre">Nombre</label>
+    <input id="usuario-nombre" name="usuario-nombre" type="text" minlength="5" maxlength="40" required></div>
+
+    <div><label for="usuario-password">Contraseña</label>
+    <input id="usuario-password" name="usuario-password" type="password" placeholder="Mínimo 8 caracteres" minlength="5" required></div>
+
+    <div><label for="usuario-email">Email</label>
+    <input id="usuario-email" name="usuario-email" type="email" required></div>
+
+    <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
+    <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+
+    <input type="submit" name="enviar" value="Enviar">
+  </form>
 </div>
+
 </div>
 <?php
 	include_once("pie.php");
