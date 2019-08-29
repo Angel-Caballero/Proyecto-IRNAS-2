@@ -1,0 +1,10 @@
+BEGIN
+
+INSERTAR_ALMACENES('Sotano', 22, '12W', 'NORMAL');
+INSERTAR_ALMACENES('Invernadero', 24, 'Natural', 'NORMAL');
+INSERTAR_ALMACENES('Camara Frigorifica A', -12, '10W4B', 'CAMARA FRIO');
+INSERTAR_ALMACENES('Camara in-vitro', 19, '4B23R', 'CAMARA IN-VITRO');
+
+COMMIT;
+
+END;
