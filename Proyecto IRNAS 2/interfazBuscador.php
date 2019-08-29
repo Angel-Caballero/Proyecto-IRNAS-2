@@ -11,10 +11,12 @@ if (!isset($_SESSION['login'])){
     $usuario = $_SESSION['login'];
 }
 
-if (isset($_SESSION['almacen'])){
-  unset($_SESSION['almacen']);
-}else if (isset($_SESSION['recurso'])){
-  unset($_SESSION['recurso']);
+if (isset($_SESSION['busqAlmacen'])){
+  unset($_SESSION['busqAlmacen']);
+}else if (isset($_SESSION['busqRecurso'])){
+  unset($_SESSION['busqRecurso']);
+}else if(isset($_GET["almacen"])){
+  unset($_GET["almacen"]);
 }
 
 
