@@ -23,7 +23,7 @@
 	else if(isset($_SESSION['almacen'])){
 		$query = $_SESSION['almacen'];
 		unset($_SESSION['recurso']);
-		$almacenes = buscarRecursos($conexion, $query);
+		$almacenes = buscarAlmacenes($conexion, $query);
 	}
 	
 		cerrarConexionBD($conexion);
