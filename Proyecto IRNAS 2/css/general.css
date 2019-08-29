@@ -61,3 +61,7 @@ input,select{
   input[type=submit]:hover{
 	background-color: #8A3F3F;
   }
+
+  td{
+	  text-align:center;
+  }
