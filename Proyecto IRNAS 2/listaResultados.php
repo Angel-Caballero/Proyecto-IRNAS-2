@@ -12,21 +12,33 @@
 		  $usuario = $_SESSION['login'];
 	}
 
+	$conexion = crearConexionBD();
 
-		$conexion = crearConexionBD();
+	if(isset($_GET["almacen"])){
+		unset($_SESSION['busqAlmacen']);
+		$query = $_GET["almacen"];
+		$recursos = recursosEnAlmacen($conexion, $query);
+	}
+	else{
+		if(isset($_SESSION['busqRecurso'])){
+			$query = $_SESSION['busqRecurso'];
+			unset($_SESSION['busqAlmacen']);
+			$recursos = buscarRecursos($conexion, $query);
+		}
+		else if(isset($_SESSION['busqAlmacen'])){
+			$query = $_SESSION['busqAlmacen'];
+			unset($_SESSION['busqRecurso']);
+			$almacenes = buscarAlmacenes($conexion, $query);
+		}
+		else{
+			Header("Location: interfazBuscador.php");
+		}
+	}
 
-	if(isset($_SESSION['recurso'])){
-		$query = $_SESSION['recurso'];
-		unset($_SESSION['almacen']);
-		$recursos = buscarRecursos($conexion, $query);
-	}
-	else if(isset($_SESSION['almacen'])){
-		$query = $_SESSION['almacen'];
-		unset($_SESSION['recurso']);
-		$almacenes = buscarAlmacenes($conexion, $query);
-	}
+
 	
-		cerrarConexionBD($conexion);
+	
+	cerrarConexionBD($conexion);
 
 ?>
 
@@ -54,18 +66,18 @@
 
 <table style="width:90%;">
   <tr>
-	<?php if(isset($_SESSION["almacen"])){ ?>
+	<?php if(isset($_SESSION["busqAlmacen"])){ ?>
     	<th>Almacen</th>
     	<th>Tipo de camara</th>
 		<th>Temperatura</th>
 		<?php foreach($almacenes as $almacen){ ?>
 		<tr>
-   	 <td><?php echo $almacen["NOMBRE"]; ?></td>
+   	 <td><a href="listaResultados.php?almacen=<?php echo $almacen["NOMBRE"]; ?>"><?php echo $almacen["NOMBRE"]; ?></td>
     <td><?php echo $almacen["TIPOILUMINACION"]; ?></td> 
     <td><?php echo $almacen["TIPOCAMARA"]; ?></td>
   </tr>
 	<?php } ?>
-		<?php } else if(isset($_SESSION["recurso"])){?>
+		<?php } else if(isset($_SESSION["busqRecurso"]) || isset($_GET["almacen"])){?>
 		<th>Recurso</th>
    		<th>Almacen</th>
 		<th>Tipo</th>
