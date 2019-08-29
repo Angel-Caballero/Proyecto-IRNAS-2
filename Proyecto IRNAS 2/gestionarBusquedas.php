@@ -2,7 +2,7 @@
 
 function buscarRecursos($conexion, $nombre){
     try{
-		$consulta = "SELECT * FROM RECURSOS WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
+		$consulta = "SELECT * FROM RECURSOS WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%')) OR lower(FORMULAQUIMICA) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nombre',strtolower($nombre));	
 		$stmt->execute();	
