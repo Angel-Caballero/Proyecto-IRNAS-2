@@ -69,11 +69,13 @@
 		<th>Recurso</th>
    		<th>Almacen</th>
 		<th>Tipo</th>
+		<?php foreach($recursos as $recurso){ ?>
 		<tr>
-   	 <td><?php echo $almacen["NOMBRE"]; ?></td>
-    <td><?php echo $almacen["ALMACEN"]; ?></td> 
-    <td><?php echo $almacen["TIPO"]; ?></td>
+   	 <td><?php echo $recurso["NOMBRE"]; ?></td>
+    <td><?php echo $recurso["ALMACEN"]; ?></td> 
+    <td><?php echo $recurso["TIPO"]; ?></td>
   </tr>
+  		<?php } ?>
 		<?php } ?>
 	</tr>
 </table>
