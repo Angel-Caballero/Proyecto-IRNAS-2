@@ -5,11 +5,6 @@ INSERTAR_ALMACENES('Invernadero', 24, 'Natural', 'NORMAL');
 INSERTAR_ALMACENES('Camara Frigorifica A', -10, '10W4B', 'CAMARA FRIO');
 INSERTAR_ALMACENES('Camara in-vitro', 19, '4B23R', 'CAMARA IN-VITRO');
 
-COMMIT;
-
-END;
-
-BEGIN
 
 INSERTAR_RECURSOS('Cloruro de sodio','NaCl',NULL,15,5.0,7,'REACTIVO','Sotano');
 INSERTAR_RECURSOS('Acido Clorhidrico','HCl',NULL,10,1.0,3,'REACTIVO','Camara Frigorifica A');
