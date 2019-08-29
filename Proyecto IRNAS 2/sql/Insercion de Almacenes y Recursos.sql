@@ -7,7 +7,7 @@ INSERTAR_ALMACENES('Camara in-vitro', 19, '4B23R', 'CAMARA IN-VITRO');
 
 
 INSERTAR_RECURSOS('Cloruro de sodio','NaCl',NULL,15,5.0,7,'REACTIVO','Sotano');
-INSERTAR_RECURSOS('Acido Clorhidrico','HCl',NULL,10,1.0,3,'REACTIVO','Camara Frigorifica A');
+INSERTAR_RECURSOS('Acido clorhidrico','HCl',NULL,10,1.0,3,'REACTIVO','Camara Frigorifica A');
 INSERTAR_RECURSOS('Acido sulfurico','H2SO4',NULL,6,1.5,2,'REACTIVO','Sotano');
 INSERTAR_RECURSOS('Acido nitrico','HNO3',NULL,4,3.0,1,'REACTIVO','Camara Frigorifica A');
 INSERTAR_RECURSOS('Hidroxido de magnesio','Mg(OH)2',NULL,7,2.0,2,'REACTIVO','Sotano');

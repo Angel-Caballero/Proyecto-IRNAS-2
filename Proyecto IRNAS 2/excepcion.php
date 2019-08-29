@@ -14,8 +14,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/almacen.css" />
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/general.css" />
+  <link rel="icon" href="images/icono.png"/>
   <title>Gestión de almacén: ¡Se ha producido un problema!</title>
 </head>
 <body>	

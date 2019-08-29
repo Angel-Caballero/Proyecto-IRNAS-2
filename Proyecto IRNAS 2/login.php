@@ -4,6 +4,10 @@
   	include_once("gestionBD.php");
  	include_once("gestionarUsuarios.php");
 	
+	 if (isset($_SESSION['login'])){
+		Header("Location: interfazBuscador.php");
+	}
+
 	 if (isset($_POST['submit'])){
 		$nombre= $_POST['nombre'];
 		$pass = $_POST['pass'];
