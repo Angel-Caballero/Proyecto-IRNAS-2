@@ -2,9 +2,9 @@
 session_start();
 
 if (!isset($_SESSION['login'])) {
-	Header("Location: login.php");
+  Header("Location: login.php");
 } else {
-	$usuario = $_SESSION['login'];
+  $usuario = $_SESSION['login'];
 }
 
 if (isset($_SESSION["recurso"])) {
@@ -38,21 +38,46 @@ if (isset($_SESSION["recurso"])) {
       include_once("menu.php");
       ?>
       <div class="centrado" style="max-width:500px; flex-direction:column">
-        Nombre: <?php echo $recurso["NOMBRE"] ?><br />
-        <br />
-        Posición: <?php echo $recurso["NOMBRE"] ?><br />
-        <br />
-        Almacén: <?php echo $recurso["ALMACEN"] ?><br />
-        <br />
-        Unidades: <?php echo $recurso["UNIDADES"] ?><br />
-        <br />
-        Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
-        <br />
-        Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
-        <br />
-        Proveedores: <?php echo $recurso["NOMBRE"] ?><br />
-        <br />
-        Fórmula Química: <?php echo $recurso["FORMULAQUIMICA"] ?>
+        <?php if ($recurso["TIPO"] == "REACTIVO") { ?>
+          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+          <br />
+          Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+          <br />
+          Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
+          <br />
+          Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
+          <br />
+          Proveedores: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Fórmula Química: <?php echo $recurso["FORMULAQUIMICA"] ?>
+
+        <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
+          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+          <br />
+          Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+          <br />
+          Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
+          <br />
+          Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
+          <br />
+          Proveedores: <?php echo $recurso["NOMBRE"] ?><br />
+
+        <?php } else { ?>
+          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          <br />
+          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+
+        <?php } ?>
       </div>
     </div>
   </div>
