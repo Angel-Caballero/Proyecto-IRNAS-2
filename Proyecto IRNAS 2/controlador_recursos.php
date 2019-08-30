@@ -1,19 +1,19 @@
 <?php	
 	session_start();
 	
-	if (isset($_REQUEST["OID_LIBRO"])){
-		$libro["OID_LIBRO"] = $_REQUEST["OID_LIBRO"];
-		$libro["OID_AUTOR"] = $_REQUEST["OID_AUTOR"];
-		$libro["OID_AUTORIA"] = $_REQUEST["OID_AUTORIA"];
-		$libro["NOMBRE"] = $_REQUEST["NOMBRE"];
-		$libro["APELLIDOS"] = $_REQUEST["APELLIDOS"];
-		$libro["TITULO"] = $_REQUEST["TITULO"];
+	if (isset($_REQUEST["TIPO"])){
+		$recurso["NOMBRE"] = $_REQUEST["NOMBRE"];
+		$recurso["FORMULAQUIMICA"] = $_REQUEST["FORMULAQUIMICA"];
+		$recurso["FICHASEGURIDAD"] = $_REQUEST["FICHASEGURIDAD"];
+		$recurso["UNIDADES"] = $_REQUEST["UNIDADES"];
+		$recurso["CANTIDAD"] = $_REQUEST["CANTIDAD"];
+		$recurso["RESERVAMINIMA"] = $_REQUEST["RESERVAMINIMA"];
+		$recurso["TIPO"] = $_REQUEST["TIPO"];
+		$recurso["ALMACEN"] = $_REQUEST["ALMACEN"];
 		
-		$_SESSION["libro"] = $libro;
+		$_SESSION["recurso"] = $recurso;
 			
-		if (isset($_REQUEST["editar"])) Header("Location: consulta_libros.php"); 
-		else if (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");
-		else /* if (isset($_REQUEST["borrar"])) */ Header("Location: accion_borrar_libro.php"); 
+		Header("Location: detalleRecursos.php"); 
 	}
 	else {
         Header("Location: listaResultados.php");
