@@ -38,6 +38,6 @@ function validarDatosUsuario($conexion, $nuevoUsuario){
     }else if(!preg_match("/[a-z]+/", $nuevoUsuario["pass"]) || !preg_match("/[A-Z]+/", $nuevoUsuario["pass"]){
         $errores[] = "<p>Contraseña no válida: debe contener letras mayúsculas y minúsculas</p>";
     }else if(strlen($nuevoUsuario["pass"]) > 16){
-        $errores[] = "<p>Contraseña no válida: debe tener más de 16 caracteres</p>";
+        $errores[] = "<p>Contraseña no válida: no puede tener más de 16 caracteres</p>";
     }
 ?>
