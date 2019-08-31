@@ -72,6 +72,7 @@ if (!isset($_SESSION["formularioAlmacen"])) {
 $conexion = crearConexionBD();
 
 $almacenes = todosLosAlmacenes($conexion);
+$proveedores = todosLosProveedores($conexion);
 
 cerrarConexionBD($conexion);
 
@@ -151,10 +152,9 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-proveedores">Proveedores</label>
             <select id="recurso-proveedores" name="recurso-proveedores" multiple>
-              <option value="proveedor1">Proveedor 1</option>
-              <option value="proveedor2">Proveedor 2</option>
-              <option value="proveedor3">Proveedor 3</option>
-              <option value="proveedor4">Proveedor 4</option>
+              <?php foreach ($proveedores as $proveedor) {
+                echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "'/>";
+              } ?>
             </select></div>
 
           <input type="submit" name="enviar" value="Enviar">
@@ -222,11 +222,9 @@ cerrarConexionBD($conexion);
             <input id="mobiliario-tipo-frio" name="tipo-mobiliario" type="radio" value="frio"></div>
 
           <div><label for="mobiliario-almacen">Almacén</label>
-            <select id="mobiliario-almacen" name="mobiliario-almacen" required>
-              <option value="almacen1">Almacén 1</option>
-              <option value="almacen2">Almacén 2</option>
-              <option value="laboratorio1">Laboratorio 1</option>
-              <option value="laboratorio2">Laboratorio 2</option>
+            <?php foreach ($almacenes as $almacen) {
+              echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+            } ?>
             </select></div>
 
           <div><label for="mobiliario-nombre">Nombre</label>
