@@ -116,44 +116,66 @@ cerrarConexionBD($conexion);
         <form action="validacionRecurso.php" id="recurso-form" method="post" class="formulario">
 
           <div><label for="recurso-nombre">Nombre</label>
-            <input id="recurso-nombre" name="recurso-nombre" type="text" required></div>
+            <input id="recurso-nombre" name="recurso-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
 
           <div><label for="recurso-almacen">Almacén</label>
             <select id="recurso-almacen" name="recurso-almacen">
               <?php foreach ($almacenes as $almacen) {
-                echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+                if ($almacen["NOMBRE"] == $nuevoRecurso["almacen"]) {
+                  echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
+                } else {
+                  echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+                }
               } ?>
             </select></div>
 
           <div><label for="recurso-tipo">Tipo recurso</label>
             <select id="recurso-tipo" name="recurso-tipo">
-              <option value="Compuesto quimico">Compuesto químico</option>
-              <option value="Fungible y kits">Fungible y kits</option>
-              <option value="Material biologico">Material biológico</option>
+              <?php if ($nuevoRecurso["tipo-recurso"] == "Compuesto quimico") { ?>
+                <option value="Compuesto quimico" selected>Compuesto químico</option>
+                <option value="Fungible y kits">Fungible y kits</option>
+                <option value="Material biologico">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo-recurso"] == "Fungible y kits") { ?>
+                <option value="Compuesto quimico">Compuesto químico</option>
+                <option value="Fungible y kits" selected>Fungible y kits</option>
+                <option value="Material biologico">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo-recurso"] == "Material biologico") { ?>
+                <option value="Compuesto quimico">Compuesto químico</option>
+                <option value="Fungible y kits">Fungible y kits</option>
+                <option value="Material biologico" selected>Material biológico</option>
+              <?php } else { ?>
+                <option value="Compuesto quimico">Compuesto químico</option>
+                <option value="Fungible y kits">Fungible y kits</option>
+                <option value="Material biologico">Material biológico</option>
+              <?php } ?>
             </select></div>
 
           <div><label for="recurso-posicion">Posición</label>
-            <input id="recurso-posicion" name="recurso-posicion" type="text" required></div>
+            <input id="recurso-posicion" name="recurso-posicion" type="text" value="<?php echo $nuevoRecurso['posicion']; ?>" required></div>
 
           <div><label for="recurso-unidades">Unidades</label>
-            <input id="recurso-unidades" name="recurso-unidades" type="number"></div>
+            <input id="recurso-unidades" name="recurso-unidades" type="number" value="<?php echo $nuevoRecurso['unidades']; ?>"></div>
 
           <div><label for="recurso-formula">Fórmula química</label>
-            <input id="recurso-formula" name="recurso-formula" type="text"></div>
+            <input id="recurso-formula" name="recurso-formula" type="text" value="<?php echo $nuevoRecurso['formula']; ?>"></div>
 
           <div><label for="recurso-cantidad">Cantidad</label>
-            <input id="recurso-cantidad" name="recurso-cantidad" type="number"></div>
+            <input id="recurso-cantidad" name="recurso-cantidad" type="number" value="<?php echo $nuevoRecurso['cantidad']; ?>"></div>
 
           <div><label for="recurso-reserva">Reserva mínima</label>
-            <input id="recurso-reserva" name="recurso-reserva" type="number"></div>
+            <input id="recurso-reserva" name="recurso-reserva" type="number" value="<?php echo $nuevoRecurso['reserva']; ?>"></div>
 
           <div><label for="recurso-ficha">Ficha seguridad</label>
-            <input id="recurso-ficha" name="recurso-ficha" type="file"></div>
+            <input id="recurso-ficha" name="recurso-ficha" type="file" value="<?php echo $nuevoRecurso['ficha']; ?>"></div>
 
           <div><label for="recurso-proveedores">Proveedores</label>
             <select id="recurso-proveedores" name="recurso-proveedores" multiple>
               <?php foreach ($proveedores as $proveedor) {
-                echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "'/>";
+                if ($nuevoRecurso["proveedores"] == $proveedor["ID_PR"]) {
+                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "' selected/>";
+                } else {
+                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "'/>";
+                }
               } ?>
             </select></div>
 
@@ -222,9 +244,10 @@ cerrarConexionBD($conexion);
             <input id="mobiliario-tipo-frio" name="tipo-mobiliario" type="radio" value="frio"></div>
 
           <div><label for="mobiliario-almacen">Almacén</label>
-            <?php foreach ($almacenes as $almacen) {
-              echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
-            } ?>
+            <select id="mobiliario-almacen" name="mobiliario-almacen">
+              <?php foreach ($almacenes as $almacen) {
+                echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+              } ?>
             </select></div>
 
           <div><label for="mobiliario-nombre">Nombre</label>
