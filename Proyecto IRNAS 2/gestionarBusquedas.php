@@ -1,5 +1,5 @@
 <?php
-
+//Seccion de Recursos
 function buscarRecursos($conexion, $nombre){
     try{
 		$consulta = "SELECT * FROM RECURSOS WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%')) OR lower(FORMULAQUIMICA) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
@@ -14,6 +14,12 @@ function buscarRecursos($conexion, $nombre){
     }
 }
 
+function todosLosRecursos($conexion){
+	$consulta = "SELECT * FROM RECURSOS WHERE (NOMBRE = NOMBRE) ORDER BY NOMBRE";
+    return $conexion->query($consulta);
+}
+
+//Seccion de Almacenes
 function buscarAlmacenes($conexion, $nombre){
     try{
 		$consulta = "SELECT * FROM ALMACENES WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
@@ -40,5 +46,16 @@ function recursosEnAlmacen($conexion, $almacen){
 	$_SESSION['excepcion'] = $e->GetMessage();
 		header("Location: excepcion.php");
 	}
+}
+
+function todosLosAlmacenes($conexion){
+	$consulta = "SELECT * FROM ALMACENES WHERE (NOMBRE = NOMBRE) ORDER BY NOMBRE";
+    return $conexion->query($consulta);
+}
+
+//Seccion de Proveedores
+function todosLosProveedores($conexion){
+	$consulta = "SELECT * FROM PROVEEDORES WHERE (ID_PR = ID_PR) ORDER BY NOMBREEMPRESA";
+    return $conexion->query($consulta);
 }
 ?>
