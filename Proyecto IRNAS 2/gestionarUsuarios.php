@@ -1,10 +1,4 @@
 <?php
-  /*
-     * #===========================================================#
-     * #	Este fichero contiene las funciones de gestión
-     * #	de usuarios de la capa de acceso a datos
-     * #==========================================================#
-     */
 
  function alta_usuario($conexion,$usuario) {
 
