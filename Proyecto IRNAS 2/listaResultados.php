@@ -80,49 +80,38 @@ cerrarConexionBD($conexion);
 				</tr>
 			<?php } ?>
 		<?php } else if (isset($_SESSION["busqRecurso"]) || isset($_GET["almacen"])) { ?>
+			<tr>
 			<th>Recurso</th>
 			<th>Almacen</th>
 			<th>Tipo</th>
 			<?php foreach ($recursos as $recurso) { ?>
 				<tr>
-					<form method="post" action="controlador_recursos.php">
-
-						<div class="fila_recurso">
-
-							<div class="datos_recurso">
-
-								<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
-
-								<input id="FORMULAQUIMICA" name="FORMULAQUIMICA" type="hidden" value="<?php echo $recurso["FORMULAQUIMICA"]; ?>" />
-
-								<input id="FICHASEGURIDAD" name="FICHASEGURIDAD" type="hidden" value="<?php echo $recurso["FICHASEGURIDAD"]; ?>" />
-
-								<input id="UNIDADES" name="UNIDADES" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
-
-								<input id="CANTIDAD" name="CANTIDAD" type="hidden" value="<?php echo $recurso["CANTIDAD"]; ?>" />
-
-								<input id="RESERVAMINIMA" name="RESERVAMINIMA" type="hidden" value="<?php echo $recurso["RESERVAMINIMA"]; ?>" />
-
-								<input id="TIPO" name="TIPO" type="hidden" value="<?php echo $recurso["TIPO"]; ?>" />
-
-								<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
-
-								<td><?php echo $recurso["NOMBRE"]; ?></td>
-								<td><?php echo $recurso["ALMACEN"]; ?></td>
-								<td><?php echo $recurso["TIPO"]; ?></td>
+					<td><?php echo $recurso["NOMBRE"]; ?></td>
+					<td><?php echo $recurso["ALMACEN"]; ?></td>
+					<td><?php echo $recurso["TIPO"]; ?></td>
+					<td><form method="post" action="controlador_recursos.php">
+							<div class="fila_recurso">
+								<div class="datos_recurso">
+									<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
+									<input id="FORMULAQUIMICA" name="FORMULAQUIMICA" type="hidden" value="<?php echo $recurso["FORMULAQUIMICA"]; ?>" />
+									<input id="FICHASEGURIDAD" name="FICHASEGURIDAD" type="hidden" value="<?php echo $recurso["FICHASEGURIDAD"]; ?>" />
+									<input id="UNIDADES" name="UNIDADES" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
+									<input id="CANTIDAD" name="CANTIDAD" type="hidden" value="<?php echo $recurso["CANTIDAD"]; ?>" />
+									<input id="RESERVAMINIMA" name="RESERVAMINIMA" type="hidden" value="<?php echo $recurso["RESERVAMINIMA"]; ?>" />
+									<input id="TIPO" name="TIPO" type="hidden" value="<?php echo $recurso["TIPO"]; ?>" />
+									<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
+								</div>
+								<div id="boton">
+									<input type="submit" name="submit" value="Informacion" />
+								</div>
 							</div>
-							<div id="boton">
-								<input type="submit" name="submit" value="Informacion" />
-							</div>
-						</div>
-					</form>
+						</form>
+					</td>
 				</tr>
 			<?php } ?>
 		<?php } ?>
 		</tr>
-			</table>
-
-		</div>
+		</table>
 	</div>
 	</div>
 	<?php
