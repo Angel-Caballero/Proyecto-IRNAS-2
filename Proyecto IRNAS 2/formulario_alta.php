@@ -272,16 +272,20 @@ cerrarConexionBD($conexion);
         <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
           <div><label for="usuario-nombre">Nombre</label>
-            <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" required></div>
+            <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
 
           <div><label for="usuario-password">Contraseña</label>
-            <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 5 y 16 caracteres" minlength="5" maxlength="16" required></div>
+            <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" minlength="8" maxlength="16" required></div>
 
           <div><label for="usuario-email">Email</label>
-            <input id="usuario-email" name="usuario-email" type="email" required></div>
+            <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
 
           <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
-            <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+              <?php if($nuevoUsuario["tipo"] == "ADMINISTRADOR"){ ?>
+                <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
+              <?php }else{ ?>
+                <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+              <?php } ?>
 
           <input type="submit" name="enviar" value="Enviar">
         </form>
