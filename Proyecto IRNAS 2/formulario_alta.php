@@ -73,6 +73,15 @@ if (!isset($_SESSION["formularioAlmacen"])) {
 $conexion = crearConexionBD();
 
 $almacenes = todosLosAlmacenes($conexion);
+$almacenesRecursos = $almacenesMobiliario = "";
+foreach ($almacenes as $almacen) {
+  if ($almacen["NOMBRE"] == $nuevoRecurso["almacen"]) {
+    $almacenesRecursos = $almacenesRecursos."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
+  } else {
+    $almacenesRecursos = $almacenesRecursos."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+    $almacenesMobiliario = $almacenesMobiliario."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+  }
+}
 $proveedores = todosLosProveedores($conexion);
 
 cerrarConexionBD($conexion);
@@ -121,13 +130,7 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-almacen">Almacén</label>
             <select id="recurso-almacen" name="recurso-almacen">
-              <?php foreach ($almacenes as $almacen) {
-                if ($almacen["NOMBRE"] == $nuevoRecurso["almacen"]) {
-                  echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
-                } else {
-                  echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
-                }
-              } ?>
+              <?php echo $almacenesRecursos ?>
             </select></div>
 
           <div><label for="recurso-tipo">Tipo recurso</label>
@@ -246,11 +249,8 @@ cerrarConexionBD($conexion);
 
           <div><label for="mobiliario-almacen">Almacén</label>
             <select id="mobiliario-almacen" name="mobiliario-almacen">
-              <?php foreach ($almacenes as $almacen) {
-                echo "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
-              } ?>
+              <?php echo $almacenesMobiliario; ?>
             </select></div>
-
           <div><label for="mobiliario-nombre">Nombre</label>
             <input id="mobiliario-nombre" name="mobiliario-nombre" type="text"></div>
 
