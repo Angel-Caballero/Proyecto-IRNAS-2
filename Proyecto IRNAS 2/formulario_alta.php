@@ -15,6 +15,7 @@ if (!isset($_SESSION["formularioUsuario"])) {
   $nuevoUsuario["nombre"] = '';
   $nuevoUsuario["email"] = '';
   $nuevoUsuario["pass"] = '';
+  $nuevoUsuario["tipo"] = '';
   $_SESSION["formularioUsuario"] = $nuevoUsuario;
 } else {
   $nuevoUsuario = $_SESSION["formularioUsuario"];
@@ -90,7 +91,7 @@ cerrarConexionBD($conexion);
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/formularios.js"></script>
   <link rel="icon" href="images/icono.png" />
-  <title>Añadir Recursos</title>
+  <title>Base de Datos: Añadir Recursos</title>
 </head>
 
 <body onload="recursoform()">
