@@ -21,6 +21,11 @@ if (!isset($_SESSION["formularioUsuario"])) {
   $nuevoUsuario = $_SESSION["formularioUsuario"];
 }
 
+if (isset($_SESSION["erroresUsuario"])){
+  $erroresUsuario = $_SESSION["erroresUsuario"];
+  unset($_SESSION["erroresUsuario"]);
+}
+
 if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso["nombre"] = '';
   $nuevoRecurso["almacen"] = '';
@@ -269,6 +274,18 @@ cerrarConexionBD($conexion);
 
       <!--Formulario de usuario-->
       <div id="usuario">
+
+      <?php 
+		// Mostrar los erroes de validación (Si los hay)
+		if (isset($erroresUsuario) && count($erroresUsuario)>0) { 
+	    	echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
+			echo "<h4> Errores en el formulario de Usuario:</h4>";
+    		foreach($erroresUsuario as $errorUsuario){
+    			echo $errorUsuario;
+			} 
+    		echo "</div>";
+  		}
+	?>
         <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
           <div><label for="usuario-nombre">Nombre</label>
