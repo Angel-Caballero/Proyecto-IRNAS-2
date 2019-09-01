@@ -10,7 +10,7 @@ if (isset($_SESSION["formularioMobiliario"])) {
 }
 
 else 
-    Header("Location: form_alta_usuario.php");
+    Header("Location: formulario_alta.php");
 
     $conexion = crearConexionBD(); 
 	$errores = validarDatosUsuario($conexion, $nuevoMobiliario);
@@ -19,10 +19,10 @@ else
 if (count($errores)>0) {
 	
 	$_SESSION["errores"] = $errores;
-	Header('Location: form_alta_usuario.php');
+	Header('Location: formulario_alta.php');
 } else
 	
-    Header('Location: accion_alta_usuario.php');
+    Header('Location: accion_alta_mobiliario.php');
         
 function validarDatosUsuario($conexion, $nuevoMobiliario){
     $errores=array();
@@ -31,10 +31,11 @@ function validarDatosUsuario($conexion, $nuevoMobiliario){
     $errores[] = "<p>El nombre no puede estar vacío</p>";
 
     if($nuevoMobiliario["tipo"] != "estanteria" &&
-        $nuevoMobiliario["tipo"] != "cajonera" {
+        $nuevoMobiliario["tipo"] != "cajonera") {
 		$errores[] = "<p>El tipo debe ser estanteria o cajonera</p>";
-}
+    }
     if($nuevoMobiliario["tipo-mobiliario"] != "ambiente" &&
-		$nuevoMobiliario["tipo-mobiliario"] != "frio" {
-		$errores[] = "<p>El tipo de mobiliario debe ser temperatura ambiente o equipo de frio</p>";
+		$nuevoMobiliario["tipo-mobiliario"] != "frio") {
+        $errores[] = "<p>El tipo de mobiliario debe ser temperatura ambiente o equipo de frio</p>";}
+}
 ?>
