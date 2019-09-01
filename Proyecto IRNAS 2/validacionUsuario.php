@@ -1,26 +1,34 @@
 <?php
 session_start();
+
+require_once("gestionBD.php");
+
+
 if (isset($_SESSION["formularioUsuario"])) {
-    $nuevoUsuario["nombre"] = $_REQUEST["nombre"];
-    $nuevoUsuario["email"] = $_REQUEST["email"];
-    $nuevoUsuario["pass"] = $_REQUEST["pass"];
+    $nuevoUsuario["nombre"] = $_REQUEST["usuario-nombre"];
+    $nuevoUsuario["email"] = $_REQUEST["usuario-email"];
+    $nuevoUsuario["pass"] = $_REQUEST["usuario-password"];
+    if(isset($_REQUEST["usuario-responsable"])){
+        $nuevoUsuario["tipo"] = "ADMINISTRADOR";
+    }else {
+        $nuevoUsuario["tipo"] = "TRABAJADOR";
+    }
     $_SESSION["formularioUsuario"] = $nuevoUsuario;		
 }
 
-else 
+else {
     Header("Location: form_alta_usuario.php");
-
+}
     $conexion = crearConexionBD(); 
 	$errores = validarDatosUsuario($conexion, $nuevoUsuario);
     cerrarConexionBD($conexion);
     
 if (count($errores)>0) {
-	
-	$_SESSION["errores"] = $errores;
-	Header('Location: form_alta_usuario.php');
-} else
-	
+	$_SESSION["erroresUsuario"] = $errores;
+	Header('Location: formulario_alta.php');
+} else{
     Header('Location: accion_alta_usuario.php');
+}
         
 function validarDatosUsuario($conexion, $nuevoUsuario){
     $errores=array();
@@ -39,5 +47,9 @@ function validarDatosUsuario($conexion, $nuevoUsuario){
         $errores[] = "<p>Contraseña no válida: debe contener letras mayúsculas y minúsculas</p>";
     }else if(strlen($nuevoUsuario["pass"]) > 16){
         $errores[] = "<p>Contraseña no válida: no puede tener más de 16 caracteres</p>";
+    }
+
+    if($nuevoUsuario["tipo"] != "TRABAJADOR" && $nuevoUsuario["tipo"] != "ADMINISTRADOR"){
+        $errores[] = "<p>El tipo de usuario debe ser: TRABAJADOR o ADMINISTRADOR</p>";
     }
 ?>
