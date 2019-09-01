@@ -54,6 +54,8 @@ function validarDatosUsuario($conexion, $nuevoUsuario){
     if($nuevoUsuario["tipo"] != "TRABAJADOR" && $nuevoUsuario["tipo"] != "ADMINISTRADOR"){
         $errores[] = "<p>El tipo de usuario debe ser: TRABAJADOR o ADMINISTRADOR</p>";
     }
+
+    return $errores;
 }
 
 ?>
