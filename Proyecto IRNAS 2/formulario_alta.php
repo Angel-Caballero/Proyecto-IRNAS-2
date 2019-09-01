@@ -272,10 +272,10 @@ cerrarConexionBD($conexion);
         <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
           <div><label for="usuario-nombre">Nombre</label>
-            <input id="usuario-nombre" name="usuario-nombre" type="text" minlength="5" maxlength="40" required></div>
+            <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" required></div>
 
           <div><label for="usuario-password">Contraseña</label>
-            <input id="usuario-password" name="usuario-password" type="password" placeholder="Mínimo 8 caracteres" minlength="5" required></div>
+            <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 5 y 16 caracteres" minlength="5" maxlength="16" required></div>
 
           <div><label for="usuario-email">Email</label>
             <input id="usuario-email" name="usuario-email" type="email" required></div>
