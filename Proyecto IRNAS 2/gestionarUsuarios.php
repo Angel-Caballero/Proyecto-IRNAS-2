@@ -3,7 +3,6 @@
  function alta_usuario($conexion,$usuario) {
 
 	try {
-		if ($usuario["tipo"] == 'ADMINISTRADOR') {
 			$consulta = "CALL INSERTAR_USUARIO(:nombre, :pass, :email, :tipo)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$usuario["nombre"]);
@@ -12,15 +11,6 @@
 			$stmt->bindParam(':tipo',$usuario["tipo"]);
 			
 			$stmt->execute();
-		}else{
-			$consulta = "CALL INSERTAR_USUARIO(:nombre, :pass, :tipo)";
-			$stmt=$conexion->prepare($consulta);
-			$stmt->bindParam(':nombre',$usuario["nombre"]);
-			$stmt->bindParam(':pass',$usuario["pass"]);
-			$stmt->bindParam(':tipo',$usuario["tipo"]);
-			
-			$stmt->execute();
-		}
 		return true;
 	} catch(PDOException $e) {
 		return false;
