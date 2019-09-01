@@ -21,7 +21,7 @@ if (!isset($_SESSION["formularioUsuario"])) {
   $nuevoUsuario = $_SESSION["formularioUsuario"];
 }
 
-if (isset($_SESSION["erroresUsuario"])){
+if (isset($_SESSION["erroresUsuario"])) {
   $erroresUsuario = $_SESSION["erroresUsuario"];
   unset($_SESSION["erroresUsuario"]);
 }
@@ -81,10 +81,10 @@ $almacenes = todosLosAlmacenes($conexion);
 $almacenesRecursos = $almacenesMobiliario = "";
 foreach ($almacenes as $almacen) {
   if ($almacen["NOMBRE"] == $nuevoRecurso["almacen"]) {
-    $almacenesRecursos = $almacenesRecursos."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
+    $almacenesRecursos = $almacenesRecursos . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
   } else {
-    $almacenesRecursos = $almacenesRecursos."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
-    $almacenesMobiliario = $almacenesMobiliario."<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+    $almacenesRecursos = $almacenesRecursos . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+    $almacenesMobiliario = $almacenesMobiliario . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
   }
 }
 $proveedores = todosLosProveedores($conexion);
@@ -275,17 +275,17 @@ cerrarConexionBD($conexion);
       <!--Formulario de usuario-->
       <div id="usuario">
 
-      <?php 
-		// Mostrar los erroes de validación (Si los hay)
-		if (isset($erroresUsuario) && count($erroresUsuario)>0) { 
-	    	echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
-			echo "<h4> Errores en el formulario de Usuario:</h4>";
-    		foreach($erroresUsuario as $errorUsuario){
-    			echo $errorUsuario;
-			} 
-    		echo "</div>";
-  		}
-	?>
+        <?php
+        // Mostrar los erroes de validación (Si los hay)
+        if (isset($erroresUsuario) && count($erroresUsuario) > 0) {
+          echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
+          echo "<h4> Errores en el formulario de Usuario:</h4>";
+          foreach ($erroresUsuario as $errorUsuario) {
+            echo $errorUsuario;
+          }
+          echo "</div>";
+        }
+        ?>
         <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
           <div><label for="usuario-nombre">Nombre</label>
@@ -298,20 +298,20 @@ cerrarConexionBD($conexion);
             <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
 
           <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
-              <?php if($nuevoUsuario["tipo"] == "ADMINISTRADOR"){ ?>
-                <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
-              <?php }else{ ?>
-                <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
-              <?php } ?>
+            <?php if ($nuevoUsuario["tipo"] == "ADMINISTRADOR") { ?>
+              <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
+        <?php } else { ?>
+          <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+    <?php } ?>
 
-          <input type="submit" name="enviar" value="Enviar">
-        </form>
-      </div>
-
+    <input type="submit" name="enviar" value="Enviar">
+    </form>
     </div>
-    <?php
-    include_once("pie.php");
-    ?>
+
+  </div>
+  <?php
+  include_once("pie.php");
+  ?>
 </body>
 
 </html>
