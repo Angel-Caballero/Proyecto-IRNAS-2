@@ -2,7 +2,8 @@
 //Seccion de Recursos
 function buscarRecursos($conexion, $nombre){
     try{
-		$consulta = "SELECT * FROM RECURSOS WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%')) OR lower(FORMULAQUIMICA) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
+		$consulta = "SELECT * FROM RECURSOS WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%')) 
+		OR lower(FORMULAQUIMICA) LIKE CONCAT('%',CONCAT(:nombre,'%')) ORDER BY NOMBRE";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nombre',strtolower($nombre));	
 		$stmt->execute();	
@@ -22,7 +23,8 @@ function todosLosRecursos($conexion){
 //Seccion de Almacenes
 function buscarAlmacenes($conexion, $nombre){
     try{
-		$consulta = "SELECT * FROM ALMACENES WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%'))";
+		$consulta = "SELECT * FROM ALMACENES WHERE lower(NOMBRE) LIKE CONCAT('%',CONCAT(:nombre,'%'))
+		ORDER BY NOMBRE";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->bindParam(':nombre',strtolower($nombre));	
 		$stmt->execute();	
