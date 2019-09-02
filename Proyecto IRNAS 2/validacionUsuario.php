@@ -20,7 +20,7 @@ else {
     Header("Location: form_alta_usuario.php");
 }
     $conexion = crearConexionBD(); 
-	$errores = validarDatosUsuario($conexion, $nuevoUsuario);
+	$errores = validarDatosUsuario($nuevoUsuario);
     cerrarConexionBD($conexion);
     
 if (count($errores)>0) {
@@ -30,7 +30,7 @@ if (count($errores)>0) {
     Header('Location: accion_alta_usuario.php');
 }
         
-function validarDatosUsuario($conexion, $nuevoUsuario){
+function validarDatosUsuario($nuevoUsuario){
     $errores=array();
 
     if($nuevoUsuario["nombre"]==""){
