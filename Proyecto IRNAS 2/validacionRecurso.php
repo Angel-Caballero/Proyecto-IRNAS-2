@@ -6,11 +6,11 @@ if (isset($_SESSION["formularioRecurso"])) {
     $nuevoRecurso["tipo-recurso"] = $_REQUEST["tipo-recurso"];
     $nuevoRecurso["posicion"] = $_REQUEST["posicion"];
     $nuevoRecurso["unidades"] = $_REQUEST["unidades"];
-    $nuevoRecurso["formula"] = $_REQUEST["formula"]
-    $nuevoRecurso["cantidad"] = $_REQUEST["cantidad"]
-    $nuevoRecurso["reserva"] = $_REQUEST["reserva"]
-    $nuevoRecurso["ficha"] = $_REQUEST["ficha"]
-    $nuevoRecurso["proveedores"] = $_REQUEST["proveedores"]
+    $nuevoRecurso["formula"] = $_REQUEST["formula"];
+    $nuevoRecurso["cantidad"] = $_REQUEST["cantidad"];
+    $nuevoRecurso["reserva"] = $_REQUEST["reserva"];
+    $nuevoRecurso["ficha"] = $_REQUEST["ficha"];
+    $nuevoRecurso["proveedores"] = $_REQUEST["proveedores"];
     $_SESSION["formularioRecurso"] = $nuevoRecurso;		
 }
 
@@ -43,4 +43,5 @@ function validarDatosProveedor($conexion, $nuevoRecurso){
     if($nuevoRecurso["posicion"]=="") 
     $errores[] = "<p>La posicion no puede estar vacía</p>";
     }
+}
 ?>
