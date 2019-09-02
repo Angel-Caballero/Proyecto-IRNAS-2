@@ -2,13 +2,13 @@
 	session_start();
 
 	require_once("gestionBD.php");
-	require_once("gestionarUsuarios.php");
+	require_once("gestionarAlmacenes.php");
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-	if (isset($_SESSION["formularioUsuario"])) {
-		$nuevoUsuario = $_SESSION["formularioUsuario"];
-		$_SESSION["formularioUsuario"] = null;
-		$_SESSION["erroresUsuario"] = null;
+	if (isset($_SESSION["formularioAlmacen"])) {
+		$nuevoAlmacen = $_SESSION["formularioAlmacen"];
+		$_SESSION["formularioAlmacen"] = null;
+		$_SESSION["erroresAlmacen"] = null;
 	}
 	else{
 		Header("Location: formulario_alta.php");	
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
   <script type="text/javascript" src="./js/menu.js"></script>
   <link rel="icon" href="images/icono.png" />
-  <title>Base de Datos: Usuario creado con éxito</title>
+  <title>Base de Datos: Almacen creado con éxito</title>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
 	?>
 
 	<main>
-		<?php if (alta_usuario($conexion, $nuevoUsuario)) {?>
-				<h1>Creado el usuario <?php echo $nuevoUsuario["nombre"]; ?> correctamente</h1>
+		<?php if (alta_almacen($conexion, $nuevoAlmacen)) {?>
+				<h1>Creado el almacen <?php echo $nuevoAlmacen["nombre"]; ?> correctamente</h1>
 				<div >	
 					   Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
 					   O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.

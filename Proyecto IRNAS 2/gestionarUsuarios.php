@@ -1,6 +1,6 @@
 <?php
 
- function alta_usuario($conexion,$usuario) {
+function alta_usuario($conexion,$usuario) {
 
 	try {
 			$consulta = "CALL INSERTAR_USUARIO(:nombre, :pass, :email, :tipo)";

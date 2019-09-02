@@ -280,30 +280,30 @@ cerrarConexionBD($conexion);
           <div><label for="almacen-nombre">Nombre</label>
             <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoAlmacen['nombre']; ?>" required></div>
 
-          <div><label for="almacen-tipo-iluminacion">Tipo iluminación</label>
-            <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
+          <div><label for="almacen-iluminacion">Tipo iluminación</label>
+            <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" pattern="/^[0-9][A-Z]$/" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
             <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>"></div>
 
           <div><label for="almacen-tipo-camara">Tipo cámara</label>
-            <select id="almacen-tipo-camara" name="tipo-camara">
-              <?php if ($nuevoAlmacen["tipo-camara"] == "Compuesto quimico") { ?>
-                <option value="almacen" selected>Almacén</option>
-                <option value="invitro">Cámara in vitro</option>
-                <option value="frio">Cámara frío</option>
-              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Fungible y kits") { ?>
-                <option value="almacen">Almacén</option>
-                <option value="invitro" selected>Cámara in vitro</option>
-                <option value="frio">Cámara frío</option>
-              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Material biologico") { ?>
-                <option value="almacen">Almacén</option>
-                <option value="invitro">Cámara in vitro</option>
-                <option value="frio" selected>Cámara frío</option>
+            <select id="almacen-tipo-camara" name="almacen-tipo-camara">
+              <?php if ($nuevoAlmacen["tipo-camara"] == "NORMAL") { ?>
+                <option value="NORMAL" selected>Almacén</option>
+                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
+                <option value="CAMARA FRIO">Cámara frío</option>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "CAMARA IN-VITRO") { ?>
+                <option value="NORMAL">Almacén</option>
+                <option value="CAMARA IN-VITRO" selected>Cámara in vitro</option>
+                <option value="CAMARA FRIO">Cámara frío</option>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "CAMARA FRIO") { ?>
+                <option value="NORMAL">Almacén</option>
+                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
+                <option value="CAMARA FRIO" selected>Cámara frío</option>
               <?php } else { ?>
-                <option value="almacen">Almacén</option>
-                <option value="invitro">Cámara in vitro</option>
-                <option value="frio">Cámara frío</option>
+                <option value="NORMAL">Almacén</option>
+                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
+                <option value="CAMARA FRIO">Cámara frío</option>
               <?php } ?>
             </select></div>
 
