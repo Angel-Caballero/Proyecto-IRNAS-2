@@ -104,6 +104,11 @@ foreach ($almacenes as $almacen) {
     $almacenesRecursos = $almacenesRecursos . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
   } else {
     $almacenesRecursos = $almacenesRecursos . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
+  }
+
+  if ($almacen["NOMBRE"] == $nuevoRecurso["almacen"]) {
+    $almacenesMobiliario = $almacenesMobiliario . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "' selected/>";
+  } else {
     $almacenesMobiliario = $almacenesMobiliario . "<option value='" . $almacen["NOMBRE"] . "' label='" . $almacen["NOMBRE"] . "'/>";
   }
 }
@@ -273,25 +278,25 @@ cerrarConexionBD($conexion);
         <form action="validacionAlmacen.php" id="almacen-form" method="post" class="formulario">
 
           <div><label for="almacen-nombre">Nombre</label>
-            <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
+            <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoAlmacen['nombre']; ?>" required></div>
 
           <div><label for="almacen-tipo-iluminacion">Tipo iluminación</label>
-            <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+" value="<?php echo $nuevoRecurso['tipo-iluminacion']; ?>" required></div>
+            <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
-            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoRecurso['temperatura']; ?>"></div>
+            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>"></div>
 
           <div><label for="almacen-tipo-camara">Tipo cámara</label>
             <select id="almacen-tipo-camara" name="tipo-camara">
-              <?php if ($nuevoRecurso["tipo-camara"] == "Compuesto quimico") { ?>
+              <?php if ($nuevoAlmacen["tipo-camara"] == "Compuesto quimico") { ?>
                 <option value="almacen" selected>Almacén</option>
                 <option value="invitro">Cámara in vitro</option>
                 <option value="frio">Cámara frío</option>
-              <?php } elseif ($nuevoRecurso["tipo-camara"] == "Fungible y kits") { ?>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Fungible y kits") { ?>
                 <option value="almacen">Almacén</option>
                 <option value="invitro" selected>Cámara in vitro</option>
                 <option value="frio">Cámara frío</option>
-              <?php } elseif ($nuevoRecurso["tipo-camara"] == "Material biologico") { ?>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Material biologico") { ?>
                 <option value="almacen">Almacén</option>
                 <option value="invitro">Cámara in vitro</option>
                 <option value="frio" selected>Cámara frío</option>
@@ -341,14 +346,14 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-nombre">Nombre</label>
-    <input id="mobiliario-nombre" name="mobiliario-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
+    <input id="mobiliario-nombre" name="mobiliario-nombre" type="text" value="<?php echo $nuevoMobiliario['nombre']; ?>" required></div>
 
   <div><label for="mobiliario-tipo">Tipo</label>
     <select id="mobiliario-tipo" name="mobiliario-tipo">
-      <?php if ($nuevoRecurso["tipo-camara"] == "Compuesto quimico") { ?>
+      <?php if ($nuevoMobiliario["tipo-camara"] == "Compuesto quimico") { ?>
         <option value="estanteria" selected>Estanteria</option>
         <option value="cajonera">Cajonera</option>
-      <?php } elseif ($nuevoRecurso["tipo-camara"] == "Fungible y kits") { ?>
+      <?php } elseif ($nuevoMobiliario["tipo-camara"] == "Fungible y kits") { ?>
         <option value="estanteria">Estanteria</option>
         <option value="cajonera" selected>Cajonera</option>
       <?php } else { ?>
@@ -358,7 +363,7 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-temperatura">Temperatura</label>
-    <input id="mobiliario-temperatura" name="temperatura" type="number" value="<?php echo $nuevoRecurso['temperatura']; ?>"></div>
+    <input id="mobiliario-temperatura" name="temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura']; ?>"></div>
 
   <input type="submit" name="enviar" value="Enviar">
   </form>
