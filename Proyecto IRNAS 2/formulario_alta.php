@@ -65,10 +65,10 @@ if (isset($_SESSION["erroresProveedor"])) {
 }
 
 if (!isset($_SESSION["formularioMobiliario"])) {
-  $nuevoMobiliario["temp-mobiliario"] = '';
+  $nuevoMobiliario["tipo-mob"] = '';
   $nuevoMobiliario["almacen"] = '';
   $nuevoMobiliario["nombre"] = '';
-  $nuevoMobiliario["tipo"] = '';
+  $nuevoMobiliario["tipo-temp-amb"] = '';
   $nuevoMobiliario["temperatura"] = '';
   $_SESSION["formularioMobiliario"] = $nuevoMobiliario;
 } else {
@@ -325,20 +325,20 @@ cerrarConexionBD($conexion);
         ?>
         <form action="validacionMobiliario.php" id="mobiliario-form" method="post" class="formulario">
 
-          <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente
-            <?php if ($nuevoMobiliario["temp-mobiliario"] == "ambiente") { ?>
-              <input id="mobiliario-temp-ambiente" name="temp-mobiliario" type="radio" value="ambiente" checked></div>
-        <?php } else { ?>
-          <input id="mobiliario-temp-ambiente" name="temp-mobiliario" type="radio" value="ambiente"></div>
-    <?php } ?>
-
-    <div class="centrado" style="margin-bottom:8px;">Equipo de frío
-      <?php if ($nuevoMobiliario["temp-mobiliario"] == "frio") { ?>
-        <input id="mobiliario-temp-frio" name="temp-mobiliario" type="radio" value="frio" checked></div>
-  <?php } else { ?>
-    <input id="mobiliario-temp-frio" name="temp-mobiliario" type="radio" value="frio">
-    </div>
-  <?php } ?>
+        <div><label for="tipo-mobiliario">Tipo mobiliario</label>
+            <select id="tipo-mobiliario" name="tipo-mobiliario">
+              <?php if ($nuevoRecurso["tipo-mobiliario"] == "ambiente") { ?>
+                <option value="ambiente" selected>Temperatura ambiente</option>
+                <option value="frio">Equipo de frío</option>
+              <?php } else if ($nuevoRecurso["tipo-mobiliario"] == "frio") { ?>
+                <option value="ambiente">Temperatura ambiente</option>
+                <option value="frio" selected>Equipo de frío</option>
+              <?php } else { ?>
+                <option value="ambiente">Temperatura ambiente</option>
+                <option value="frio">Equipo de frío</option>
+              <?php } ?>
+            </select>
+          </div>
 
   <div><label for="mobiliario-almacen">Almacén</label>
     <select id="mobiliario-almacen" name="mobiliario-almacen">
@@ -348,12 +348,12 @@ cerrarConexionBD($conexion);
   <div><label for="mobiliario-nombre">Nombre</label>
     <input id="mobiliario-nombre" name="mobiliario-nombre" type="text" value="<?php echo $nuevoMobiliario['nombre']; ?>" required></div>
 
-  <div><label for="mobiliario-tipo">Tipo</label>
-    <select id="mobiliario-tipo" name="mobiliario-tipo">
-      <?php if ($nuevoMobiliario["tipo-camara"] == "Compuesto quimico") { ?>
+  <div><label for="mobiliario-temp-amb">Tipo de temperatura ambiente</label>
+    <select id="mobiliario-temp-amb" name="mobiliario-temp-amb">
+      <?php if ($nuevoMobiliario["tipo-temp-amb"] == "estanteria") { ?>
         <option value="estanteria" selected>Estanteria</option>
         <option value="cajonera">Cajonera</option>
-      <?php } elseif ($nuevoMobiliario["tipo-camara"] == "Fungible y kits") { ?>
+      <?php } elseif ($nuevoMobiliario["tipo-temp-amb"] == "cajonera") { ?>
         <option value="estanteria">Estanteria</option>
         <option value="cajonera" selected>Cajonera</option>
       <?php } else { ?>
@@ -363,7 +363,7 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-temperatura">Temperatura</label>
-    <input id="mobiliario-temperatura" name="temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura']; ?>"></div>
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura']; ?>"></div>
 
   <input type="submit" name="enviar" value="Enviar">
   </form>

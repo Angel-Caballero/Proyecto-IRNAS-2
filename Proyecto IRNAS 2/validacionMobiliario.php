@@ -5,11 +5,11 @@ require_once("gestionBD.php");
 require_once("gestionarBusquedas.php");
 
 if (isset($_SESSION["formularioMobiliario"])) {
-    $nuevoMobiliario["temp-mobiliario"] = $_REQUEST["temp-mobiliario"];
-    $nuevoMobiliario["almacen"] = $_REQUEST["almacen"];
-    $nuevoMobiliario["nombre"] = $_REQUEST["nombre"];
-    $nuevoMobiliario["tipo"] = $_REQUEST["tipo"];
-    $nuevoMobiliario["temperatura"] = $_REQUEST["temeperatura"];
+    $nuevoMobiliario["tipo-mob"] = $_REQUEST["tipo-mobiliario"];
+    $nuevoMobiliario["almacen"] = $_REQUEST["mobiliario-almacen"];
+    $nuevoMobiliario["nombre"] = $_REQUEST["mobiliario-nombre"];
+    $nuevoMobiliario["tipo-temp-amb"] = $_REQUEST["mobiliario-temp-amb"];
+    $nuevoMobiliario["temperatura"] = $_REQUEST["mobiliario-temperatura"];
     $_SESSION["formularioMobiliario"] = $nuevoMobiliario;
 }else{
     Header("Location: formulario_alta.php");
@@ -32,17 +32,21 @@ function validarDatosMobiliario($conexion, $nuevoMobiliario){
         $errores[] = "<p>El nombre no puede estar vacío</p>";
     }
 
-    if($nuevoMobiliario["tipo"] != "estanteria" && $nuevoMobiliario["tipo"] != "cajonera") {
-		$errores[] = "<p>El tipo debe ser estanteria o cajonera</p>";
-    }
-
-    if($nuevoMobiliario["temp-mobiliario"] != "ambiente" && $nuevoMobiliario["temp-mobiliario"] != "frio") {
+    if($nuevoMobiliario["tipo-mob"] == "ambiente"){
+        if($nuevoMobiliario["tipo-temp-amb"] != "estanteria" && $nuevoMobiliario["tipo-temp-amb"] != "cajonera") {
+            $errores[] = "<p>El tipo debe ser estanteria o cajonera</p>";
+        }
+    }else if($nuevoMobiliario["tipo-mob"] == "frio"){
+        if($nuevoMobiliario["temperatura"]==""){
+            $errores[] = "<p>La temperatura no puede estar vacía</p>";
+        }
+    }else{
         $errores[] = "<p>El tipo de mobiliario debe ser temperatura ambiente o equipo de frio</p>";
     }
 
-    if($nuevoMobiliario["temperatura"]==""){
-        $errores[] = "<p>La temperatura no puede estar vacía</p>";
-    }
+   // if($nuevoMobiliario["tipo-mob"] != "ambiente" && $nuevoMobiliario["tipo-mob"] != "frio") {
+     //   $errores[] = "<p>El tipo de mobiliario debe ser temperatura ambiente o equipo de frio</p>";
+    //}
 
     $error = validarAlmacen($conexion, $nuevoMobiliario["almacen"]);
     if($error!=""){
