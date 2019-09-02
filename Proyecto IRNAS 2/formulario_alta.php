@@ -42,6 +42,11 @@ if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso = $_SESSION["formularioRecurso"];
 }
 
+if (isset($_SESSION["erroresRecurso"])) {
+  $erroresRecurso = $_SESSION["erroresRecurso"];
+  unset($_SESSION["erroresRecurso"]);
+}
+
 if (!isset($_SESSION["formularioProveedor"])) {
   $nuevoProveedor["nombre-empresa"] = '';
   $nuevoProveedor["nombre-comercial"] = '';
@@ -54,8 +59,13 @@ if (!isset($_SESSION["formularioProveedor"])) {
   $nuevoProveedor = $_SESSION["formularioProveedor"];
 }
 
+if (isset($_SESSION["erroresProveedor"])) {
+  $erroresProveedor = $_SESSION["erroresProveedor"];
+  unset($_SESSION["erroresProveedor"]);
+}
+
 if (!isset($_SESSION["formularioMobiliario"])) {
-  $nuevoMobiliario["tipo-mobiliario"] = '';
+  $nuevoMobiliario["temp-mobiliario"] = '';
   $nuevoMobiliario["almacen"] = '';
   $nuevoMobiliario["nombre"] = '';
   $nuevoMobiliario["tipo"] = '';
@@ -63,6 +73,11 @@ if (!isset($_SESSION["formularioMobiliario"])) {
   $_SESSION["formularioMobiliario"] = $nuevoMobiliario;
 } else {
   $nuevoMobiliario = $_SESSION["formularioMobiliario"];
+}
+
+if (isset($_SESSION["erroresMobiliario"])) {
+  $erroresMobiliario = $_SESSION["erroresMobiliario"];
+  unset($_SESSION["erroresMobiliario"]);
 }
 
 if (!isset($_SESSION["formularioAlmacen"])) {
@@ -73,6 +88,11 @@ if (!isset($_SESSION["formularioAlmacen"])) {
   $_SESSION["formularioAlmacen"] = $nuevoAlmacen;
 } else {
   $nuevoAlmacen = $_SESSION["formularioAlmacen"];
+}
+
+if (isset($_SESSION["erroresAlmacen"])) {
+  $erroresAlmacen = $_SESSION["erroresAlmacen"];
+  unset($_SESSION["erroresAlmacen"]);
 }
 
 $conexion = crearConexionBD();
@@ -128,6 +148,16 @@ cerrarConexionBD($conexion);
       </div>
       <!--Formulario de recurso-->
       <div id="recurso">
+        <?php
+        if (isset($erroresRecurso) && count($erroresRecurso) > 0) {
+          echo "<div id=\"div_errores_recurso\" class=\"errorRecurso\">";
+          echo "<h4> Errores en el formulario de Recurso:</h4>";
+          foreach ($erroresRecurso as $errorRecurso) {
+            echo $errorRecurso;
+          }
+          echo "</div>";
+        }
+        ?>
         <form action="validacionRecurso.php" id="recurso-form" method="post" class="formulario">
 
           <div><label for="recurso-nombre">Nombre</label>
@@ -194,25 +224,35 @@ cerrarConexionBD($conexion);
 
       <!--Formulario de proveedor-->
       <div id="proveedor">
+        <?php
+        if (isset($erroresProveedor) && count($erroresProveedor) > 0) {
+          echo "<div id=\"div_errores_proveedor\" class=\"errorProveedor\">";
+          echo "<h4> Errores en el formulario de Proveedor:</h4>";
+          foreach ($erroresProveedor as $errorProveedor) {
+            echo $errorProveedor;
+          }
+          echo "</div>";
+        }
+        ?>
         <form action="validacionProveedor.php" id="proveedor-form" method="post" class="formulario">
 
           <div><label for="proveedor-nombre-empresa">Nombre empresa</label>
-            <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa" type="text"></div>
+            <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa" type="text" value="<?php echo $nuevoProveedor['nombre-empresa']; ?>" required></div>
 
           <div><label for="proveedor-nombre-comercial">Nombre comercial</label>
-            <input name="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" required></div>
+            <input name="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" value="<?php echo $nuevoProveedor['nombre-comercial']; ?>" required></div>
 
           <div><label for="proveedor-email">Email</label>
-            <input name="proveedor-email" name="proveedor-email" type="email" required></div>
+            <input name="proveedor-email" name="proveedor-email" type="email" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
 
           <div><label for="proveedor-proveedor-telefono1">Teléfono 1</label>
-            <input name="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="[0-9]{9}" required></div>
+            <input name="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono1']; ?>" required></div>
 
           <div><label for="proveedor-telefono2">Teléfono 2</label>
-            <input name="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="[0-9]{9}"></div>
+            <input name="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono2']; ?>" placeholder="Teléfono opcional"></div>
 
           <div><label for="proveedor-telefono3">Teléfono 3</label>
-            <input name="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="[0-9]{9}"></div>
+            <input name="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono3']; ?>" placeholder="Teléfono opcional"></div>
 
           <input type="submit" name="enviar" value="Enviar">
         </form>
@@ -220,22 +260,46 @@ cerrarConexionBD($conexion);
 
       <!--Formulario de almacen-->
       <div id="almacen">
+        <?php
+        if (isset($erroresAlmacen) && count($erroresAlmacen) > 0) {
+          echo "<div id=\"div_errores_almacen\" class=\"errorAlmacen\">";
+          echo "<h4> Errores en el formulario de Almacen:</h4>";
+          foreach ($erroresAlmacen as $errorAlmacen) {
+            echo $errorAlmacen;
+          }
+          echo "</div>";
+        }
+        ?>
         <form action="validacionAlmacen.php" id="almacen-form" method="post" class="formulario">
 
           <div><label for="almacen-nombre">Nombre</label>
-            <input id="almacen-nombre" name="almacen-nombre" type="text" required></div>
+            <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
 
           <div><label for="almacen-tipo-iluminacion">Tipo iluminación</label>
-            <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+" required></div>
+            <input id="almacen-tipo-iluminacion" name="almacen-tipo-iluminacion" type="text" pattern="[a-z]+" value="<?php echo $nuevoRecurso['tipo-iluminacion']; ?>" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
-            <input id="almacen-temperatura" name="almacen-temperatura" type="number"></div>
+            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoRecurso['temperatura']; ?>"></div>
 
           <div><label for="almacen-tipo-camara">Tipo cámara</label>
             <select id="almacen-tipo-camara" name="tipo-camara">
-              <option value="Almacen">Almacén</option>
-              <option value="invitro">Cámara in vitro</option>
-              <option value="frio">Cámara frío</option>
+              <?php if ($nuevoRecurso["tipo-camara"] == "Compuesto quimico") { ?>
+                <option value="almacen" selected>Almacén</option>
+                <option value="invitro">Cámara in vitro</option>
+                <option value="frio">Cámara frío</option>
+              <?php } elseif ($nuevoRecurso["tipo-camara"] == "Fungible y kits") { ?>
+                <option value="almacen">Almacén</option>
+                <option value="invitro" selected>Cámara in vitro</option>
+                <option value="frio">Cámara frío</option>
+              <?php } elseif ($nuevoRecurso["tipo-camara"] == "Material biologico") { ?>
+                <option value="almacen">Almacén</option>
+                <option value="invitro">Cámara in vitro</option>
+                <option value="frio" selected>Cámara frío</option>
+              <?php } else { ?>
+                <option value="almacen">Almacén</option>
+                <option value="invitro">Cámara in vitro</option>
+                <option value="frio">Cámara frío</option>
+              <?php } ?>
             </select></div>
 
           <input type="submit" name="enviar" value="Enviar">
@@ -244,74 +308,100 @@ cerrarConexionBD($conexion);
 
       <!--Formulario de mobiliario-->
       <div id="mobiliario">
-        <form action="validacionMobiliario.php" id="mobiliario-form" method="post" class="formulario">
-
-          <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente
-            <input id="mobiliario-tipo-ambiente" name="tipo-mobiliario" type="radio" value="ambiente"></div>
-
-          <div class="centrado" style="margin-bottom:8px;">Equipo de frío
-            <input id="mobiliario-tipo-frio" name="tipo-mobiliario" type="radio" value="frio"></div>
-
-          <div><label for="mobiliario-almacen">Almacén</label>
-            <select id="mobiliario-almacen" name="mobiliario-almacen">
-              <?php echo $almacenesMobiliario; ?>
-            </select></div>
-          <div><label for="mobiliario-nombre">Nombre</label>
-            <input id="mobiliario-nombre" name="mobiliario-nombre" type="text"></div>
-
-          <div><label for="mobiliario-tipo">Tipo</label>
-            <select id="mobiliario-tipo" name="mobiliario-tipo">
-              <option value="estanteria">Estanteria</option>
-              <option value="cajonera">Cajonera</option>
-            </select></div>
-
-          <div><label for="mobiliario-temperatura">Temperatura</label>
-            <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number"></div>
-
-          <input type="submit" name="enviar" value="Enviar">
-        </form>
-      </div>
-
-      <!--Formulario de usuario-->
-      <div id="usuario">
-
         <?php
-        // Mostrar los erroes de validación (Si los hay)
-        if (isset($erroresUsuario) && count($erroresUsuario) > 0) {
-          echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
-          echo "<h4> Errores en el formulario de Usuario:</h4>";
-          foreach ($erroresUsuario as $errorUsuario) {
-            echo $errorUsuario;
+        if (isset($erroresMobiliario) && count($erroresMobiliario) > 0) {
+          echo "<div id=\"div_errores_mobiliario\" class=\"errorMobiliario\">";
+          echo "<h4> Errores en el formulario de Mobiliario:</h4>";
+          foreach ($erroresMobiliario as $errorMobiliario) {
+            echo $errorMobiliario;
           }
           echo "</div>";
         }
         ?>
-        <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
+        <form action="validacionMobiliario.php" id="mobiliario-form" method="post" class="formulario">
 
-          <div><label for="usuario-nombre">Nombre</label>
-            <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
-
-          <div><label for="usuario-password">Contraseña</label>
-            <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" minlength="8" maxlength="16" required></div>
-
-          <div><label for="usuario-email">Email</label>
-            <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
-
-          <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
-            <?php if ($nuevoUsuario["tipo"] == "ADMINISTRADOR") { ?>
-              <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
+          <div class="centrado" style="margin-bottom:8px;">Temperatura ambiente
+            <?php if ($nuevoMobiliario["temp-mobiliario"] == "ambiente") { ?>
+              <input id="mobiliario-temp-ambiente" name="temp-mobiliario" type="radio" value="ambiente" checked></div>
         <?php } else { ?>
-          <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+          <input id="mobiliario-temp-ambiente" name="temp-mobiliario" type="radio" value="ambiente"></div>
     <?php } ?>
 
-    <input type="submit" name="enviar" value="Enviar">
-    </form>
+    <div class="centrado" style="margin-bottom:8px;">Equipo de frío
+      <?php if ($nuevoMobiliario["temp-mobiliario"] == "frio") { ?>
+        <input id="mobiliario-temp-frio" name="temp-mobiliario" type="radio" value="frio" checked></div>
+  <?php } else { ?>
+    <input id="mobiliario-temp-frio" name="temp-mobiliario" type="radio" value="frio">
     </div>
+  <?php } ?>
 
+  <div><label for="mobiliario-almacen">Almacén</label>
+    <select id="mobiliario-almacen" name="mobiliario-almacen">
+      <?php echo $almacenesMobiliario; ?>
+    </select></div>
+
+  <div><label for="mobiliario-nombre">Nombre</label>
+    <input id="mobiliario-nombre" name="mobiliario-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
+
+  <div><label for="mobiliario-tipo">Tipo</label>
+    <select id="mobiliario-tipo" name="mobiliario-tipo">
+      <?php if ($nuevoRecurso["tipo-camara"] == "Compuesto quimico") { ?>
+        <option value="estanteria" selected>Estanteria</option>
+        <option value="cajonera">Cajonera</option>
+      <?php } elseif ($nuevoRecurso["tipo-camara"] == "Fungible y kits") { ?>
+        <option value="estanteria">Estanteria</option>
+        <option value="cajonera" selected>Cajonera</option>
+      <?php } else { ?>
+        <option value="estanteria">Estanteria</option>
+        <option value="cajonera">Cajonera</option>
+      <?php } ?>
+    </select></div>
+
+  <div><label for="mobiliario-temperatura">Temperatura</label>
+    <input id="mobiliario-temperatura" name="temperatura" type="number" value="<?php echo $nuevoRecurso['temperatura']; ?>"></div>
+
+  <input type="submit" name="enviar" value="Enviar">
+  </form>
   </div>
-  <?php
-  include_once("pie.php");
-  ?>
+
+  <!--Formulario de usuario-->
+  <div id="usuario">
+    <?php
+    if (isset($erroresUsuario) && count($erroresUsuario) > 0) {
+      echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
+      echo "<h4> Errores en el formulario de Usuario:</h4>";
+      foreach ($erroresUsuario as $errorUsuario) {
+        echo $errorUsuario;
+      }
+      echo "</div>";
+    }
+    ?>
+    <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
+
+      <div><label for="usuario-nombre">Nombre</label>
+        <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
+
+      <div><label for="usuario-password">Contraseña</label>
+        <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" minlength="8" maxlength="16" required></div>
+
+      <div><label for="usuario-email">Email</label>
+        <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
+
+      <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
+        <?php if ($nuevoUsuario["tipo"] == "ADMINISTRADOR") { ?>
+          <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
+    <?php } else { ?>
+      <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
+<?php } ?>
+
+<input type="submit" name="enviar" value="Enviar">
+</form>
+</div>
+
+</div>
+<?php
+include_once("pie.php");
+?>
 </body>
 
 </html>
