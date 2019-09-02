@@ -130,7 +130,7 @@ cerrarConexionBD($conexion);
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/formularios.js"></script>
   <link rel="icon" href="images/icono.png" />
-  <title>Base de Datos: Añadir Recursos</title>
+  <title>Base de Datos: Añadir elementos</title>
 </head>
 
 <body onload="recursoform()">
