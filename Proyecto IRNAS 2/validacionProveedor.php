@@ -6,7 +6,7 @@ if (isset($_SESSION["formularioProveedor"])) {
     $nuevoProveedor["email"] = $_REQUEST["email"];
     $nuevoProveedor["telefono1"] = $_REQUEST["telefono1"];
     $nuevoProveedor["telefono2"] = $_REQUEST["telefono2"];
-    $nuevoProveedor["telefono3"] = $_REQUEST["telefono3"]
+    $nuevoProveedor["telefono3"] = $_REQUEST["telefono3"];
     $_SESSION["formularioProveedor"] = $nuevoProveedor;		
 }
 
@@ -50,4 +50,5 @@ function validarDatosProveedor($conexion, $nuevoProveedor){
     $expresion = '/^[9|6|7][0-9]{8}$/'
         if(preg_match($expresion, $value)){ echo 'El telefono es correcto'; }else{ $errores[] = "<p>El telefono introducido no es valido</p>"; })
     }
+}
 ?>
