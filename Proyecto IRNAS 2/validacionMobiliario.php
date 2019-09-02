@@ -61,7 +61,7 @@ function validarAlmacen($conexion, $almacenMob){
     $almacenes = todosLosAlmacenes($conexion);
     $existe = false;
     foreach ($almacenes as $almacen) {
-        if ($almacen["NOMBRE"] == $almacenMob["NOMBRE"]) {
+        if ($almacen["NOMBRE"] == $almacenMob) {
             $existe = true;
             break;
         }

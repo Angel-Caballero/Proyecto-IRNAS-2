@@ -2,13 +2,12 @@
 
  function alta_mobiliario($conexion,$mobiliario) {
 	try {
-        $almacen = $mobiliario["almacen"];
         if($mobiliario["tipo-mob"] == "ambiente"){
             $consulta = "CALL INSERTAR_TEMP_AMB(:nombre, :tipo, :almacen)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$mobiliario["nombre"]);
 			$stmt->bindParam(':tipo',$mobiliario["tipo-temp-amb"]);
-			$stmt->bindParam(':almacen',$almacen["NOMBRE"]);
+			$stmt->bindParam(':almacen',$mobiliario["almacen"]);
 			
 			$stmt->execute();
         }else if($mobiliario["tipo-mob"] == "frio"){
@@ -16,7 +15,7 @@
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$mobiliario["nombre"]);
 			$stmt->bindParam(':temp',$mobiliario["tipo-temp-amb"]);
-			$stmt->bindParam(':almacen',$almacen["NOMBRE"]);
+			$stmt->bindParam(':almacen',$mobiliario["almacen"]);
 			
 			$stmt->execute();
         }
