@@ -55,7 +55,7 @@ if (isset($_SESSION['busqAlmacen'])){
         <div class="centrado">
             <label>Almacenes</label><input type="radio" name="tipo" value="Almacen" required>
             <label>Recursos</label><input type="radio" name="tipo" value="Recurso"> 
-            </div>
+        </div>
 	</form>
    </div>
    </div>
