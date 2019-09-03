@@ -2,7 +2,7 @@
 session_start();
 
 require_once("gestionBD.php");
-require_once("gestionarBusquedas.php");
+require_once("gestionarAlmacenes.php");
 
 if (isset($_SESSION["formularioMobiliario"])) {
     $nuevoMobiliario["tipo-mob"] = $_REQUEST["tipo-mobiliario"];
@@ -56,19 +56,12 @@ function validarDatosMobiliario($conexion, $nuevoMobiliario){
     return $errores;
 }
 
-function validarAlmacen($conexion, $almacenMob){
+function validarAlmacen($conexion, $almacen){
     $error = "";
-    $almacenes = todosLosAlmacenes($conexion);
-    $existe = false;
-    foreach ($almacenes as $almacen) {
-        if ($almacen["NOMBRE"] == $almacenMob) {
-            $existe = true;
-            break;
-        }
-    }
-
-    if(!$existe){
-        $error = "<p>El almacén no existe</p>";
+    $num_alm = consultarAlmacen($conexion, $almacen);
+    
+    if($num_alm == 0){
+        $error = "<p>El almacén utilizado debe ser uno existente</p>";
     }
 
     return $error;

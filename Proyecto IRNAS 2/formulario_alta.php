@@ -29,7 +29,7 @@ if (isset($_SESSION["erroresUsuario"])) {
 if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso["nombre"] = '';
   $nuevoRecurso["almacen"] = '';
-  $nuevoRecurso["tipo-recurso"] = '';
+  $nuevoRecurso["tipo"] = '';
   $nuevoRecurso["posicion"] = '';
   $nuevoRecurso["unidades"] = '';
   $nuevoRecurso["formula"] = '';
@@ -175,15 +175,15 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-tipo">Tipo recurso</label>
             <select id="recurso-tipo" name="recurso-tipo">
-              <?php if ($nuevoRecurso["tipo-recurso"] == "Compuesto quimico") { ?>
+              <?php if ($nuevoRecurso["tipo"] == "Compuesto quimico") { ?>
                 <option value="Compuesto quimico" selected>Compuesto químico</option>
                 <option value="Fungible y kits">Fungible y kits</option>
                 <option value="Material biologico">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo-recurso"] == "Fungible y kits") { ?>
+              <?php } elseif ($nuevoRecurso["tipo"] == "Fungible y kits") { ?>
                 <option value="Compuesto quimico">Compuesto químico</option>
                 <option value="Fungible y kits" selected>Fungible y kits</option>
                 <option value="Material biologico">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo-recurso"] == "Material biologico") { ?>
+              <?php } elseif ($nuevoRecurso["tipo"] == "Material biologico") { ?>
                 <option value="Compuesto quimico">Compuesto químico</option>
                 <option value="Fungible y kits">Fungible y kits</option>
                 <option value="Material biologico" selected>Material biológico</option>

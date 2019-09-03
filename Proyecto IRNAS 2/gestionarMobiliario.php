@@ -14,7 +14,7 @@
             $consulta = "CALL INSERTAR_EQU_FR(:nombre, :temp, :almacen)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$mobiliario["nombre"]);
-			$stmt->bindParam(':temp',$mobiliario["tipo-temp-amb"]);
+			$stmt->bindParam(':temp',$mobiliario["temperatura"]);
 			$stmt->bindParam(':almacen',$mobiliario["almacen"]);
 			
 			$stmt->execute();
