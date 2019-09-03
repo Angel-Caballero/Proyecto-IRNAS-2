@@ -17,7 +17,7 @@ if (isset($_SESSION["formularioUsuario"])) {
 }
 
 else {
-    Header("Location: form_alta_usuario.php");
+    Header("Location: formulario_alta.php");
 }
     $conexion = crearConexionBD(); 
 	$errores = validarDatosUsuario($nuevoUsuario);

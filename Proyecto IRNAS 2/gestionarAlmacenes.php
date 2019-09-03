@@ -20,10 +20,9 @@ function alta_almacen($conexion,$almacen) {
  
 function consultarAlmacen($conexion,$nombre) {
 	try{
- 	$consulta = "SELECT COUNT(*) AS TOTAL FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM ALMACENES WHERE NOMBRE=:nombre";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->bindParam(':nombre',$nombre);
-	$stmt->bindParam(':pass',$pass);
 	$stmt->execute();
 	return $stmt->fetchColumn();
 } catch(PDOException $e) {
