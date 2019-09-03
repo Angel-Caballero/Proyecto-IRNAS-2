@@ -38,7 +38,7 @@ function validarDatosAlmacen($nuevoAlmacen){
     }
 
     if($nuevoAlmacen["temperatura"] == ""){ 
-		$errores[] = "<p>La no puede estar vacía</p>";
+		$errores[] = "<p>La temperatura no puede estar vacía</p>";
 	}
     
     if($nuevoAlmacen["tipo-camara"] != "NORMAL" && $nuevoAlmacen["tipo-camara"] != "CAMARA IN-VITRO" && $nuevoAlmacen["tipo-camara"] != "CAMARA FRIO") {
