@@ -49,7 +49,7 @@ function validarDatosMobiliario($conexion, $nuevoMobiliario){
     //}
 
     $error = validarAlmacen($conexion, $nuevoMobiliario["almacen"]);
-    if($error!=""){
+    if($error != ""){
 		$errores[] = $error;
     }
         

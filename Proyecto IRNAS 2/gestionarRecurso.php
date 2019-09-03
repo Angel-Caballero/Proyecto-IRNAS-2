@@ -1,9 +1,9 @@
 <?php
 
-function alta_almacen($conexion,$almacen) {
+function alta_recurso($conexion,$recurso) {
 
 	try {
-			$consulta = "CALL INSERTAR_Almacenes(:nombre, :temp, :ilum, :tipo)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$almacen["nombre"]);
 			$stmt->bindParam(':temp',$almacen["temperatura"]);
@@ -17,5 +17,17 @@ function alta_almacen($conexion,$almacen) {
 		// Si queremos visualizar la excepción durante la depuración: $e->getMessage();
     }
 }
- 
+
+function consultarProveedores($conexion,$id) {
+	try{
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM PROVEEDORES WHERE ID_PR=:id";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->bindParam(':id',$id);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+} catch(PDOException $e) {
+	return $e->getMessage();
+	}
+}
+
 ?>
