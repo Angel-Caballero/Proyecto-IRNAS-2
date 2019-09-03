@@ -19,11 +19,11 @@ else
     
 if (count($errores)>0) {
 	
-	$_SESSION["errores"] = $errores;
-	Header('añadir.php');
+	$_SESSION["erroresProveedor"] = $errores;
+	Header('formulario_alta.php');
 } else
 	
-    Header('Location: accion_alta_usuario.php');
+    Header('Location: accion_alta_proveedor.php');
         
 function validarDatosProveedor($conexion, $nuevoProveedor){
     $errores=array();
@@ -38,17 +38,19 @@ function validarDatosProveedor($conexion, $nuevoProveedor){
         
     if(!isset($nuevoProveedor["telefono1"])){
     $expresion = '/^[9|6|7][0-9]{8}$/'
-        if(preg_match($expresion, $value)){ echo 'El telefono es correcto'; }else{ $errores[] = "<p>El telefono introducido no es valido</p>"; })
+        if(preg_match($expresion, $value)){ echo 'El teléfono es correcto'; }else{ $errores[] = "<p>El teléfono introducido no es valido</p>"; })
     }else if($nuevoProveedor["telefono1"]==""){
-        $errores[] = "<p>El telefono1 no puede estar vacío</p>";
+        $errores[] = "<p>El teléfono1 no puede estar vacío</p>";
     }
     if(!isset($nuevoProveedor["telefono2"])){
     $expresion = '/^[9|6|7][0-9]{8}$/'
-        if(preg_match($expresion, $value)){ echo 'El telefono es correcto'; }else{ $errores[] = "<p>El telefono introducido no es valido</p>"; })
+        if(preg_match($expresion, $value)){ echo 'El teléfono es correcto'; }else{ $errores[] = "<p>El teléfono introducido no es valido</p>"; })
     }
     if(!isset($nuevoProveedor["telefono3"])){ 
     $expresion = '/^[9|6|7][0-9]{8}$/'
-        if(preg_match($expresion, $value)){ echo 'El telefono es correcto'; }else{ $errores[] = "<p>El telefono introducido no es valido</p>"; })
+        if(preg_match($expresion, $value)){ echo 'El teléfono es correcto'; }else{ $errores[] = "<p>El teléfono introducido no es valido</p>"; })
     }
+
+    return $errores;
 }
 ?>
