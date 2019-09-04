@@ -327,10 +327,10 @@ cerrarConexionBD($conexion);
 
         <div><label for="tipo-mobiliario">Tipo mobiliario</label>
             <select id="tipo-mobiliario" name="tipo-mobiliario">
-              <?php if ($nuevoRecurso["tipo-mobiliario"] == "ambiente") { ?>
+              <?php if ($nuevoMobiliario["tipo-mob"] == "ambiente") { ?>
                 <option value="ambiente" selected>Temperatura ambiente</option>
                 <option value="frio">Equipo de frío</option>
-              <?php } else if ($nuevoRecurso["tipo-mobiliario"] == "frio") { ?>
+              <?php } else if ($nuevoMobiliario["tipo-mob"] == "frio") { ?>
                 <option value="ambiente">Temperatura ambiente</option>
                 <option value="frio" selected>Equipo de frío</option>
               <?php } else { ?>
