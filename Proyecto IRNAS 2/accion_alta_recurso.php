@@ -38,7 +38,7 @@
 	<main>
 		<?php if($nuevoRecurso["tipo"] == "BIOLOGICO"){ ?>
 			<?php if (alta_recurso($conexion, $nuevoRecurso) 
-			&& alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])) {?>
+			|| alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])) {?>
 					<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>
 					<div >	
 						Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>

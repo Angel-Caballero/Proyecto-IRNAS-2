@@ -3,7 +3,7 @@
 function alta_recurso($conexion,$recurso) {
 
 	try {
-		if($recurso["tipo-recurso"] == "Compuesto quimico"){
+		if($recurso["tipo"] == "REACTIVO"){
 
 			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
@@ -18,11 +18,13 @@ function alta_recurso($conexion,$recurso) {
 
 			$stmt->execute();
 
-		}else if ($recurso["tipo-recurso"] == "Fungible y kits") {
+		}else if ($recurso["tipo"] == "FUNGIBLE") {
 
-			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :uni, :cant, :res, :tipo, :alm)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
+			$stmt->bindParam(':form', "");
+            $stmt->bindParam(':ficha', "");
             $stmt->bindParam(':uni',$recurso["unidades"]);
             $stmt->bindParam(':cant',$recurso["cantidad"]);
             $stmt->bindParam(':res',$recurso["reserva"]);
@@ -33,9 +35,14 @@ function alta_recurso($conexion,$recurso) {
 
 		}else {
 			
-			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :tipo, :alm)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
+			$stmt->bindParam(':form', "NULL");
+            $stmt->bindParam(':ficha', "NULL");
+            $stmt->bindParam(':uni', "NULL");
+            $stmt->bindParam(':cant', "NULL");
+            $stmt->bindParam(':res', "NULL");
             $stmt->bindParam(':tipo',$recurso["tipo"]);
             $stmt->bindParam(':alm',$recurso["almacen"]);
 

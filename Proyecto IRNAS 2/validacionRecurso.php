@@ -6,16 +6,27 @@ require_once("gestionBD.php");
 require_once("gestionarAlmacenes.php");
 
 if (isset($_SESSION["formularioRecurso"])) {
+
     $nuevoRecurso["nombre"] = $_REQUEST["recurso-nombre"];
     $nuevoRecurso["almacen"] = $_REQUEST["recurso-almacen"];
     $nuevoRecurso["tipo"] = $_REQUEST["recurso-tipo"];
     $nuevoRecurso["posicion"] = $_REQUEST["recurso-posicion"];
-    $nuevoRecurso["unidades"] = $_REQUEST["recurso-unidades"];
-    $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
-    $nuevoRecurso["cantidad"] = $_REQUEST["recurso-cantidad"];
-    $nuevoRecurso["reserva"] = $_REQUEST["recurso-reserva"];
-    $nuevoRecurso["ficha"] = $_REQUEST["recurso-ficha"];
-    $nuevoRecurso["proveedores"] = $_REQUEST["recurso-proveedores"];
+
+    if($nuevoRecurso["tipo"] == "FUNGIBLE" || $nuevoRecurso["tipo"] == "REACTIVO"){
+
+        $nuevoRecurso["unidades"] = $_REQUEST["recurso-unidades"];
+        $nuevoRecurso["cantidad"] = $_REQUEST["recurso-cantidad"];
+        $nuevoRecurso["reserva"] = $_REQUEST["recurso-reserva"];
+        $nuevoRecurso["proveedores"] = $_REQUEST["recurso-proveedores"];
+
+        if($nuevoRecurso["tipo"] == "REACTIVO"){
+
+            $nuevoRecurso["ficha"] = $_REQUEST["recurso-ficha"];
+            $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
+
+        }
+    }
+    
     $_SESSION["formularioRecurso"] = $nuevoRecurso;		
 } else{
     Header("Location: formulario_alta.php");
