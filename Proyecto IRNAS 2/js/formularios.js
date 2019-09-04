@@ -63,14 +63,16 @@ $(document).ready(function(){
         $("#recurso-proveedores").prop('disabled', false);
       }
     });
-    $("input[name=tipo-mobiliario]").change(function(){
-        if($("#mobiliario-tipo-ambiente").is(":checked")){
-            $("#mobiliario-tipo").prop('disabled', false);
-            $("#mobiliario-temperatura").prop('disabled','disabled');
-        } else if($("#mobiliario-tipo-frio").is(":checked")){
-            $("#mobiliario-tipo").prop('disabled', 'disabled');
-            $("#mobiliario-temperatura").prop('disabled',false);
-        }
+    $("#tipo-mobiliario").change(function(){
+      if($("#tipo-mobiliario option:checked").val() == "ambiente"){
+        console.log("Hola");
+        $("#mobiliario-temp-amb").prop('disabled', false);
+        $("#mobiliario-temperatura").prop('disabled','disabled');
+      } else if($("#tipo-mobiliario option:checked").val() == "frio"){
+        console.log("Adios");
+        $("#mobiliario-temp-amb").prop('disabled', 'disabled');
+        $("#mobiliario-temperatura").prop('disabled',false);
+      }
     });
     $("li").click(function(){
       if (!$(this).hasClass("activo")) {
