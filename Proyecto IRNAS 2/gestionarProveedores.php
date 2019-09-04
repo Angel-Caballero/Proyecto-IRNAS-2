@@ -21,16 +21,16 @@ function alta_proveedor($conexion,$proveedor) {
     }
 }
 
-function consultarProveedor($conexion,$nombre) {
+function consultarProveedores($conexion,$id) {
 	try{
- 	$consulta = "SELECT COUNT(*) AS TOTAL FROM PROVEEDORES WHERE NOMBRE=:nombre";
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM PROVEEDORES WHERE ID_PR=:id";
 	$stmt = $conexion->prepare($consulta);
-	$stmt->bindParam(':nombre',$nombre);
-	$stmt->bindParam(':pass',$pass);
+	$stmt->bindParam(':id',$id);
 	$stmt->execute();
 	return $stmt->fetchColumn();
 } catch(PDOException $e) {
 	return $e->getMessage();
 	}
 }
+
 ?>
