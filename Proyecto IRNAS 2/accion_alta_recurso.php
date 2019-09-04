@@ -6,7 +6,7 @@
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_SESSION["formularioRecurso"])) {
-		$nuevoUsuario = $_SESSION["formularioRecurso"];
+		$nuevoRecurso = $_SESSION["formularioRecurso"];
 		$_SESSION["formularioRecurso"] = null;
 		$_SESSION["erroresRecurso"] = null;
 	}
@@ -36,18 +36,37 @@
 	?>
 
 	<main>
-		<?php if (alta_recurso($conexion, $nuevoRecurso)) {?>
-				<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>
-				<div >	
-					   Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
-					   O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
-				</div>
-		<?php } else { ?>
-				<h1>El recurso ya existe en la base de datos.</h1>
-				<div >	
-					Pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
-				</div>
-		<?php } ?>
+		<?php if($nuevoRecurso["tipo"] == "BIOLOGICO"){ ?>
+			<?php if (alta_recurso($conexion, $nuevoRecurso) 
+			&& alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])) {?>
+					<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>
+					<div >	
+						Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
+						O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+			<?php } else { ?>
+					<h1>El recurso ya existe en la base de datos.</h1>
+					<div >	
+						Pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+			<?php } ?>
+		<?php }else { ?>
+			<?php if (alta_recurso($conexion, $nuevoRecurso) 
+			&& alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])
+			&& alta_rec_prov($conexion, $nuevoRecurso, $nuevoRecurso["almacen"], $nuevoRecurso["proveedores"])) {?>
+					<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>
+					<div >	
+						Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
+						O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+			<?php } else { ?>
+					<h1>El recurso ya existe en la base de datos.</h1>
+					<div >	
+						Pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+			<?php } ?>
+		<? } ?>
+			
 
 	</main>
 
