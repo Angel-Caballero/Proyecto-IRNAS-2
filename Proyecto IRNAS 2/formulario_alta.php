@@ -175,22 +175,22 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-tipo">Tipo recurso</label>
             <select id="recurso-tipo" name="recurso-tipo">
-              <?php if ($nuevoRecurso["tipo"] == "Compuesto quimico") { ?>
-                <option value="Compuesto quimico" selected>Compuesto químico</option>
-                <option value="Fungible y kits">Fungible y kits</option>
-                <option value="Material biologico">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo"] == "Fungible y kits") { ?>
-                <option value="Compuesto quimico">Compuesto químico</option>
-                <option value="Fungible y kits" selected>Fungible y kits</option>
-                <option value="Material biologico">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo"] == "Material biologico") { ?>
-                <option value="Compuesto quimico">Compuesto químico</option>
-                <option value="Fungible y kits">Fungible y kits</option>
-                <option value="Material biologico" selected>Material biológico</option>
+              <?php if ($nuevoRecurso["tipo"] == "REACTIVO") { ?>
+                <option value="REACTIVO" selected>Compuesto químico</option>
+                <option value="FUNGIBLE">Fungible y kits</option>
+                <option value="BIOLOGICO">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo"] == "FUNGIBLE") { ?>
+                <option value="REACTIVO">Compuesto químico</option>
+                <option value="FUNGIBLE" selected>Fungible y kits</option>
+                <option value="BIOLOGICO">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo"] == "BIOLOGICO") { ?>
+                <option value="REACTIVO">Compuesto químico</option>
+                <option value="FUNGIBLE">Fungible y kits</option>
+                <option value="BIOLOGICO" selected>Material biológico</option>
               <?php } else { ?>
-                <option value="Compuesto quimico">Compuesto químico</option>
-                <option value="Fungible y kits">Fungible y kits</option>
-                <option value="Material biologico">Material biológico</option>
+                <option value="REACTIVO">Compuesto químico</option>
+                <option value="FUNGIBLE">Fungible y kits</option>
+                <option value="BIOLOGICO">Material biológico</option>
               <?php } ?>
             </select></div>
 

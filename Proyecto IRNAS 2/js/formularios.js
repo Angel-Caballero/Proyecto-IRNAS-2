@@ -40,14 +40,14 @@ function usuarioform(){
 
 $(document).ready(function(){
     $("#recurso-tipo").change(function(){
-      if($("#recurso-tipo").val() == "Fungible y kits"){
+      if($("#recurso-tipo").val() == "FUNGIBLE"){
         $("#recurso-unidades").prop('disabled', false);
         $("#recurso-formula").prop('disabled', 'disabled');
         $("#recurso-cantidad").prop('disabled', false);
         $("#recurso-reserva").prop('disabled', false);
         $("#recurso-ficha").prop('disabled', 'disabled');
         $("#recurso-proveedores").prop('disabled', false);
-      } else if($("#recurso-tipo").val() == "Material biologico"){
+      } else if($("#recurso-tipo").val() == "BIOLOGICO"){
         $("#recurso-unidades").prop('disabled', 'disabled');
         $("#recurso-formula").prop('disabled', 'disabled');
         $("#recurso-cantidad").prop('disabled', 'disabled');
