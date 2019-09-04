@@ -60,4 +60,19 @@ function todosLosProveedores($conexion){
 	$consulta = "SELECT * FROM PROVEEDORES WHERE (ID_PR = ID_PR) ORDER BY NOMBREEMPRESA";
     return $conexion->query($consulta);
 }
+
+function todosLosTemperaturaAmbiente($conexion){
+	$consulta = "SELECT * FROM TEMPERATURA_AMBIENTE ORDER BY NOMBRE";
+	return $conexion->query($consulta);
+}
+
+function todosLosEquipoFrio($conexion){
+	$consulta = "SELECT * FROM EQUIPOS_FRIO ORDER BY NOMBRE";
+	return $conexion->query($consulta);
+}
+
+function todosLosUsuarios($conexion){
+	$consulta = "SELECT * FROM USUARIOS ORDER BY NOMBRE";
+	return $conexion->query($consulta);
+}
 ?>
