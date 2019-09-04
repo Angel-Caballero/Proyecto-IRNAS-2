@@ -65,7 +65,7 @@
 						Pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
 					</div>
 			<?php } ?>
-		<? } ?>
+		<?php } ?>
 			
 
 	</main>
