@@ -18,4 +18,16 @@ function alta_almacen($conexion,$almacen) {
     }
 }
  
+function consultarAlmacen($conexion, $nombre) {
+	try{
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM ALMACENES WHERE NOMBRE=:nombre";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->bindParam(':nombre',$nombre);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+} catch(PDOException $e) {
+	return $e->getMessage();
+	}
+}
+
 ?>

@@ -2,16 +2,13 @@
 
 function alta_proveedor($conexion,$proveedor) {
     try {
-            $consulta = "CALL INSERTAR_PROVEEDOR(:nombre-emp, :nombre-com, :email, :tel1, :tel2, :tel3)";
-            $stmt=$conexion->prepare($consulta);
-            $stmt->bindParam(':nombre-emp',$proveedor["nombre-empresa"]);
-            $stmt->bindParam(':nombre-com',$proveedor["nombre-comercial"]);
-            $stmt->bindParam(':email',$proveedor["email"]);
-            $stmt->bindParam(':tel1',$proveedor["telefono1"]);
-            $stmt->bindParam(':tel2',$usuario["telefono2"]);
-            $stmt->bindParam(':tel3',$usuario["telefono3"]);
+      $consulta = "CALL INSERTAR_PROVEEDOR(:nombre-emp, :nombre-com, :email)";
+      $stmt=$conexion->prepare($consulta);
+      $stmt->bindParam(':nombre-emp',$proveedor["nombre-empresa"]);
+      $stmt->bindParam(':nombre-com',$proveedor["nombre-comercial"]);
+      $stmt->bindParam(':email',$proveedor["email"]);
 
-            $stmt->execute();
+      $stmt->execute();
 		return true;
     }
 
@@ -31,6 +28,24 @@ function consultarProveedores($conexion,$id) {
 } catch(PDOException $e) {
 	return $e->getMessage();
 	}
+}
+
+function alta_telefono($conexion, $telefono, $proveedor) {
+  try {
+
+    $consulta = "CALL INSERTAR_TELEFONOS(:tef, :id)";
+    $stmt=$conexion->prepare($consulta);
+    $stmt->bindParam(':tef',$telefono);
+    $stmt->bindParam(':id',$proveedor);
+
+    $stmt->execute();
+  return true;
+  }
+
+  catch(PDOException $e) {
+  return false;
+  // Si queremos visualizar la excepción durante la depuración: $e->getMessage();
+  }
 }
 
 ?>

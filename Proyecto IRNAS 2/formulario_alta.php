@@ -213,7 +213,7 @@ cerrarConexionBD($conexion);
             <input id="recurso-ficha" name="recurso-ficha" type="file" value="<?php echo $nuevoRecurso['ficha']; ?>"></div>
 
           <div><label for="recurso-proveedores">Proveedores</label>
-            <select id="recurso-proveedores" name="recurso-proveedores" multiple>
+            <select id="recurso-proveedores" name="recurso-proveedores">
               <?php foreach ($proveedores as $proveedor) {
                 if ($nuevoRecurso["proveedores"] == $proveedor["ID_PR"]) {
                   echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "' selected/>";

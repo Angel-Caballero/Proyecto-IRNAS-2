@@ -11,7 +11,7 @@ if (isset($_SESSION["formularioRecurso"])) {
     $nuevoRecurso["tipo"] = $_REQUEST["recurso-tipo"];
     $nuevoRecurso["posicion"] = $_REQUEST["recurso-posicion"];
     $nuevoRecurso["unidades"] = $_REQUEST["recurso-unidades"];
-    $nuevoRecurso["formula"] = $_REQUEST["recursoformula"];
+    $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
     $nuevoRecurso["cantidad"] = $_REQUEST["recurso-cantidad"];
     $nuevoRecurso["reserva"] = $_REQUEST["recurso-reserva"];
     $nuevoRecurso["ficha"] = $_REQUEST["recurso-ficha"];
@@ -44,8 +44,8 @@ function validarDatosProveedor($conexion, $nuevoRecurso){
 		$errores[] = $error;
     }
     
-    if($nuevoRecurso["tipo-recurso"] != "Compuesto quimico" && $nuevoRecurso["tipo-recurso"] != "Fungible y kits" 
-    &&  $nuevoRecurso["tipo-recurso"] != "Material biologico") {
+    if($nuevoRecurso["tipo"] != "REACTIVO" && $nuevoRecurso["tipo"] != "FUNGIBLE" 
+    &&  $nuevoRecurso["tipo"] != "BIOLOGICO") {
         $errores[] = "<p>El tipo de recurso debe ser Compuesto quimico, Fungible y kits o Material biologico</p>";
     }
 
@@ -54,7 +54,7 @@ function validarDatosProveedor($conexion, $nuevoRecurso){
     }
 
     //Validación de datos general de Fungibles y kits y de Compuestos químicos
-    if($nuevoRecurso["tipo-recurso"] != "Material biologico"){
+    if($nuevoRecurso["tipo"] != "BIOLOGICO"){
 
         if($nuevoRecurso["unidades"] == "") {
             $errores[] = "<p>Las unidades no puede estar vacías</p>";
@@ -73,7 +73,7 @@ function validarDatosProveedor($conexion, $nuevoRecurso){
         }
 
         //Validación de datos específica de Compuestos químicos
-        if($nuevoRecurso["tipo-recurso"] == "Compuesto quimico"){
+        if($nuevoRecurso["tipo"] == "REACTIVO"){
 
             if($nuevoRecurso["formula"] == "") {
                 $errores[] = "<p>La fórmula no puede estar vacía</p>";
