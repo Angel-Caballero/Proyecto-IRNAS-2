@@ -3,6 +3,8 @@
 function alta_recurso($conexion,$recurso) {
 
 	try {
+		$nulo = null;
+
 		if($recurso["tipo"] == "REACTIVO"){
 
 			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
@@ -23,8 +25,8 @@ function alta_recurso($conexion,$recurso) {
 			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
-			$stmt->bindParam(':form', "");
-            $stmt->bindParam(':ficha', "");
+			$stmt->bindParam(':form', $nulo);
+            $stmt->bindParam(':ficha', $nulo);
             $stmt->bindParam(':uni',$recurso["unidades"]);
             $stmt->bindParam(':cant',$recurso["cantidad"]);
             $stmt->bindParam(':res',$recurso["reserva"]);
@@ -38,11 +40,11 @@ function alta_recurso($conexion,$recurso) {
 			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
-			$stmt->bindParam(':form', "NULL");
-            $stmt->bindParam(':ficha', "NULL");
-            $stmt->bindParam(':uni', "NULL");
-            $stmt->bindParam(':cant', "NULL");
-            $stmt->bindParam(':res', "NULL");
+			$stmt->bindParam(':form', $nulo);
+            $stmt->bindParam(':ficha', $nulo);
+            $stmt->bindParam(':uni', $nulo);
+            $stmt->bindParam(':cant', $nulo);
+            $stmt->bindParam(':res', $nulo);
             $stmt->bindParam(':tipo',$recurso["tipo"]);
             $stmt->bindParam(':alm',$recurso["almacen"]);
 

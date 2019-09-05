@@ -36,7 +36,7 @@ if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso["cantidad"] = '';
   $nuevoRecurso["reserva"] = '';
   $nuevoRecurso["ficha"] = '';
-  $nuevoRecurso["proveedores"] = '';
+  $nuevoRecurso["proveedor"] = '';
   $_SESSION["formularioRecurso"] = $nuevoRecurso;
 } else {
   $nuevoRecurso = $_SESSION["formularioRecurso"];
@@ -215,7 +215,7 @@ cerrarConexionBD($conexion);
           <div><label for="recurso-proveedores">Proveedores</label>
             <select id="recurso-proveedores" name="recurso-proveedores">
               <?php foreach ($proveedores as $proveedor) {
-                if ($nuevoRecurso["proveedores"] == $proveedor["ID_PR"]) {
+                if ($nuevoRecurso["proveedor"] == $proveedor["ID_PR"]) {
                   echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "' selected/>";
                 } else {
                   echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "'/>";

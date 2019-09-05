@@ -4,6 +4,7 @@ session_start();
 
 require_once("gestionBD.php");
 require_once("gestionarAlmacenes.php");
+require_once("gestionarProveedores.php");
 
 if (isset($_SESSION["formularioRecurso"])) {
 
@@ -17,7 +18,7 @@ if (isset($_SESSION["formularioRecurso"])) {
         $nuevoRecurso["unidades"] = $_REQUEST["recurso-unidades"];
         $nuevoRecurso["cantidad"] = $_REQUEST["recurso-cantidad"];
         $nuevoRecurso["reserva"] = $_REQUEST["recurso-reserva"];
-        $nuevoRecurso["proveedores"] = $_REQUEST["recurso-proveedores"];
+        $nuevoRecurso["proveedor"] = $_REQUEST["recurso-proveedores"];
 
         if($nuevoRecurso["tipo"] == "REACTIVO"){
 
@@ -32,7 +33,7 @@ if (isset($_SESSION["formularioRecurso"])) {
     Header("Location: formulario_alta.php");
 }
     $conexion = crearConexionBD(); 
-	$errores = validarDatosProveedor($conexion, $nuevoRecurso);
+	$errores = validarDatosRecurso($conexion, $nuevoRecurso);
     cerrarConexionBD($conexion);
     
 if (count($errores)>0) {
@@ -42,7 +43,7 @@ if (count($errores)>0) {
     Header('Location: accion_alta_recurso.php');
 } 
 
-function validarDatosProveedor($conexion, $nuevoRecurso){
+function validarDatosRecurso($conexion, $nuevoRecurso){
     $errores=array();
 
     //Validación de datos general para todos los tipos
@@ -78,9 +79,18 @@ function validarDatosProveedor($conexion, $nuevoRecurso){
         if($nuevoRecurso["reserva"] == "") {
             $errores[] = "<p>La reserva no puede estar vacía</p>";
         }
+
+        if($nuevoRecurso["unidades"] < $nuevoRecurso["unidades"]){
+            $errores[] = "<p>No puede haber menos unidades que la reserva mínima</p>";
+        }
     
-        if($nuevoRecurso["proveedores"] == "") {
-            $errores[] = "<p>Los proveedores no puede estar vacíos</p>";
+        if($nuevoRecurso["proveedor"] == "") {
+            $errores[] = "<p>El proveedor no puede estar vacío</p>";
+        }
+
+        $error = validarProveedor($conexion, $nuevoRecurso["proveedor"]);
+        if($error != ""){
+		    $errores[] = $error;
         }
 
         //Validación de datos específica de Compuestos químicos
@@ -111,4 +121,16 @@ function validarAlmacen($conexion, $almacen){
 
     return $error;
 }
+
+function validarProveedor($conexion, $proveedor){
+    $error = "";
+    $num_alm = consultarProveedores($conexion, $proveedor);
+    
+    if($num_alm == 0){
+        $error = "<p>El almacén utilizado debe ser uno existente</p>";
+    }
+
+    return $error;
+}
+
 ?>
