@@ -2,11 +2,11 @@
 	session_start();
 
 	require_once("gestionBD.php");
-	require_once("gestionarMobiliario.php");
+	require_once("gestionarProveedores.php");
 		
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
 	if (isset($_SESSION["formularioProveedor"])) {
-		$nuevoMobiliario = $_SESSION["formularioProveedor"];
+		$nuevoProveedor = $_SESSION["formularioProveedor"];
 		$_SESSION["formularioProveedor"] = null;
 		$_SESSION["erroresProveedor"] = null;
 	}
@@ -36,12 +36,21 @@
 	?>
 
 <main>
-		<?php if (alta_proveedor($conexion, $nuevoProveedor)) {?>
-				<h1>Creado el proveedor <?php echo $nuevoProveedor["nombre"]; ?> correctamente</h1>
-				<div >	
-					   Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
-					   O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
-				</div>
+		<?php if(consultarProveedoresPorAtributos($conexion, $nuevoProveedor) <= 0) {?>
+			<?php if(alta_proveedor($conexion, $nuevoProveedor)){ ?>
+				<?php if(bucle_alta_telefonos($conexion, $nuevoProveedor)) { ?>
+					<h1>Creado el proveedor <?php echo $nuevoProveedor["nombre-empresa"]; ?> correctamente</h1>
+					<div>	
+						Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
+					   	O pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+				<?php } else {?>
+					<h1>Ha ocurrido un error durante la creación del proveedor <?php echo $nuevoProveedor["nombre-empresa"];?></h1>
+					<div>	
+						Pulsa <a href="formulario_alta.php">aquí</a> para volver al formulario.
+					</div>
+				<?php } ?>
+			<?php } ?>
 		<?php } else { ?>
 				<h1>El proveedor ya existe en la base de datos.</h1>
 				<div >	

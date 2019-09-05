@@ -2,10 +2,10 @@
 
 function alta_proveedor($conexion,$proveedor) {
     try {
-      $consulta = "CALL INSERTAR_PROVEEDOR(:nombre-emp, :nombre-com, :email)";
+      $consulta = "CALL INSERTAR_PROVEEDORES(:emp, :com, :email)";
       $stmt=$conexion->prepare($consulta);
-      $stmt->bindParam(':nombre-emp',$proveedor["nombre-empresa"]);
-      $stmt->bindParam(':nombre-com',$proveedor["nombre-comercial"]);
+      $stmt->bindParam(':emp',$proveedor["nombre-empresa"]);
+      $stmt->bindParam(':com',$proveedor["nombre-comercial"]);
       $stmt->bindParam(':email',$proveedor["email"]);
 
       $stmt->execute();
@@ -28,6 +28,61 @@ function consultarProveedores($conexion,$id) {
 } catch(PDOException $e) {
 	return $e->getMessage();
 	}
+}
+
+function consultarProveedoresPorAtributos($conexion,$proveedor) {
+	try{
+ 	$consulta = "SELECT COUNT(*) AS TOTAL FROM PROVEEDORES WHERE NOMBREEMPRESA=:emp AND NOMBRECOMERCIAL=:com AND EMAIL=:email";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->bindParam(':emp',$proveedor["nombre-empresa"]);
+  $stmt->bindParam(':com',$proveedor["nombre-comercial"]);
+  $stmt->bindParam(':email',$proveedor["email"]);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+} catch(PDOException $e) {
+	return $e->getMessage();
+	}
+}
+
+function busquedaProveedor($conexion,$proveedor) {
+	try{
+ 	$consulta = "SELECT ID_PR FROM PROVEEDORES WHERE NOMBREEMPRESA=:emp AND NOMBRECOMERCIAL=:com AND EMAIL=:email";
+	$stmt = $conexion->prepare($consulta);
+  $stmt->bindParam(':emp',$proveedor["nombre-empresa"]);
+  $stmt->bindParam(':com',$proveedor["nombre-comercial"]);
+  $stmt->bindParam(':email',$proveedor["email"]);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+} catch(PDOException $e) {
+	return $e->getMessage();
+	}
+}
+
+function bucle_alta_telefonos($conexion, $proveedor) {
+  $id = busquedaProveedor($conexion, $proveedor);
+
+  $tef1 = alta_telefono($conexion, $proveedor["telefono1"], $id);
+
+  if(isset($proveedor["telefono2"])){
+    $tef2 = alta_telefono($conexion, $proveedor["telefono2"], $id);
+  }
+
+  if(isset($proveedor["telefono3"])){
+    $tef3 = alta_telefono($conexion, $proveedor["telefono3"], $id);
+  }
+    return false;
+  
+
+  if(isset($tef2) && isset($tef3)){
+    return $tef1 && $tef2 && $tef3;
+  }else if(isset($tef2)){
+    return $tef1 && $tef2;
+  }else if(isset($tef3)){
+    return $tef1 && $tef3;
+  }else{
+    return $tef1;
+  }
+
 }
 
 function alta_telefono($conexion, $telefono, $proveedor) {

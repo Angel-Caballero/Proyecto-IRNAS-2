@@ -11,6 +11,10 @@ if (!isset($_SESSION['login'])) {
   $usuario = $_SESSION['login'];
 }
 
+if(!isset($_SESSION['privilegios'])){
+  Header("Location: interfazBuscador.php");
+}
+
 if (!isset($_SESSION["formularioUsuario"])) {
   $nuevoUsuario["nombre"] = '';
   $nuevoUsuario["email"] = '';
@@ -57,6 +61,12 @@ if (!isset($_SESSION["formularioProveedor"])) {
   $_SESSION["formularioProveedor"] = $nuevoProveedor;
 } else {
   $nuevoProveedor = $_SESSION["formularioProveedor"];
+  if(!isset($nuevoProveedor["telefono2"])){
+    $nuevoProveedor["telefono2"] = "";
+  }
+  if(!isset($nuevoProveedor["telefono3"])){
+    $nuevoProveedor["telefono3"] = "";
+  }
 }
 
 if (isset($_SESSION["erroresProveedor"])) {

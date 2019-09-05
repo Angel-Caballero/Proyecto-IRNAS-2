@@ -7,9 +7,13 @@ require_once("gestionarUsuarios.php");
 
 if (!isset($_SESSION['login'])) {
     Header("Location: login.php");
-  } else {
+} else {
     $usuario = $_SESSION['login'];
-  }
+}
+
+if(!isset($_SESSION['privilegios'])){
+    Header("Location: interfazBuscador.php");
+}
 
 $conexion = crearConexionBD();
 
