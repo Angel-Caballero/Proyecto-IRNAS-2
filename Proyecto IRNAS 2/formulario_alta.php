@@ -226,9 +226,9 @@ cerrarConexionBD($conexion);
             <select id="recurso-proveedores" name="recurso-proveedores">
               <?php foreach ($proveedores as $proveedor) {
                 if ($nuevoRecurso["proveedor"] == $proveedor["ID_PR"]) {
-                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "' selected/>";
+                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . " - " .  $proveedor["NOMBRECOMERCIAL"] ."' selected/>";
                 } else {
-                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . "'/>";
+                  echo "<option value='" . $proveedor["ID_PR"] . "' label='" . $proveedor["NOMBREEMPRESA"] . " - " .  $proveedor["NOMBRECOMERCIAL"] ."'/>";
                 }
               } ?>
             </select></div>
@@ -373,7 +373,7 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-temperatura">Temperatura</label>
-    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura']; ?>"></div>
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" disabled></div>
 
   <input type="submit" name="enviar" value="Enviar">
   </form>
