@@ -80,7 +80,7 @@ function validarDatosRecurso($conexion, $nuevoRecurso){
             $errores[] = "<p>La reserva no puede estar vacía</p>";
         }
 
-        if($nuevoRecurso["unidades"] < $nuevoRecurso["unidades"]){
+        if($nuevoRecurso["unidades"] < $nuevoRecurso["reserva"]){
             $errores[] = "<p>No puede haber menos unidades que la reserva mínima</p>";
         }
     

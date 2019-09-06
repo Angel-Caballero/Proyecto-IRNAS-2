@@ -65,6 +65,7 @@ cerrarConexionBD($conexion);
                 <form action="" id="recurso-form" method="post" class="formulario">
                     <div><label for="recurso-elemento">Recurso</label>
                         <select id="recurso-elemento" name="recurso-elemento">
+                        <option value=""></option>
                         <?php foreach($recursos as $recurso){
                             echo "<option value='".$recurso["ALMACEN"]."-".$recurso["NOMBRE"]."'>".$recurso["NOMBRE"]."</option>";
                         } ?>
@@ -76,6 +77,7 @@ cerrarConexionBD($conexion);
                 <form action="" id="proveedor-form" method="post" class="formulario">
                     <div><label for="proveedor-elemento">Proveedor</label>
                         <select id="proveedor-elemento" name="proveedor-elemento">
+                        <option value=""></option>
                         <?php foreach($proveedores as $proveedor){
                             echo "<option value='".$proveedor["ID_PR"]."'>".$proveedor["NOMBREEMPRESA"]." - ".$proveedor["NOMBRECOMERCIAL"]."</option>";
                         } ?>
@@ -87,6 +89,7 @@ cerrarConexionBD($conexion);
                 <form action="" id="almacen-form" method="post" class="formulario">
                     <div><label for="almacen-elemento">Almacén</label>
                         <select id="almacen-elemento" name="almacen-elemento">
+                        <option value=""></option>
                         <?php foreach($almacenes as $almacen){
                             echo "<option value='".$almacen["NOMBRE"]."'>".$almacen["NOMBRE"]."</option>";
                         } ?>
@@ -98,12 +101,14 @@ cerrarConexionBD($conexion);
                 <form action="" id="mobiliario-form" method="post" class="formulario">
                     <div><label for="mobiliario-temperatura_ambiente">Temperatura ambiente</label>
                         <select id="mobiliario-temperatura_ambiente" name="mobiliario-temperatura_ambiente">
+                        <option value=""></option>
                         <?php foreach($temperaturaAmbiente as $temperaturaAmbiente){
                             echo "<option value='".$temperaturaAmbiente["ID_TA"]."'>".$temperaturaAmbiente["NOMBRE"]."</option>";
                         } ?>
                         </select></div>
                         <div><label for="mobiliario-equipo_frio">Equipo de frío</label>
                         <select id="mobiliario-equipo_frio" name="mobiliario-equipo_frio">
+                        <option value=""></option>
                         <?php foreach($equiposFrio as $equipoFrio){
                             echo "<option value='".$equipoFrio["ID_EF"]."'>".$equipoFrio["NOMBRE"]."</option>";
                         } ?>
@@ -115,6 +120,7 @@ cerrarConexionBD($conexion);
                 <form action="" id="usuario-form" method="post" class="formulario">
                     <div><label for="usuario-elemento">Usuario</label>
                         <select id="usuario-elemento" name="usuario-elemento">
+                        <option value=""></option>
                         <?php foreach($usuarios as $usuario){
                             echo "<option value='".$usuario["NOMBRE"]."'>".$usuario["NOMBRE"]."</option>";
                         } ?>
