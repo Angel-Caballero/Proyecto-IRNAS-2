@@ -97,4 +97,36 @@ function alta_rec_prov($conexion, $recurso, $almacen, $proveedor) {
     }
 }
 
+function buscarPosicion($conexion, $recurso){
+    try{
+		$consulta = "SELECT POSICION FROM POSICIONES WHERE RECURSO=:nombre AND ALMACEN=:alm";
+		$stmt=$conexion->prepare($consulta);
+		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);	
+		$stmt->bindParam(':alm',$recurso["ALMACEN"]);
+		$stmt->execute();
+		$result = $stmt->fetch();
+		
+		return $result["POSICION"];
+	}catch(PDOException $e) {
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
+    }
+}
+
+function buscarProveedor($conexion, $recurso){
+    try{
+		$consulta = "SELECT PROVEEDOR FROM PROVEEDORES_RECURSOS WHERE RECURSO=:nombre AND ALMACEN=:alm";
+		$stmt=$conexion->prepare($consulta);
+		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);	
+		$stmt->bindParam(':alm',$recurso["ALMACEN"]);	
+		$stmt->execute();
+		$result = $stmt->fetch();
+		
+		return $result["PROVEEDOR"];
+	}catch(PDOException $e) {
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
+    }
+}
+
 ?>

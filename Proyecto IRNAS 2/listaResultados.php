@@ -14,7 +14,7 @@ if (!isset($_SESSION['login'])) {
 
 if (isset($_SESSION["recurso"])) {
 	unset($_SESSION["recurso"]);
-  }
+}
 
 $conexion = crearConexionBD();
 

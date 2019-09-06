@@ -103,4 +103,18 @@ function alta_telefono($conexion, $telefono, $proveedor) {
   }
 }
 
+function obtenerProveedor($conexion,$id) {
+	try{
+ 	$consulta = "SELECT * FROM PROVEEDORES WHERE ID_PR=:id";
+	$stmt = $conexion->prepare($consulta);
+  $stmt->bindParam(':id',$id);
+  $stmt->execute();
+  
+	return $stmt;
+} catch(PDOException $e) {
+	$_SESSION['excepcion'] = $e->GetMessage();
+	header("Location: excepcion.php");
+	}
+}
+
 ?>

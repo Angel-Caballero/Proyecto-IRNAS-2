@@ -19,6 +19,10 @@ if (isset($_SESSION['busqAlmacen'])){
   unset($_GET["almacen"]);
 }
 
+if (isset($_SESSION["recurso"])) {
+	unset($_SESSION["recurso"]);
+}
+
 
 	$conexion = crearConexionBD();
 

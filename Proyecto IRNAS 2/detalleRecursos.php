@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+require_once("gestionBD.php");
+require_once("gestionarRecurso.php");
+require_once("gestionarProveedores.php");
+
 if (!isset($_SESSION['login'])) {
   Header("Location: login.php");
 } else {
@@ -10,8 +14,16 @@ if (!isset($_SESSION['login'])) {
 if (isset($_SESSION["recurso"])) {
   $recurso = $_SESSION["recurso"];
 } else {
-  Header("Location: listaResultados.php");
+  Header("Location: interfazBuscador.php");
 }
+
+$conexion = crearConexionBD();
+
+$posicion = buscarPosicion($conexion, $recurso);
+$id_prov = buscarProveedor($conexion, $recurso);
+$proveedores = obtenerProveedor($conexion, $id_prov);
+
+cerrarConexionBD($conexion);
 
 ?>
 
@@ -41,7 +53,9 @@ if (isset($_SESSION["recurso"])) {
         <?php if ($recurso["TIPO"] == "REACTIVO") { ?>
           Nombre: <?php echo $recurso["NOMBRE"] ?><br />
           <br />
-          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          Tipo: <?php echo "Reactivo" ?><br />
+          <br />
+          Posición: <?php echo $posicion ?><br />
           <br />
           Almacén: <?php echo $recurso["ALMACEN"] ?><br />
           <br />
@@ -51,14 +65,18 @@ if (isset($_SESSION["recurso"])) {
           <br />
           Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
           <br />
-          Proveedores: <?php echo $recurso["NOMBRE"] ?><br />
+          <?php foreach ($proveedores as $proveedor) { ?>
+            Proveedor: <?php echo $proveedor["NOMBREEMPRESA"] . " - " .  $proveedor["NOMBRECOMERCIAL"]?><br />
+          <?php } ?>
           <br />
           Fórmula Química: <?php echo $recurso["FORMULAQUIMICA"] ?>
 
         <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
           Nombre: <?php echo $recurso["NOMBRE"] ?><br />
           <br />
-          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          Tipo: <?php echo "Fungibles y kits" ?><br />
+          <br />
+          Posición: <?php echo $posicion ?><br />
           <br />
           Almacén: <?php echo $recurso["ALMACEN"] ?><br />
           <br />
@@ -68,12 +86,16 @@ if (isset($_SESSION["recurso"])) {
           <br />
           Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
           <br />
-          Proveedores: <?php echo $recurso["NOMBRE"] ?><br />
+          <?php foreach ($proveedores as $proveedor) { ?>
+            Proveedor: <?php echo $proveedor["NOMBREEMPRESA"]  . " - " .  $proveedor["NOMBRECOMERCIAL"] ?><br />
+          <?php } ?>
 
         <?php } else { ?>
           Nombre: <?php echo $recurso["NOMBRE"] ?><br />
           <br />
-          Posición: <?php echo $recurso["NOMBRE"] ?><br />
+          Tipo: <?php echo "Material biológico" ?><br />
+          <br />
+          Posición: <?php echo $posicion ?><br />
           <br />
           Almacén: <?php echo $recurso["ALMACEN"] ?><br />
 
