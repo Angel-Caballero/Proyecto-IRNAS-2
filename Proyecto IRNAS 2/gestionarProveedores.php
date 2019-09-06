@@ -40,21 +40,25 @@ function consultarProveedoresPorAtributos($conexion,$proveedor) {
 	$stmt->execute();
 	return $stmt->fetchColumn();
 } catch(PDOException $e) {
-	return $e->getMessage();
+	$_SESSION['excepcion'] = $e->GetMessage();
+	header("Location: excepcion.php");
 	}
 }
 
 function busquedaProveedor($conexion,$proveedor) {
 	try{
- 	$consulta = "SELECT ID_PR FROM PROVEEDORES WHERE NOMBREEMPRESA=:emp AND NOMBRECOMERCIAL=:com AND EMAIL=:email";
-	$stmt = $conexion->prepare($consulta);
-  $stmt->bindParam(':emp',$proveedor["nombre-empresa"]);
-  $stmt->bindParam(':com',$proveedor["nombre-comercial"]);
-  $stmt->bindParam(':email',$proveedor["email"]);
-	$stmt->execute();
-	return $stmt->fetchColumn();
+    $consulta = "SELECT ID_PR FROM PROVEEDORES WHERE NOMBREEMPRESA=:emp AND NOMBRECOMERCIAL=:com AND EMAIL=:email";
+    $stmt = $conexion->prepare($consulta);
+    $stmt->bindParam(':emp',$proveedor["nombre-empresa"]);
+    $stmt->bindParam(':com',$proveedor["nombre-comercial"]);
+    $stmt->bindParam(':email',$proveedor["email"]);
+    $stmt->execute();
+    $result = $stmt->fetch();
+		
+		return $result["ID_PR"];
 } catch(PDOException $e) {
-	return $e->getMessage();
+    $_SESSION['excepcion'] = $e->GetMessage();
+    header("Location: excepcion.php");
 	}
 }
 
@@ -70,8 +74,6 @@ function bucle_alta_telefonos($conexion, $proveedor) {
   if(isset($proveedor["telefono3"])){
     $tef3 = alta_telefono($conexion, $proveedor["telefono3"], $id);
   }
-    return false;
-  
 
   if(isset($tef2) && isset($tef3)){
     return $tef1 && $tef2 && $tef3;
@@ -94,7 +96,7 @@ function alta_telefono($conexion, $telefono, $proveedor) {
     $stmt->bindParam(':id',$proveedor);
 
     $stmt->execute();
-  return true;
+    return true;
   }
 
   catch(PDOException $e) {
