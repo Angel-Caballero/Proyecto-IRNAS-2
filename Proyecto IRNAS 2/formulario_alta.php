@@ -165,7 +165,7 @@ cerrarConexionBD($conexion);
       <div id="recurso">
         <?php
         if (isset($erroresRecurso) && count($erroresRecurso) > 0) {
-          echo "<div id=\"div_errores_recurso\" class=\"errorRecurso\">";
+          echo "<div id=\"div_errores_recurso\" class=\"error\">";
           echo "<h4> Errores en el formulario de Recurso:</h4>";
           foreach ($erroresRecurso as $errorRecurso) {
             echo $errorRecurso;
@@ -241,7 +241,7 @@ cerrarConexionBD($conexion);
       <div id="proveedor">
         <?php
         if (isset($erroresProveedor) && count($erroresProveedor) > 0) {
-          echo "<div id=\"div_errores_proveedor\" class=\"errorProveedor\">";
+          echo "<div id=\"div_errores_proveedor\" class=\"error\">";
           echo "<h4> Errores en el formulario de Proveedor:</h4>";
           foreach ($erroresProveedor as $errorProveedor) {
             echo $errorProveedor;
@@ -277,7 +277,7 @@ cerrarConexionBD($conexion);
       <div id="almacen">
         <?php
         if (isset($erroresAlmacen) && count($erroresAlmacen) > 0) {
-          echo "<div id=\"div_errores_almacen\" class=\"errorAlmacen\">";
+          echo "<div id=\"div_errores_almacen\" class=\"error\">";
           echo "<h4> Errores en el formulario de Almacen:</h4>";
           foreach ($erroresAlmacen as $errorAlmacen) {
             echo $errorAlmacen;
@@ -291,7 +291,7 @@ cerrarConexionBD($conexion);
             <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoAlmacen['nombre']; ?>" required></div>
 
           <div><label for="almacen-iluminacion">Tipo iluminación</label>
-            <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" pattern="/^[0-9][A-Z]$/" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
+            <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
             <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>"></div>
@@ -325,7 +325,7 @@ cerrarConexionBD($conexion);
       <div id="mobiliario">
         <?php
         if (isset($erroresMobiliario) && count($erroresMobiliario) > 0) {
-          echo "<div id=\"div_errores_mobiliario\" class=\"errorMobiliario\">";
+          echo "<div id=\"div_errores_mobiliario\" class=\"error\">";
           echo "<h4> Errores en el formulario de Mobiliario:</h4>";
           foreach ($erroresMobiliario as $errorMobiliario) {
             echo $errorMobiliario;
@@ -383,7 +383,7 @@ cerrarConexionBD($conexion);
   <div id="usuario">
     <?php
     if (isset($erroresUsuario) && count($erroresUsuario) > 0) {
-      echo "<div id=\"div_errores_usuario\" class=\"errorUsuario\">";
+      echo "<div id=\"div_errores_usuario\" class=\"error\">";
       echo "<h4> Errores en el formulario de Usuario:</h4>";
       foreach ($erroresUsuario as $errorUsuario) {
         echo $errorUsuario;

@@ -1,3 +1,10 @@
+div.error, div.mensaje{
+  color: rgba(255, 251, 8, 0.747);
+	border: 2px solid rgba(255, 251, 8, 0.747);
+	padding: 10px;
+	margin: 10px;
+}
+
 ul {
     list-style-type: none;
     margin: 15px 0;

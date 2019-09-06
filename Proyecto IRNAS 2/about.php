@@ -31,9 +31,10 @@ session_start()
 Para empezar a usarla, ingrese en el buscador el almacén o recurso que desee buscar, y seleccione el tipo del mismo.
 Una vez la búsqueda se realice, aparecerá una lista de resultados, en la cual podrá ver la lista de recursos o de
 almacenes. Al acceder a un almacén, aparecerán todos los recursos que hay en dicho almacén. Al hacer click en el
-botón de información aparecerá la información de dicho material. En caso de ser administrador, podrá añadir nuevos
-recursos, almacenes, mobiliario, proveedores o usuarios desde la opción "Insertar Recursos" en el menú en la parte
-superior derecha.</p>
+botón de información de un recurso aparecerá su información.</br>
+En caso de ser administrador, podrá añadir nuevos recursos, almacenes, mobiliario, proveedores o usuarios desde la 
+opción "Insertar elementos" en el menú en la parte superior derecha.
+Así mismo, podrá eliminar cualquiera de estos elementos desde la  opción "Eliminar elementos" desde dicho menú. </p>
 
 
 

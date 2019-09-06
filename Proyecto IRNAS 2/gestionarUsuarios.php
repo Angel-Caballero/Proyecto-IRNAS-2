@@ -45,4 +45,15 @@ $consulta = "SELECT TIPO FROM USUARIOS WHERE NOMBRE=:nombre AND PASS=:pass";
  }
 }
 
+function quitar_usuario($conexion,$nombre) {
+	try {
+		$stmt=$conexion->prepare('CALL QUITAR_USUARIO(:nombre)');
+		$stmt->bindParam(':nombre',$nombre);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->GetMessage();
+    }
+}
+
 ?>

@@ -129,4 +129,31 @@ function buscarProveedor($conexion, $recurso){
     }
 }
 
+function modificar_unidades($conexion,$unidades,$recurso) {
+	try {
+		$stmt=$conexion->prepare('CALL MODIFICAR_UNIDADES_RECURSO(:nombre,:alm,:uni)');
+		$stmt->bindParam(':uni',$unidades);
+		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);
+		$stmt->bindParam(':alm',$recurso["ALMACEN"]);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
+    }
+}
+
+function quitar_recurso($conexion,$recurso) {
+	try {
+		$stmt=$conexion->prepare('CALL QUITAR_RECURSO(:nombre,:alm)');
+		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);
+		$stmt->bindParam(':alm',$recurso["ALMACEN"]);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepcion.php");
+    }
+}
+
 ?>
