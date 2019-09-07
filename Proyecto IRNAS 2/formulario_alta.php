@@ -269,13 +269,13 @@ cerrarConexionBD($conexion);
             <input id="proveedor-email" name="proveedor-email" type="email" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
 
           <div><label for="proveedor-proveedor-telefono1">Teléfono 1</label>
-            <input id="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono1']; ?>" oninput="telefono1Validation();" required></div>
+            <input id="proveedor-telefono1" name="proveedor-telefono1" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono1']; ?>" oninput="telefono1Validation();" required></div>
 
           <div><label for="proveedor-telefono2">Teléfono 2</label>
-            <input id="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono2']; ?>" oninput="telefono2Validation();" placeholder="Teléfono opcional"></div>
+            <input id="proveedor-telefono2" name="proveedor-telefono2" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono2']; ?>" oninput="telefono2Validation();" placeholder="Teléfono opcional"></div>
 
           <div><label for="proveedor-telefono3">Teléfono 3</label>
-            <input id="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono3']; ?>" oninput="telefono3Validation();" placeholder="Teléfono opcional"></div>
+            <input id="proveedor-telefono3" name="proveedor-telefono3" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono3']; ?>" oninput="telefono3Validation();" placeholder="Teléfono opcional"></div>
 
           <input type="submit" name="enviar" value="Enviar">
         </form>

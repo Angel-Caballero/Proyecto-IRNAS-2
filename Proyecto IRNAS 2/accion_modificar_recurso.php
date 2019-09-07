@@ -1,5 +1,5 @@
 <?php	
-    session_start();
+	session_start();
     
     require_once("gestionBD.php");
     require_once("gestionarRecurso.php");
@@ -13,26 +13,25 @@
     if(!isset($_SESSION['privilegios'])){
         Header("Location: interfazBuscador.php");
     }
-
-	if (isset($_REQUEST["recurso-elemento"]) && $_REQUEST["ALMACEN"]) {
-        $recurso = $_REQUEST["recurso-elemento"];
-        $almacen = $_REQUEST["ALMACEN"];
+		
+    if (isset($_SESSION["editar_rec"])) {
+        $recurso = $_SESSION["editar_rec"];
+        unset($_SESSION["editar_rec"]);
         
 		$conexion = crearConexionBD();		
-		$excepcion = quitar_recurso($conexion, $recurso, $almacen);
+		$excepcion = modificar_unidades($conexion, $recurso);
 		cerrarConexionBD($conexion);
 			
 		if ($excepcion != "") {
 			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "formulario_baja.php";
+			$_SESSION["destino"] = "detalleRecursos.php";
 			Header("Location: excepcion.php");
 		}
 		else{
-            $_SESSION["mensjRecurso"] = "Recurso eliminado correctamente";
-            Header("Location: formulario_baja.php");
+            Header("Location: listaResultados.php");
         } 
 	}
 	else{
-        Header("Location: interfaz_buscador.php"); 
+        Header("Location: interfazBuscador.php"); 
     }
 ?>

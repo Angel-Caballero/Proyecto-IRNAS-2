@@ -50,57 +50,89 @@ cerrarConexionBD($conexion);
       include_once("menu.php");
       ?>
       <div class="centrado" style="max-width:500px; flex-direction:column">
-        <?php if ($recurso["TIPO"] == "REACTIVO") { ?>
-          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
-          <br />
-          Tipo: <?php echo "Reactivo" ?><br />
-          <br />
-          Posición: <?php echo $posicion ?><br />
-          <br />
-          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
-          <br />
-          Unidades: <?php echo $recurso["UNIDADES"] ?><br />
-          <br />
-          Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
-          <br />
-          Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
-          <br />
-          <?php foreach ($proveedores as $proveedor) { ?>
-            Proveedor: <?php echo $proveedor["NOMBREEMPRESA"] . " - " .  $proveedor["NOMBRECOMERCIAL"]?><br />
+        <form method="post" action="controlador_recursos.php">
+          <?php if ($recurso["TIPO"] == "REACTIVO") { ?>
+            Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+            <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
+            <br />
+            Tipo: <?php echo "Reactivo" ?><br />
+            <br />
+            Posición: <?php echo $posicion ?><br />
+            <br />
+            Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+            <input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
+            <br />
+            <?php
+							if (isset($_SESSION["editando"])) { ?>
+
+								<!-- Editando unidades -->
+
+								<h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
+
+							<?php } else { ?>
+                <!-- mostrando unidades -->
+                
+                Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+
+							<?php } ?>
+            <br />
+            Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
+            <br />
+            Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
+            <br />
+            <?php foreach ($proveedores as $proveedor) { ?>
+              Proveedor: <?php echo $proveedor["NOMBREEMPRESA"] . " - " .  $proveedor["NOMBRECOMERCIAL"] ?><br />
+            <?php } ?>
+            <br />
+            Fórmula Química: <?php echo $recurso["FORMULAQUIMICA"] ?>
+            <?php if (isset($_SESSION["editando"])) { ?>
+
+              <input id="guardar" name="guardar" type="submit" value="Guardar unidades">
+
+            <?php } else { ?>
+
+              <input id="editar" name="editar" type="submit" value="Editar unidades">
+
+            <?php } ?>
+
+          <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
+            Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+            <br />
+            Tipo: <?php echo "Fungibles y kits" ?><br />
+            <br />
+            Posición: <?php echo $posicion ?><br />
+            <br />
+            Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+            <br />
+            Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+            <br />
+            Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
+            <br />
+            Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
+            <br />
+            <?php foreach ($proveedores as $proveedor) { ?>
+              Proveedor: <?php echo $proveedor["NOMBREEMPRESA"]  . " - " .  $proveedor["NOMBRECOMERCIAL"] ?><br />
+            <?php } ?>
+            <?php if (isset($_SESSION["editando"])) { ?>
+
+              <input id="guardar" name="guardar" type="submit" value="Guardar unidades">
+
+            <?php } else { ?>
+
+              <input id="editar" name="editar" type="submit" value="Editar unidades">
+
+            <?php } ?>
+
+          <?php } else { ?>
+            Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+            <br />
+            Tipo: <?php echo "Material biológico" ?><br />
+            <br />
+            Posición: <?php echo $posicion ?><br />
+            <br />
+            Almacén: <?php echo $recurso["ALMACEN"] ?><br />
           <?php } ?>
-          <br />
-          Fórmula Química: <?php echo $recurso["FORMULAQUIMICA"] ?>
-
-        <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
-          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
-          <br />
-          Tipo: <?php echo "Fungibles y kits" ?><br />
-          <br />
-          Posición: <?php echo $posicion ?><br />
-          <br />
-          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
-          <br />
-          Unidades: <?php echo $recurso["UNIDADES"] ?><br />
-          <br />
-          Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
-          <br />
-          Reserva Mínima: <?php echo $recurso["RESERVAMINIMA"] ?><br />
-          <br />
-          <?php foreach ($proveedores as $proveedor) { ?>
-            Proveedor: <?php echo $proveedor["NOMBREEMPRESA"]  . " - " .  $proveedor["NOMBRECOMERCIAL"] ?><br />
-          <?php } ?>
-
-        <?php } else { ?>
-          Nombre: <?php echo $recurso["NOMBRE"] ?><br />
-          <br />
-          Tipo: <?php echo "Material biológico" ?><br />
-          <br />
-          Posición: <?php echo $posicion ?><br />
-          <br />
-          Almacén: <?php echo $recurso["ALMACEN"] ?><br />
-
-        <?php } ?>
-          
+        </form>
       </div>
     </div>
   </div>

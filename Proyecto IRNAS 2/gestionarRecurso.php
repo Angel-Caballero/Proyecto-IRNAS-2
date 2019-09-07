@@ -126,17 +126,16 @@ function buscarProveedor($conexion, $recurso){
     }
 }
 
-function modificar_unidades($conexion,$unidades,$recurso) {
+function modificar_unidades($conexion,$recurso) {
 	try {
-		$stmt=$conexion->prepare('CALL MODIFICAR_UNIDADES_RECURSO(:nombre,:alm,:uni)');
-		$stmt->bindParam(':uni',$unidades);
+		$stmt=$conexion->prepare('CALL MODIFICAR_UNIDADES_RECURSO(:nombre, :alm, :uni)');
 		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);
 		$stmt->bindParam(':alm',$recurso["ALMACEN"]);
+		$stmt->bindParam(':uni',$recurso["UNIDADES"]);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
-		$_SESSION['excepcion'] = $e->GetMessage();
-		header("Location: excepcion.php");
+		return $e->GetMessage();
     }
 }
 

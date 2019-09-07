@@ -92,6 +92,7 @@ cerrarConexionBD($conexion);
 					<td><form method="post" action="controlador_recursos.php">
 							<div class="fila_recurso">
 								<div class="datos_recurso">
+								<form method="post" action="accion_borrar_recurso.php">
 									<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
 									<input id="FORMULAQUIMICA" name="FORMULAQUIMICA" type="hidden" value="<?php echo $recurso["FORMULAQUIMICA"]; ?>" />
 									<input id="UNIDADES" name="UNIDADES" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
@@ -101,7 +102,7 @@ cerrarConexionBD($conexion);
 									<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
 								</div>
 								<div id="boton">
-									<input type="submit" name="submit" value="Informacion"/>
+									<input type="submit" name="info" id="info" value="Informacion"/>
 								</div>
 							</div>
 						</form>
