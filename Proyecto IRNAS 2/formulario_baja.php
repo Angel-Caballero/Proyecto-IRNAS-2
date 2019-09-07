@@ -114,7 +114,7 @@ cerrarConexionBD($conexion);
                         echo "</div>";
                     }
                 ?> 
-                <form action="" id="proveedor-form" method="post" class="formulario">
+                <form action="accion_borrar_proveedor.php" id="proveedor-form" method="post" class="formulario">
                     <div><label for="proveedor-elemento">Proveedor</label>
                         <select id="proveedor-elemento" name="proveedor-elemento">
                         <option value="">--Elija el proveedor que quiera eliminar--</option>
@@ -133,7 +133,7 @@ cerrarConexionBD($conexion);
                         echo "</div>";
                     }
                 ?> 
-                <form action="" id="almacen-form" method="post" class="formulario">
+                <form action="accion_borrar_almacen.php" id="almacen-form" method="post" class="formulario">
                     <div><label for="almacen-elemento">Almacén</label>
                         <select id="almacen-elemento" name="almacen-elemento">
                         <option value="">--Elija el almacen que quiera eliminar--</option>
@@ -152,7 +152,7 @@ cerrarConexionBD($conexion);
                         echo "</div>";
                     }
                 ?> 
-                <form action="" id="mobiliario-form" method="post" class="formulario">
+                <form action="accion_borrar_mobiliario.php" id="mobiliario-form" method="post" class="formulario">
                     <div><label for="mobiliario-temperatura_ambiente">Temperatura ambiente</label>
                         <select id="mobiliario-temperatura_ambiente" name="mobiliario-temperatura_ambiente">
                         <option value="">--Elija el mobiliario que quiera eliminar--</option>

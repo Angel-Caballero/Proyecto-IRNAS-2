@@ -100,6 +100,7 @@ cerrarConexionBD($conexion);
           Almacén: <?php echo $recurso["ALMACEN"] ?><br />
 
         <?php } ?>
+          
       </div>
     </div>
   </div>

@@ -14,13 +14,14 @@
         Header("Location: interfazBuscador.php");
     }
 
-	if (isset($_REQUEST["recurso-elemento"])) {
-        $recurso = $_REQUEST["recurso-elemento"];
+	if (isset($_REQUEST["NOMBRE"]) && isset($_REQUEST["ALMACEN"])) {
+        $nombre = $_REQUEST["NOMBRE"];
         $almacen = $_REQUEST["ALMACEN"];
-		unset($_SESSION["recurso-elemento"]);
-		
+		unset($_REQUEST["NOMBRE"]);
+        unset($_REQUEST["ALMACEN"]);
+        
 		$conexion = crearConexionBD();		
-		$excepcion = quitar_recurso($conexion, $recurso,$almacen);
+		$excepcion = quitar_recurso($conexion, $nombre,$almacen);
 		cerrarConexionBD($conexion);
 			
 		if ($excepcion != "") {

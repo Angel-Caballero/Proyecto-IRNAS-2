@@ -101,7 +101,7 @@ cerrarConexionBD($conexion);
 									<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
 								</div>
 								<div id="boton">
-									<input type="submit" name="submit" value="Informacion" />
+									<input type="submit" name="submit" value="Informacion"/>
 								</div>
 							</div>
 						</form>
