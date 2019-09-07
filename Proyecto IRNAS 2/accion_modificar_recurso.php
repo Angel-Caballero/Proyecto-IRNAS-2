@@ -28,7 +28,7 @@
 			Header("Location: excepcion.php");
 		}
 		else{
-            Header("Location: interfazBuscador.php");
+            Header("Location: listaResultados.php");
         } 
 	}
 	else{
