@@ -30,7 +30,7 @@ function consultarAlmacen($conexion, $nombre) {
 	}
 }
 
-function quitarAlmacen($conexion, $nombre) {
+function quitar_almacen($conexion, $nombre) {
 	try{
 		$stmt=$conexion->prepare('CALL QUITAR_ALMACENES(:nombre)');
 		$stmt->bindParam(':nombre',$nombre);

@@ -16,7 +16,6 @@
 
 	if (isset($_REQUEST["proveedor-elemento"])) {
 		$proveedor = $_REQUEST["proveedor-elemento"];
-		unset($_SESSION["proveedor-elemento"]);
 		
 		$conexion = crearConexionBD();		
 		$excepcion = quitar_proveedor($conexion, $proveedor);

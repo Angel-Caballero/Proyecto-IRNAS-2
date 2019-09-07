@@ -36,8 +36,8 @@ if (isset($_SESSION["formularioRecurso"])) {
     cerrarConexionBD($conexion);
     
 if (count($errores)>0) {
-	$_SESSION["errores"] = $errores;
-	Header('formulario_alta.php');
+	$_SESSION["erroresRecurso"] = $errores;
+	Header('Location: formulario_alta.php');
 } else{	
     Header('Location: accion_alta_recurso.php');
 } 

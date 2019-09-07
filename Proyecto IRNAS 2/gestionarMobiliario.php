@@ -25,7 +25,7 @@
 		return false;
 		// Si queremos visualizar la excepción durante la depuración: $e->getMessage();
     }
-}function quitarEquipoFrio($conexion, $id_fr){
+}function quitar_equipo_frio($conexion, $id_fr){
 	try{
 		$stmt=$conexion->prepare('CALL QUITAR_EQUIPOS_FRIO(:id_fr)');
 		$stmt->bindParam(':id_fr',$id_fr);
@@ -35,9 +35,8 @@
 		return $e->GetMessage();
     }
 }
-}
 
-function quitarTemperaturaAmbiente($conexion, $id_ta){
+function quitar_temperatura_ambiente($conexion, $id_ta){
 	try{
 		$stmt=$conexion->prepare('CALL QUITAR_TEMPERATURA_AMBIENTE(:id_ta)');
 		$stmt->bindParam(':id_ta',$id_ta);
@@ -47,4 +46,5 @@ function quitarTemperaturaAmbiente($conexion, $id_ta){
 		return $e->GetMessage();
     }
 }
+
 ?>

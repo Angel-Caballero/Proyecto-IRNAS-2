@@ -2,7 +2,7 @@
     session_start();
     
     require_once("gestionBD.php");
-    require_once("gestionarUsuarios.php");
+    require_once("gestionarAlmacenes.php");
     
     if (!isset($_SESSION['login'])) {
         Header("Location: login.php");
@@ -14,11 +14,12 @@
         Header("Location: interfazBuscador.php");
     }
 
-	if (isset($_REQUEST["usuario-elemento"])) {
-		$usuario = $_REQUEST["usuario-elemento"];
+	if (isset($_REQUEST["almacen-elemento"])) {
+		$almacen = $_REQUEST["almacen-elemento"];
+		unset($_SESSION["almacen-elemento"]);
 		
 		$conexion = crearConexionBD();		
-		$excepcion = quitar_usuario($conexion, $usuario);
+		$excepcion = quitar_almacen($conexion, $almacen);
 		cerrarConexionBD($conexion);
 			
 		if ($excepcion != "") {
@@ -27,7 +28,7 @@
 			Header("Location: excepcion.php");
 		}
 		else{
-            $_SESSION["mensjUsuario"] = "Usuario eliminado correctamente";
+            $_SESSION["mensjAlmacen"] = "Almacen eliminado correctamente";
             Header("Location: formulario_baja.php");
         } 
 	}

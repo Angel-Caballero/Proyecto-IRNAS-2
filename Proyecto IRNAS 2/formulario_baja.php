@@ -153,15 +153,15 @@ cerrarConexionBD($conexion);
                     }
                 ?> 
                 <form action="accion_borrar_mobiliario.php" id="mobiliario-form" method="post" class="formulario">
-                    <div><label for="mobiliario-temperatura_ambiente">Temperatura ambiente</label>
-                        <select id="mobiliario-temperatura_ambiente" name="mobiliario-temperatura_ambiente">
+                    <div><label for="mobiliario_temperatura_ambiente">Temperatura ambiente</label>
+                        <select id="mobiliario_temperatura_ambiente" name="mobiliario_temperatura_ambiente">
                         <option value="">--Elija el mobiliario que quiera eliminar--</option>
                         <?php foreach($temperaturaAmbiente as $temperaturaAmbiente){
                             echo "<option value='".$temperaturaAmbiente["ID_TA"]."'>".$temperaturaAmbiente["NOMBRE"]."</option>";
                         } ?>
                         </select></div>
                         <div><label for="mobiliario-equipo_frio">Equipo de frío</label>
-                        <select id="mobiliario-equipo_frio" name="mobiliario-equipo_frio">
+                        <select id="mobiliario_equipo_frio" name="mobiliario_equipo_frio">
                         <option value="">--Elija el mobiliario que quiera eliminar--</option>
                         <?php foreach($equiposFrio as $equipoFrio){
                             echo "<option value='".$equipoFrio["ID_EF"]."'>".$equipoFrio["NOMBRE"]."</option>";

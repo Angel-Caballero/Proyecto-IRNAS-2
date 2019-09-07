@@ -17,8 +17,6 @@
 	if (isset($_REQUEST["NOMBRE"]) && isset($_REQUEST["ALMACEN"])) {
         $nombre = $_REQUEST["NOMBRE"];
         $almacen = $_REQUEST["ALMACEN"];
-		unset($_REQUEST["NOMBRE"]);
-        unset($_REQUEST["ALMACEN"]);
         
 		$conexion = crearConexionBD();		
 		$excepcion = quitar_recurso($conexion, $nombre,$almacen);
