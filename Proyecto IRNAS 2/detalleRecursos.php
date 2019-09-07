@@ -63,18 +63,18 @@ cerrarConexionBD($conexion);
             <input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
             <br />
             <?php
-							if (isset($_SESSION["editando"])) { ?>
+              if (isset($_SESSION["editando"])) { ?>
 
-								<!-- Editando unidades -->
+              <!-- Editando unidades -->
 
-								<h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
+              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
 
-							<?php } else { ?>
-                <!-- mostrando unidades -->
-                
-                Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+            <?php } else { ?>
+              <!-- mostrando unidades -->
 
-							<?php } ?>
+              Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+
+            <?php } ?>
             <br />
             Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
             <br />
@@ -97,14 +97,28 @@ cerrarConexionBD($conexion);
 
           <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
             Nombre: <?php echo $recurso["NOMBRE"] ?><br />
+            <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
             <br />
             Tipo: <?php echo "Fungibles y kits" ?><br />
             <br />
             Posición: <?php echo $posicion ?><br />
             <br />
             Almacén: <?php echo $recurso["ALMACEN"] ?><br />
+            <input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
             <br />
-            Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+            <?php
+              if (isset($_SESSION["editando"])) { ?>
+
+              <!-- Editando unidades -->
+
+              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
+
+            <?php } else { ?>
+              <!-- mostrando unidades -->
+
+              Unidades: <?php echo $recurso["UNIDADES"] ?><br />
+
+            <?php } ?>
             <br />
             Cantidad: <?php echo $recurso["CANTIDAD"] ?><br />
             <br />
