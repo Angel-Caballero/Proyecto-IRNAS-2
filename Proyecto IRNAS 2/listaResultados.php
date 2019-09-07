@@ -36,9 +36,6 @@ if (isset($_GET["almacen"])) {
 	}
 }
 
-
-
-
 cerrarConexionBD($conexion);
 
 ?>
@@ -75,8 +72,8 @@ cerrarConexionBD($conexion);
 						<?php foreach ($almacenes as $almacen) { ?>
 				<tr>
 					<td><a href="listaResultados.php?almacen=<?php echo $almacen["NOMBRE"]; ?>"><?php echo $almacen["NOMBRE"]; ?></td>
-					<td><?php echo $almacen["TIPOILUMINACION"]; ?></td>
 					<td><?php echo $almacen["TIPOCAMARA"]; ?></td>
+					<td><?php echo $almacen["TEMPERATURA"]; ?></td>
 				</tr>
 			<?php } ?>
 		<?php } else if (isset($_SESSION["busqRecurso"]) || isset($_GET["almacen"])) { ?>
