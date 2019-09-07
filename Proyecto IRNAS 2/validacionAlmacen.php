@@ -33,8 +33,8 @@ function validarDatosAlmacen($nuevoAlmacen){
 		$errores[] = "<p>El tipo-iluminacion no puede estar vacío</p>";
 	}
     
-    if(!preg_match("/^[0-9][A-Z]$/", $nuevoAlmacen["tipo-iluminacion"])){ 
-        $errores[] = "<p> El tipo de iluminacion tiene que contener números y letras mayúsculas</p>";
+    if(!preg_match("/^[0-9][A-Z]$/", $nuevoAlmacen["tipo-iluminacion"]) && $nuevoAlmacen["tipo-iluminacion"] != "Natural"){ 
+        $errores[] = "<p> El tipo de iluminacion tiene que contener números y letras mayúsculas o ser 'Natural'</p>";
     }
 
     if($nuevoAlmacen["temperatura"] == ""){ 

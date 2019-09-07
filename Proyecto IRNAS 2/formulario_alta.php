@@ -137,7 +137,7 @@ cerrarConexionBD($conexion);
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
   <link rel="stylesheet" type="text/css" href="css/formularios.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="js/validacion_alta_usuario.js" type="text/javascript"></script>
+  <script src="js/validacion_formulario_alta.js" type="text/javascript"></script>
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/formularios.js"></script>
   <link rel="icon" href="images/icono.png" />
@@ -216,7 +216,7 @@ cerrarConexionBD($conexion);
             </select></div>
 
           <div><label for="recurso-posicion">Posición</label>
-            <input id="recurso-posicion" name="recurso-posicion" type="text" value="<?php echo $nuevoRecurso['posicion']; ?>" required></div>
+            <input id="recurso-posicion" name="recurso-posicion" type="text" value="<?php echo $nuevoRecurso['posicion']; ?>" required oninput="posicionValidation();"></div>
 
           <div><label for="recurso-unidades">Unidades</label>
             <input id="recurso-unidades" name="recurso-unidades" type="number" value="<?php echo $nuevoRecurso['unidades']; ?>"></div>
@@ -263,19 +263,19 @@ cerrarConexionBD($conexion);
             <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa" type="text" value="<?php echo $nuevoProveedor['nombre-empresa']; ?>" required></div>
 
           <div><label for="proveedor-nombre-comercial">Nombre comercial</label>
-            <input name="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" value="<?php echo $nuevoProveedor['nombre-comercial']; ?>" required></div>
+            <input id="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" value="<?php echo $nuevoProveedor['nombre-comercial']; ?>" required></div>
 
           <div><label for="proveedor-email">Email</label>
-            <input name="proveedor-email" name="proveedor-email" type="email" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
+            <input id="proveedor-email" name="proveedor-email" type="email" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
 
           <div><label for="proveedor-proveedor-telefono1">Teléfono 1</label>
-            <input name="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono1']; ?>" required></div>
+            <input id="proveedor-telefono1" name="proveedor-telefono1" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono1']; ?>" oninput="telefono1Validation();" required></div>
 
           <div><label for="proveedor-telefono2">Teléfono 2</label>
-            <input name="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono2']; ?>" placeholder="Teléfono opcional"></div>
+            <input id="proveedor-telefono2" name="proveedor-telefono2" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono2']; ?>" oninput="telefono2Validation();" placeholder="Teléfono opcional"></div>
 
           <div><label for="proveedor-telefono3">Teléfono 3</label>
-            <input name="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="[0-9]{9}" value="<?php echo $nuevoProveedor['telefono3']; ?>" placeholder="Teléfono opcional"></div>
+            <input id="proveedor-telefono3" name="proveedor-telefono3" type="text" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono3']; ?>" oninput="telefono3Validation();" placeholder="Teléfono opcional"></div>
 
           <input type="submit" name="enviar" value="Enviar">
         </form>
@@ -299,7 +299,7 @@ cerrarConexionBD($conexion);
             <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoAlmacen['nombre']; ?>" required></div>
 
           <div><label for="almacen-iluminacion">Tipo iluminación</label>
-            <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" required></div>
+            <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" oninput="iluminacionValidation();" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
             <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>"></div>
@@ -381,7 +381,7 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-temperatura">Temperatura</label>
-    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" disabled></div>
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" oninput="temperaturaValidation();" disabled></div>
 
   <input type="submit" name="enviar" value="Enviar">
   </form>
@@ -405,7 +405,7 @@ cerrarConexionBD($conexion);
         <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
 
       <div><label for="usuario-password">Contraseña</label>
-        <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" maxlength="16"  required oninput="passwordValidation(); " required></div>
+        <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" maxlength="16" required oninput="passwordValidation(); "></div>
 
       <div><label for="usuario-email">Email</label>
         <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
