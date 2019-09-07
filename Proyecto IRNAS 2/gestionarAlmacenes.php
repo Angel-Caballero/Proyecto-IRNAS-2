@@ -30,4 +30,15 @@ function consultarAlmacen($conexion, $nombre) {
 	}
 }
 
+function quitarAlmacen($conexion, $nombre) {
+	try{
+		$stmt=$conexion->prepare('CALL QUITAR_ALMACENES(:nombre)');
+		$stmt->bindParam(':nombre',$nombre);
+		$stmt->execute();
+		return "";
+	}catch(PDOException $e) {
+		return $e->GetMessage();
+    }
+}
+
 ?>

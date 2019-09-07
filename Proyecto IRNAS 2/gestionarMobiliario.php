@@ -25,6 +25,26 @@
 		return false;
 		// Si queremos visualizar la excepción durante la depuración: $e->getMessage();
     }
+}function quitarEquipoFrio($conexion, $id_fr){
+	try{
+		$stmt=$conexion->prepare('CALL QUITAR_EQUIPOS_FRIO(:id_fr)');
+		$stmt->bindParam(':id_fr',$id_fr);
+		$stmt->execute();
+		return "";
+	}catch(PDOException $e) {
+		return $e->GetMessage();
+    }
+}
 }
 
+function quitarTemperaturaAmbiente($conexion, $id_ta){
+	try{
+		$stmt=$conexion->prepare('CALL QUITAR_TEMPERATURA_AMBIENTE(:id_ta)');
+		$stmt->bindParam(':id_ta',$id_ta);
+		$stmt->execute();
+		return "";
+	}catch(PDOException $e) {
+		return $e->GetMessage();
+    }
+}
 ?>

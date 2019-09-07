@@ -119,4 +119,15 @@ function obtenerProveedor($conexion,$id) {
 	}
 }
 
+function quitarProveedor($conexion,$id){
+    try{
+      $stmt=$conexion->prepare('CALL QUITAR_PROVEEDOR(:id_pr)');
+      $stmt->bindParam(':id_pr',$id);
+      $stmt->execute();
+      return "";
+	} catch(PDOException $e) {
+		return $e->GetMessage();
+  }
+}
+
 ?>
