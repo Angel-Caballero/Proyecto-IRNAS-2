@@ -8,6 +8,7 @@ if (isset($_SESSION["formularioUsuario"])) {
     $nuevoUsuario["nombre"] = $_REQUEST["usuario-nombre"];
     $nuevoUsuario["email"] = $_REQUEST["usuario-email"];
     $nuevoUsuario["pass"] = $_REQUEST["usuario-password"];
+    $nuevoUsuario["confirm_pass"] = $_REQUEST["usuario-confirm-password"];
     if(isset($_REQUEST["usuario-responsable"])){
         $nuevoUsuario["tipo"] = "ADMINISTRADOR";
     }else {
@@ -43,12 +44,20 @@ function validarDatosUsuario($nuevoUsuario){
         $errores[] = "<p>El email es incorrecto: " . $nuevoUsuario["email"]. "</p>";
     }
 
-    if(!isset($nuevoUsuario["pass"]) || strlen($nuevoUsuario["pass"])<8){
+    if($nuevoUsuario["pass"] == "" || strlen($nuevoUsuario["pass"])<8){
         $errores[] = "<p>Contraseña no válida: debe tener al menos 8 caracteres</p>";
     }else if(!preg_match("/[a-z]+/", $nuevoUsuario["pass"]) || !preg_match("/[A-Z]+/", $nuevoUsuario["pass"])){
         $errores[] = "<p>Contraseña no válida: debe contener letras mayúsculas y minúsculas</p>";
     }else if(strlen($nuevoUsuario["pass"]) > 16){
         $errores[] = "<p>Contraseña no válida: no puede tener más de 16 caracteres</p>";
+    }
+
+    if($nuevoUsuario["confirm_pass"] == ""){
+        $errores[] = "<p>La confirmación de la contraseña no puede estar vacía</p>";
+    }
+
+    if($nuevoUsuario["confirm_pass"] != $nuevoUsuario["pass"]){
+        $errores[] = "<p>La confirmación no coincide con la contraseña</p>";
     }
 
     if($nuevoUsuario["tipo"] != "TRABAJADOR" && $nuevoUsuario["tipo"] != "ADMINISTRADOR"){

@@ -19,6 +19,7 @@ if (!isset($_SESSION["formularioUsuario"])) {
   $nuevoUsuario["nombre"] = '';
   $nuevoUsuario["email"] = '';
   $nuevoUsuario["pass"] = '';
+  $nuevoUsuario["confirm_pass"] = '';
   $nuevoUsuario["tipo"] = '';
   $_SESSION["formularioUsuario"] = $nuevoUsuario;
 } else {
@@ -136,6 +137,7 @@ cerrarConexionBD($conexion);
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
   <link rel="stylesheet" type="text/css" href="css/formularios.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="js/validacion_alta_usuario.js" type="text/javascript"></script>
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/formularios.js"></script>
   <link rel="icon" href="images/icono.png" />
@@ -143,6 +145,16 @@ cerrarConexionBD($conexion);
 </head>
 
 <body onload="recursoform()">
+  <script>
+      // Inicialización de elementos y eventos cuando el documento se carga completamente
+      $(document).ready(function() {
+        // EJERCICIO 3: Manejador de evento del color de la contraseña
+        $("#usuario-password").on("keyup", function() {
+          // Calculo el color
+          passwordColor();
+        });
+      });
+    </script>
   <div class="contenido">
     <?php
     include_once("cabecera.php");
@@ -393,10 +405,14 @@ cerrarConexionBD($conexion);
         <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
 
       <div><label for="usuario-password">Contraseña</label>
-        <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" minlength="8" maxlength="16" required></div>
+        <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" maxlength="16"  required oninput="passwordValidation(); " required></div>
 
       <div><label for="usuario-email">Email</label>
         <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
+
+      <div><label for="usuario-confirm-password">Confirmar contraseña</label>
+        <input id="usuario-confirm-password" name="usuario-confirm-password" type="password" placeholder="Confirmación de la contraseña" maxlength="16" oninput="passwordConfirmation();" required></div>
+
 
       <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
         <?php if ($nuevoUsuario["tipo"] == "ADMINISTRADOR") { ?>
