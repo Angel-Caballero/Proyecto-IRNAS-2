@@ -33,7 +33,6 @@ TipoCamara VARCHAR(50));
 CREATE TABLE Recursos(
 Nombre VARCHAR(50) NOT NULL,
 FormulaQuimica VARCHAR(50),
-FichaSeguridad VARCHAR(50),
 Unidades INTEGER,
 Cantidad FLOAT,
 ReservaMinima INTEGER, 

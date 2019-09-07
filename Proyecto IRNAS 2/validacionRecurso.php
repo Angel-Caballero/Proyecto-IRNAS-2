@@ -22,7 +22,6 @@ if (isset($_SESSION["formularioRecurso"])) {
 
         if($nuevoRecurso["tipo"] == "REACTIVO"){
 
-            $nuevoRecurso["ficha"] = $_REQUEST["recurso-ficha"];
             $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
 
         }
@@ -100,9 +99,6 @@ function validarDatosRecurso($conexion, $nuevoRecurso){
                 $errores[] = "<p>La fórmula no puede estar vacía</p>";
             }
 
-            if($nuevoRecurso["ficha"] == "") {
-                $errores[] = "<p>La ficha no puede estar vacía</p>";
-            }
         }
 
         

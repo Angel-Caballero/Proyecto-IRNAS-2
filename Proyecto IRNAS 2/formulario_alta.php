@@ -39,7 +39,6 @@ if (!isset($_SESSION["formularioRecurso"])) {
   $nuevoRecurso["formula"] = '';
   $nuevoRecurso["cantidad"] = '';
   $nuevoRecurso["reserva"] = '';
-  $nuevoRecurso["ficha"] = '';
   $nuevoRecurso["proveedor"] = '';
   $_SESSION["formularioRecurso"] = $nuevoRecurso;
 } else {
@@ -218,9 +217,6 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-reserva">Reserva mínima</label>
             <input id="recurso-reserva" name="recurso-reserva" type="number" value="<?php echo $nuevoRecurso['reserva']; ?>"></div>
-
-          <div><label for="recurso-ficha">Ficha seguridad</label>
-            <input id="recurso-ficha" name="recurso-ficha" type="file" value="<?php echo $nuevoRecurso['ficha']; ?>"></div>
 
           <div><label for="recurso-proveedores">Proveedores</label>
             <select id="recurso-proveedores" name="recurso-proveedores">

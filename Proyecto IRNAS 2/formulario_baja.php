@@ -15,10 +15,29 @@ if(!isset($_SESSION['privilegios'])){
     Header("Location: interfazBuscador.php");
 }
 
+if (isset($_SESSION["mensjRecurso"])) {
+    $mensjRecurso = $_SESSION["mensjRecurso"];
+    unset($_SESSION["mensjRecurso"]);
+}
+
+if (isset($_SESSION["mensjProveedor"])) {
+    $mensjProveedor = $_SESSION["mensjProveedor"];
+    unset($_SESSION["mensjProveedor"]);
+}
+if (isset($_SESSION["mensjAlmacen"])) {
+    $mensjAlmacen = $_SESSION["mensjAlmacen"];
+    unset($_SESSION["mensjAlmacen"]);
+}
+
+if (isset($_SESSION["mensjMobiliario"])) {
+    $mensjMobiliario = $_SESSION["mensjMobiliario"];
+    unset($_SESSION["mensjMobiliario"]);
+}
+
 if (isset($_SESSION["mensjUsuario"])) {
     $mensjUsuario = $_SESSION["mensjUsuario"];
     unset($_SESSION["mensjUsuario"]);
-  }
+}
 
 $conexion = crearConexionBD();
 
@@ -67,18 +86,34 @@ cerrarConexionBD($conexion);
                 </ul>
             </div>
             <div id="recurso">
-                <form action="" id="recurso-form" method="post" class="formulario">
+            <?php
+                    if (isset($mensjRecurso)) {
+                        echo "<div id=\"div_mensj_recurso\" class=\"mensaje\">";
+                        echo $mensjRecurso;
+                        echo "</div>";
+                    }
+                ?> 
+                <form action="accion_borrar_recurso.php" id="recurso-form" method="post" class="formulario">
                     <div><label for="recurso-elemento">Recurso</label>
+                    <input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
                         <select id="recurso-elemento" name="recurso-elemento">
                         <option value="">--Elija el recurso que quiera eliminar--</option>
                         <?php foreach($recursos as $recurso){
-                            echo "<option value='".$recurso["ALMACEN"]."-".$recurso["NOMBRE"]."'>".$recurso["NOMBRE"]."</option>";
+                            echo "<option value='".$recurso["NOMBRE"]."'>".$recurso["NOMBRE"]."</option>";
                         } ?>
-                        </select></div>
+                        </select>
+                    </div>
                     <input type="submit" name="enviar" value="Enviar">
                 </form>
             </div>
             <div id="proveedor">
+            <?php
+                    if (isset($mensjProveedor)) {
+                        echo "<div id=\"div_mensj_proveedor\" class=\"mensaje\">";
+                        echo $mensjProveedor;
+                        echo "</div>";
+                    }
+                ?> 
                 <form action="" id="proveedor-form" method="post" class="formulario">
                     <div><label for="proveedor-elemento">Proveedor</label>
                         <select id="proveedor-elemento" name="proveedor-elemento">
@@ -91,6 +126,13 @@ cerrarConexionBD($conexion);
                 </form>
             </div>
             <div id="almacen">
+            <?php
+                    if (isset($mensjAlmacen)) {
+                        echo "<div id=\"div_mensj_almacen\" class=\"mensaje\">";
+                        echo $mensjAlmacen;
+                        echo "</div>";
+                    }
+                ?> 
                 <form action="" id="almacen-form" method="post" class="formulario">
                     <div><label for="almacen-elemento">Almacén</label>
                         <select id="almacen-elemento" name="almacen-elemento">
@@ -103,6 +145,13 @@ cerrarConexionBD($conexion);
                 </form>
             </div>
             <div id="mobiliario">
+            <?php
+                    if (isset($mensjMobiliario)) {
+                        echo "<div id=\"div_mensj_mobiliario\" class=\"mensaje\">";
+                        echo $mensjMobiliario;
+                        echo "</div>";
+                    }
+                ?> 
                 <form action="" id="mobiliario-form" method="post" class="formulario">
                     <div><label for="mobiliario-temperatura_ambiente">Temperatura ambiente</label>
                         <select id="mobiliario-temperatura_ambiente" name="mobiliario-temperatura_ambiente">

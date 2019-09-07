@@ -94,7 +94,6 @@ cerrarConexionBD($conexion);
 								<div class="datos_recurso">
 									<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
 									<input id="FORMULAQUIMICA" name="FORMULAQUIMICA" type="hidden" value="<?php echo $recurso["FORMULAQUIMICA"]; ?>" />
-									<input id="FICHASEGURIDAD" name="FICHASEGURIDAD" type="hidden" value="<?php echo $recurso["FICHASEGURIDAD"]; ?>" />
 									<input id="UNIDADES" name="UNIDADES" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
 									<input id="CANTIDAD" name="CANTIDAD" type="hidden" value="<?php echo $recurso["CANTIDAD"]; ?>" />
 									<input id="RESERVAMINIMA" name="RESERVAMINIMA" type="hidden" value="<?php echo $recurso["RESERVAMINIMA"]; ?>" />

@@ -7,11 +7,10 @@ function alta_recurso($conexion,$recurso) {
 
 		if($recurso["tipo"] == "REACTIVO"){
 
-			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
 			$stmt->bindParam(':form',$recurso["formula"]);
-            $stmt->bindParam(':ficha',$recurso["ficha"]);
             $stmt->bindParam(':uni',$recurso["unidades"]);
             $stmt->bindParam(':cant',$recurso["cantidad"]);
             $stmt->bindParam(':res',$recurso["reserva"]);
@@ -22,11 +21,10 @@ function alta_recurso($conexion,$recurso) {
 
 		}else if ($recurso["tipo"] == "FUNGIBLE") {
 
-			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
 			$stmt->bindParam(':form', $nulo);
-            $stmt->bindParam(':ficha', $nulo);
             $stmt->bindParam(':uni',$recurso["unidades"]);
             $stmt->bindParam(':cant',$recurso["cantidad"]);
             $stmt->bindParam(':res',$recurso["reserva"]);
@@ -37,11 +35,10 @@ function alta_recurso($conexion,$recurso) {
 
 		}else {
 			
-			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :ficha, :uni, :cant, :res, :tipo, :alm)";
+			$consulta = "CALL INSERTAR_RECURSOS(:nombre, :form, :uni, :cant, :res, :tipo, :alm)";
 			$stmt=$conexion->prepare($consulta);
 			$stmt->bindParam(':nombre',$recurso["nombre"]);
 			$stmt->bindParam(':form', $nulo);
-            $stmt->bindParam(':ficha', $nulo);
             $stmt->bindParam(':uni', $nulo);
             $stmt->bindParam(':cant', $nulo);
             $stmt->bindParam(':res', $nulo);
@@ -143,11 +140,11 @@ function modificar_unidades($conexion,$unidades,$recurso) {
     }
 }
 
-function quitar_recurso($conexion,$recurso) {
+function quitar_recurso($conexion,$recurso,$almacen) {
 	try {
 		$stmt=$conexion->prepare('CALL QUITAR_RECURSO(:nombre,:alm)');
-		$stmt->bindParam(':nombre',$recurso["NOMBRE"]);
-		$stmt->bindParam(':alm',$recurso["ALMACEN"]);
+		$stmt->bindParam(':nombre',$recurso);
+		$stmt->bindParam(':alm',$almacen);
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {

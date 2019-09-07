@@ -53,7 +53,7 @@
 		<?php }else { ?>
 			<?php if (alta_recurso($conexion, $nuevoRecurso) 
 			&& alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])
-			&& alta_rec_prov($conexion, $nuevoRecurso, $nuevoRecurso["almacen"], $nuevoRecurso["proveedores"])) {?>
+			&& alta_rec_prov($conexion, $nuevoRecurso, $nuevoRecurso["almacen"], $nuevoRecurso["proveedor"])) {?>
 					<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>
 					<div >	
 						Pulsa <a href="interfazBuscador.php">aquí</a> volver al buscador.</br>
