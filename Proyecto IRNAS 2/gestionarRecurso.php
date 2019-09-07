@@ -148,8 +148,7 @@ function quitar_recurso($conexion,$recurso,$almacen) {
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
-		$_SESSION['excepcion'] = $e->GetMessage();
-		header("Location: excepcion.php");
+		return $e->GetMessage();
     }
 }
 

@@ -119,7 +119,7 @@ function obtenerProveedor($conexion,$id) {
 	}
 }
 
-function quitarProveedor($conexion,$id){
+function quitar_proveedor($conexion,$id){
     try{
       $stmt=$conexion->prepare('CALL QUITAR_PROVEEDOR(:id_pr)');
       $stmt->bindParam(':id_pr',$id);
