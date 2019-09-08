@@ -35,6 +35,7 @@ cerrarConexionBD($conexion);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/general.css" />
   <link rel="stylesheet" type="text/css" href="css/menu.css" />
+  <script src="js/validacion_modificar_recurso.js" type="text/javascript"></script>
   <script type="text/javascript" src="./js/menu.js"></script>
   <link rel="icon" href="images/icono.png" />
   <title>Base de Datos: Recurso Detallado</title>
@@ -51,7 +52,7 @@ cerrarConexionBD($conexion);
       ?>
       <div class="centrado" style="max-width:500px; flex-direction:column">
         <form method="post" action="controlador_recursos.php">
-          <?php if ($recurso["TIPO"] == "REACTIVO") { ?>
+          <?php if ($recurso["TIPO"] == "Reactivo") { ?>
             Nombre: <?php echo $recurso["NOMBRE"] ?><br />
             <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
             <br />
@@ -66,8 +67,9 @@ cerrarConexionBD($conexion);
               if (isset($_SESSION["editando"])) { ?>
 
               <!-- Editando unidades -->
-
-              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
+              Unidades antiguas: <?php echo $recurso["UNIDADES"] ?><br />
+              <input id="UNIDADES_ANTIGUAS" name="UNIDADES_ANTIGUAS" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
+              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" oninput="unidadesValidation();"/> </h3>
 
             <?php } else { ?>
               <!-- mostrando unidades -->
@@ -95,7 +97,7 @@ cerrarConexionBD($conexion);
 
             <?php } ?>
 
-          <?php } elseif ($recurso["TIPO"] == "FUNGIBLE") { ?>
+          <?php } elseif ($recurso["TIPO"] == "Fungible") { ?>
             Nombre: <?php echo $recurso["NOMBRE"] ?><br />
             <input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $recurso["NOMBRE"]; ?>" />
             <br />
@@ -110,8 +112,9 @@ cerrarConexionBD($conexion);
               if (isset($_SESSION["editando"])) { ?>
 
               <!-- Editando unidades -->
-
-              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" /> </h3>
+              Unidades antiguas: <?php echo $recurso["UNIDADES"] ?><br />
+              <input id="UNIDADES_ANTIGUAS" name="UNIDADES_ANTIGUAS" type="hidden" value="<?php echo $recurso["UNIDADES"]; ?>" />
+              <h3><input id="UNIDADES" name="UNIDADES" type="text" value="<?php echo $recurso["UNIDADES"]; ?>" oninput="unidadesValidation();"/> </h3>
 
             <?php } else { ?>
               <!-- mostrando unidades -->

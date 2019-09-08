@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require_once ("gestionBD.php");
 require_once ("gestionarBusquedas.php");
 require_once ("gestionarUsuarios.php");
 
@@ -23,10 +22,9 @@ if (isset($_SESSION["recurso"])) {
 	unset($_SESSION["recurso"]);
 }
 
-
-	$conexion = crearConexionBD();
-
-	cerrarConexionBD($conexion);
+if(isset($_SESSION["editando"])){
+	unset($_SESSION["editando"]);
+}
 
 ?>
 

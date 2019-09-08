@@ -29,13 +29,13 @@ BEGIN
 INSERTAR_TEMP_AMB('Estanteria A', 'Estanteria', 'Sótano');
 SELECT SEC_TEMPERATURA.CURRVAL INTO OID_AMB_1 FROM DUAL;
 
-INSERTAR_EQU_FR('Frigorifico 1', '2', 'Invernadero');
+INSERTAR_EQU_FR('Frigorífico 1', '2', 'Invernadero');
 SELECT SEC_EQUIPOS.CURRVAL INTO OID_EQUP_1 FROM DUAL;
 
 INSERTAR_TEMP_AMB('Cajonera A', 'Cajonera', 'Invernadero');
 SELECT SEC_TEMPERATURA.CURRVAL INTO OID_AMB_2 FROM DUAL;
 
-INSERTAR_EQU_FR('Frigorifico 2', '-10', 'Sótano');
+INSERTAR_EQU_FR('Frigorífico 2', '-10', 'Sótano');
 SELECT SEC_EQUIPOS.CURRVAL INTO OID_EQUP_2 FROM DUAL;
 
 
@@ -51,13 +51,13 @@ SELECT SEC_TELEFONOS.CURRVAL INTO OID_TEF_935 FROM DUAL;
 
 INSERTAR_PROV_REC('1','Cloruro de sodio','Sótano');
 
-INSERTAR_PROV_REC('1','Acido clorhidrico','Cámara Frigorífica A');
+INSERTAR_PROV_REC('1','Ácido clorhídrico','Cámara Frigorífica A');
 
-INSERTAR_PROV_REC('1','Acido sulfurico','Sótano');
+INSERTAR_PROV_REC('1','Ácido sulfúrico','Sótano');
 
-INSERTAR_PROV_REC('1','Acido nitrico','Cámara Frigorífica A');
+INSERTAR_PROV_REC('1','Ácido nítrico','Cámara Frigorífica A');
 
-INSERTAR_PROV_REC('2','Hidroxido de magnesio','Sótano');
+INSERTAR_PROV_REC('2','Hidróxido de magnesio','Sótano');
 
 INSERTAR_PROV_REC('2','Fungible 1','Sótano');
 
@@ -73,16 +73,16 @@ INSERTAR_PROV_REC('2','Fungible 5','Sótano');
 INSERTAR_POSICIONES('2B','Cloruro de sodio','Sótano');
 SELECT SEC_POSICIONES.CURRVAL INTO OID_POS_CS FROM DUAL;
 
-INSERTAR_POSICIONES('1C','Acido clorhidrico','Cámara Frigorífica A');
+INSERTAR_POSICIONES('1C','Ácido clorhídrico','Cámara Frigorífica A');
 SELECT SEC_POSICIONES.CURRVAL INTO OID_POS_AC FROM DUAL;
 
-INSERTAR_POSICIONES('1B','Acido sulfurico','Sótano');
+INSERTAR_POSICIONES('1B','Ácido sulfúrico','Sótano');
 SELECT SEC_POSICIONES.CURRVAL INTO OID_POS_AS FROM DUAL;
 
-INSERTAR_POSICIONES('2C','Acido nitrico','Cámara Frigorífica A');
+INSERTAR_POSICIONES('2C','Ácido nítrico','Cámara Frigorífica A');
 SELECT SEC_POSICIONES.CURRVAL INTO OID_POS_AN FROM DUAL;
 
-INSERTAR_POSICIONES('1D','Hidroxido de magnesio','Sótano');
+INSERTAR_POSICIONES('1D','Hidróxido de magnesio','Sótano');
 SELECT SEC_POSICIONES.CURRVAL INTO OID_POS_HM FROM DUAL;
 
 INSERTAR_POSICIONES('2D','Fungible 1','Sótano');

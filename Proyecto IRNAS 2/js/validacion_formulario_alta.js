@@ -1,20 +1,4 @@
 // Funciones de validación
-	// EJERCICIO 3: Validación del formulario en cliente con Javascript (después de la validación de HTML5)
-	function validateForm() {
-		var noValidation = document.getElementById("#usuario-form").novalidate;
-		
-		if (!noValidation){
-			// Comprobar que la longitud de la contraseña es >=8, que contiene letras mayúsculas y minúsculas y números
-			var error1 = passwordValidation();
-	        
-			var error2 = passwordConfirmation();
-	        
-			return (error1.length==0) && (error2.length==0);
-		}
-		else 
-			return true;
-	}
-
 	// EJERCICIO 3.1: Comprobar la restricciones del password y aplicar clases CSS mediante JQuery
 	function passwordValidation(){
 		var password = document.getElementById("usuario-password");
@@ -229,5 +213,25 @@
 			var error = "";
 		}
 	        temperatura.setCustomValidity(error);
+		return error;
+	}
+
+	function reservaValidation(){
+		// Obtenemos el campo de unidades y su valor
+        var unidades = document.getElementById("recurso-unidades");
+		var uni = unidades.value;
+		// Obtenemos el campo de reserva y su valor
+		var reservas = document.getElementById("recurso-reserva");
+		var res = reservas.value;
+
+		// Los comparamos
+		if (res >= uni) {
+			var error = "Las unidades deben ser superiores a las reservas mínimas";
+		}else{
+			var error = "";
+		}
+
+		reservas.setCustomValidity(error);
+
 		return error;
 	}

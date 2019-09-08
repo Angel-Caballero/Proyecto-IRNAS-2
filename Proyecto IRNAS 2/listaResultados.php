@@ -16,6 +16,10 @@ if (isset($_SESSION["recurso"])) {
 	unset($_SESSION["recurso"]);
 }
 
+if(isset($_SESSION["editando"])){
+	unset($_SESSION["editando"]);
+}
+
 // ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 // ¿Hay una sesión activa?
 if (isset($_SESSION["paginacion"])) {
@@ -171,7 +175,7 @@ cerrarConexionBD($conexion);
 
 				</nav>
 			<?php } ?>
-			<table style="width:90%;">
+			<table style="width:100%;">
 				<tr>
 					<?php if (isset($_SESSION["busqAlmacen"])) { ?>
 						<th>Almacén</th>
@@ -219,7 +223,7 @@ cerrarConexionBD($conexion);
 														<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
 												</div>
 												<div id="boton">
-													<input type="submit" name="info" id="info" value="Informacion" />
+													<input type="submit" name="info" id="info" value="Información" />
 												</div>
 											</div>
 										</form>
@@ -246,7 +250,7 @@ cerrarConexionBD($conexion);
 																<input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
 														</div>
 														<div id="boton">
-															<input type="submit" name="info" id="info" value="Informacion" />
+															<input type="submit" name="info" id="info" value="Información" />
 														</div>
 													</div>
 												</form>

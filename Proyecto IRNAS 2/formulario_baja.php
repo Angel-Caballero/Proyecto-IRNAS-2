@@ -102,7 +102,7 @@ cerrarConexionBD($conexion);
                         </select>
                         <input id="ALMACEN" name="ALMACEN" type="hidden" value="<?php echo $recurso["ALMACEN"]; ?>" />
                     </div>
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="enviar" value="Eliminar recurso">
                 </form>
             </div>
             <div id="proveedor">
@@ -121,7 +121,7 @@ cerrarConexionBD($conexion);
                                 echo "<option value='" . $proveedor["ID_PR"] . "'>" . $proveedor["NOMBREEMPRESA"] . " - " . $proveedor["NOMBRECOMERCIAL"] . "</option>";
                             } ?>
                         </select></div>
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="enviar" value="Eliminar proveedor">
                 </form>
             </div>
             <div id="almacen">
@@ -140,7 +140,7 @@ cerrarConexionBD($conexion);
                                 echo "<option value='" . $almacen["NOMBRE"] . "'>" . $almacen["NOMBRE"] . "</option>";
                             } ?>
                         </select></div>
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="enviar" value="Eliminar almacén">
                 </form>
             </div>
             <div id="mobiliario">
@@ -166,7 +166,7 @@ cerrarConexionBD($conexion);
                                 echo "<option value='" . $equipoFrio["ID_EF"] . "'>" . $equipoFrio["NOMBRE"] . "</option>";
                             } ?>
                         </select></div>
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="enviar" value="Eliminar mobiliario">
                 </form>
             </div>
             <div id="usuario">
@@ -185,7 +185,7 @@ cerrarConexionBD($conexion);
                                 echo "<option value='" . $usuario["NOMBRE"] . "'>" . $usuario["NOMBRE"] . "</option>";
                             } ?>
                         </select></div>
-                    <input type="submit" name="enviar" value="Enviar">
+                    <input type="submit" name="enviar" value="Eliminar usuario">
                 </form>
             </div>
         </div>

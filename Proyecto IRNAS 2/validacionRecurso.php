@@ -24,7 +24,16 @@ if (isset($_SESSION["formularioRecurso"])) {
 
             $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
 
+        }else {
+            $nuevoRecurso["formula"] = "";
         }
+
+    }else {
+        $nuevoRecurso["unidades"] = "";
+        $nuevoRecurso["cantidad"] = "";
+        $nuevoRecurso["reserva"] = "";
+        $nuevoRecurso["proveedor"] = "";
+        $nuevoRecurso["formula"] = "";
     }
     
     $_SESSION["formularioRecurso"] = $nuevoRecurso;		

@@ -186,16 +186,16 @@ cerrarConexionBD($conexion);
         ?>
         <form action="validacionRecurso.php" id="recurso-form" method="post" class="formulario">
 
-          <div><label for="recurso-nombre">Nombre</label>
+          <div><label for="recurso-nombre">Nombre:<em>*</em></label>
             <input id="recurso-nombre" name="recurso-nombre" type="text" value="<?php echo $nuevoRecurso['nombre']; ?>" required></div>
 
-          <div><label for="recurso-almacen">Almacén</label>
-            <select id="recurso-almacen" name="recurso-almacen">
+          <div><label for="recurso-almacen">Almacén:<em>*</em></label>
+            <select id="recurso-almacen" name="recurso-almacen" required>
               <?php echo $almacenesRecursos ?>
             </select></div>
 
-          <div><label for="recurso-tipo">Tipo recurso</label>
-            <select id="recurso-tipo" name="recurso-tipo">
+          <div><label for="recurso-tipo">Tipo recurso:<em>*</em></label>
+            <select id="recurso-tipo" name="recurso-tipo" required>
               <?php if ($nuevoRecurso["tipo"] == "Reactivo") { ?>
                 <option value="Reactivo" selected>Compuesto químico</option>
                 <option value="Fungible">Fungible y kits</option>
@@ -215,22 +215,22 @@ cerrarConexionBD($conexion);
               <?php } ?>
             </select></div>
 
-          <div><label for="recurso-posicion">Posición</label>
+          <div><label for="recurso-posicion">Posición:<em>*</em></label>
             <input id="recurso-posicion" name="recurso-posicion" type="text" value="<?php echo $nuevoRecurso['posicion']; ?>" required oninput="posicionValidation();"></div>
 
-          <div><label for="recurso-unidades">Unidades</label>
-            <input id="recurso-unidades" name="recurso-unidades" type="number" value="<?php echo $nuevoRecurso['unidades']; ?>"></div>
+          <div><label for="recurso-unidades">Unidades:</label>
+            <input id="recurso-unidades" name="recurso-unidades" type="number" placeholder="Número de recursos guardados" value="<?php echo $nuevoRecurso['unidades']; ?>"></div>
 
-          <div><label for="recurso-formula">Fórmula química</label>
+          <div><label for="recurso-formula">Fórmula química:</label>
             <input id="recurso-formula" name="recurso-formula" type="text" value="<?php echo $nuevoRecurso['formula']; ?>"></div>
 
-          <div><label for="recurso-cantidad">Cantidad</label>
-            <input id="recurso-cantidad" name="recurso-cantidad" type="number" value="<?php echo $nuevoRecurso['cantidad']; ?>"></div>
+          <div><label for="recurso-cantidad">Cantidad:</label>
+            <input id="recurso-cantidad" name="recurso-cantidad" type="number" placeholder="Contenido de cada unidad del recurso" value="<?php echo $nuevoRecurso['cantidad']; ?>"></div>
 
-          <div><label for="recurso-reserva">Reserva mínima</label>
-            <input id="recurso-reserva" name="recurso-reserva" type="number" value="<?php echo $nuevoRecurso['reserva']; ?>"></div>
+          <div><label for="recurso-reserva">Reserva mínima:</label>
+            <input id="recurso-reserva" name="recurso-reserva" type="number" placeholder="Unidades mínimas necesarias" value="<?php echo $nuevoRecurso['reserva']; ?>" oninput="reservaValidation();"></div>
 
-          <div><label for="recurso-proveedores">Proveedores</label>
+          <div><label for="recurso-proveedores">Proveedores:</label>
             <select id="recurso-proveedores" name="recurso-proveedores">
               <?php foreach ($proveedores as $proveedor) {
                 if ($nuevoRecurso["proveedor"] == $proveedor["ID_PR"]) {
@@ -241,7 +241,7 @@ cerrarConexionBD($conexion);
               } ?>
             </select></div>
 
-          <input type="submit" name="enviar" value="Enviar">
+          <input type="submit" name="enviar" value="Crear recurso">
         </form>
       </div>
 
@@ -259,25 +259,25 @@ cerrarConexionBD($conexion);
         ?>
         <form action="validacionProveedor.php" id="proveedor-form" method="post" class="formulario">
 
-          <div><label for="proveedor-nombre-empresa">Nombre empresa</label>
+          <div><label for="proveedor-nombre-empresa">Nombre empresa:<em>*</em></label>
             <input id="proveedor-nombre-empresa" name="proveedor-nombre-empresa" type="text" value="<?php echo $nuevoProveedor['nombre-empresa']; ?>" required></div>
 
-          <div><label for="proveedor-nombre-comercial">Nombre comercial</label>
+          <div><label for="proveedor-nombre-comercial">Nombre comercial:<em>*</em></label>
             <input id="proveedor-nombre-comercial" name="proveedor-nombre-comercial" type="text" value="<?php echo $nuevoProveedor['nombre-comercial']; ?>" required></div>
 
-          <div><label for="proveedor-email">Email</label>
-            <input id="proveedor-email" name="proveedor-email" type="email" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
+          <div><label for="proveedor-email">Email:<em>*</em></label>
+            <input id="proveedor-email" name="proveedor-email" type="email" placeholder="usuario@dominio.extension" value="<?php echo $nuevoProveedor['email']; ?>" required></div>
 
-          <div><label for="proveedor-proveedor-telefono1">Teléfono 1</label>
+          <div><label for="proveedor-proveedor-telefono1">Teléfono 1:<em>*</em></label>
             <input id="proveedor-telefono1" name="proveedor-telefono1" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono1']; ?>" oninput="telefono1Validation();" required></div>
 
-          <div><label for="proveedor-telefono2">Teléfono 2</label>
+          <div><label for="proveedor-telefono2">Teléfono 2:</label>
             <input id="proveedor-telefono2" name="proveedor-telefono2" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono2']; ?>" oninput="telefono2Validation();" placeholder="Teléfono opcional"></div>
 
-          <div><label for="proveedor-telefono3">Teléfono 3</label>
+          <div><label for="proveedor-telefono3">Teléfono 3:</label>
             <input id="proveedor-telefono3" name="proveedor-telefono3" type="tel" pattern="^[6|7|8|9][0-9]{8}$" value="<?php echo $nuevoProveedor['telefono3']; ?>" oninput="telefono3Validation();" placeholder="Teléfono opcional"></div>
 
-          <input type="submit" name="enviar" value="Enviar">
+          <input type="submit" name="enviar" value="Crear proveedor">
         </form>
       </div>
 
@@ -295,17 +295,17 @@ cerrarConexionBD($conexion);
         ?>
         <form action="validacionAlmacen.php" id="almacen-form" method="post" class="formulario">
 
-          <div><label for="almacen-nombre">Nombre</label>
+          <div><label for="almacen-nombre">Nombre:<em>*</em></label>
             <input id="almacen-nombre" name="almacen-nombre" type="text" value="<?php echo $nuevoAlmacen['nombre']; ?>" required></div>
 
-          <div><label for="almacen-iluminacion">Tipo iluminación</label>
+          <div><label for="almacen-iluminacion">Tipo iluminación:<em>*</em></label>
             <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" oninput="iluminacionValidation();" required></div>
 
-          <div><label for="almacen-temperatura">Temperatura</label>
-            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>" oninput="temperaturaValidation();"></div>
+          <div><label for="almacen-temperatura">Temperatura:<em>*</em></label>
+            <input id="almacen-temperatura" name="almacen-temperatura" type="number" placeholder="Valor en ºC" value="<?php echo $nuevoAlmacen['temperatura']; ?>" oninput="temperaturaValidation();" required></div>
 
-          <div><label for="almacen-tipo-camara">Tipo cámara</label>
-            <select id="almacen-tipo-camara" name="almacen-tipo-camara">
+          <div><label for="almacen-tipo-camara">Tipo cámara:<em>*</em></label>
+            <select id="almacen-tipo-camara" name="almacen-tipo-camara" required>
               <?php if ($nuevoAlmacen["tipo-camara"] == "Normal") { ?>
                 <option value="Normal" selected>Almacén</option>
                 <option value="Cámara In-Vitro">Cámara in vitro</option>
@@ -325,7 +325,7 @@ cerrarConexionBD($conexion);
               <?php } ?>
             </select></div>
 
-          <input type="submit" name="enviar" value="Enviar">
+          <input type="submit" name="enviar" value="Crear almacén">
         </form>
       </div>
 
@@ -343,8 +343,8 @@ cerrarConexionBD($conexion);
         ?>
         <form action="validacionMobiliario.php" id="mobiliario-form" method="post" class="formulario">
 
-        <div><label for="tipo-mobiliario">Tipo mobiliario</label>
-            <select id="tipo-mobiliario" name="tipo-mobiliario">
+        <div><label for="tipo-mobiliario">Tipo mobiliario:<em>*</em></label>
+            <select id="tipo-mobiliario" name="tipo-mobiliario" required>
               <?php if ($nuevoMobiliario["tipo-mob"] == "ambiente") { ?>
                 <option value="ambiente" selected>Temperatura ambiente</option>
                 <option value="frio">Equipo de frío</option>
@@ -358,15 +358,15 @@ cerrarConexionBD($conexion);
             </select>
           </div>
 
-  <div><label for="mobiliario-almacen">Almacén</label>
-    <select id="mobiliario-almacen" name="mobiliario-almacen">
+  <div><label for="mobiliario-almacen">Almacén:<em>*</em></label>
+    <select id="mobiliario-almacen" name="mobiliario-almacen" required>
       <?php echo $almacenesMobiliario; ?>
     </select></div>
 
-  <div><label for="mobiliario-nombre">Nombre</label>
+  <div><label for="mobiliario-nombre">Nombre:<em>*</em></label>
     <input id="mobiliario-nombre" name="mobiliario-nombre" type="text" value="<?php echo $nuevoMobiliario['nombre']; ?>" required></div>
 
-  <div><label for="mobiliario-temp-amb">Tipo de temperatura ambiente</label>
+  <div><label for="mobiliario-temp-amb">Tipo de temperatura ambiente:</label>
     <select id="mobiliario-temp-amb" name="mobiliario-temp-amb">
       <?php if ($nuevoMobiliario["tipo-temp-amb"] == "estanteria") { ?>
         <option value="estanteria" selected>Estanteria</option>
@@ -380,11 +380,10 @@ cerrarConexionBD($conexion);
       <?php } ?>
     </select></div>
 
-  <div><label for="mobiliario-temperatura">Temperatura</label>
-	function temperaturaMobValidation(){
-    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" oninput="temperaturaMobValidation();" disabled></div>
+  <div><label for="mobiliario-temperatura">Temperatura:</label>
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" placeholder="Valor en ºC" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" oninput="temperaturaMobValidation();" disabled></div>
 
-  <input type="submit" name="enviar" value="Enviar">
+  <input type="submit" name="enviar" value="Crear mobiliario">
   </form>
   </div>
 
@@ -402,27 +401,27 @@ cerrarConexionBD($conexion);
     ?>
     <form action="validacionUsuario.php" id="usuario-form" method="post" class="formulario">
 
-      <div><label for="usuario-nombre">Nombre</label>
+      <div><label for="usuario-nombre">Nombre:<em>*</em></label>
         <input id="usuario-nombre" name="usuario-nombre" type="text" maxlength="40" value="<?php echo $nuevoUsuario['nombre']; ?>" required></div>
 
-      <div><label for="usuario-password">Contraseña</label>
+      <div><label for="usuario-password">Contraseña:<em>*</em></label>
         <input id="usuario-password" name="usuario-password" type="password" placeholder="Contraseña entre 8 y 16 caracteres" maxlength="16" required oninput="passwordValidation(); "></div>
 
-      <div><label for="usuario-email">Email</label>
-        <input id="usuario-email" name="usuario-email" type="email" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
+      <div><label for="usuario-email">Email:<em>*</em></label>
+        <input id="usuario-email" name="usuario-email" type="email" placeholder="usuario@dominio.extension" value="<?php echo $nuevoUsuario['email']; ?>" required></div>
 
-      <div><label for="usuario-confirm-password">Confirmar contraseña</label>
+      <div><label for="usuario-confirm-password">Confirmar contraseña:<em>*</em></label>
         <input id="usuario-confirm-password" name="usuario-confirm-password" type="password" placeholder="Confirmación de la contraseña" maxlength="16" oninput="passwordConfirmation();" required></div>
 
 
-      <div class="centrado"><label for="usuario-responsable">Responsable de compra</label>
+      <div class="centrado"><label for="usuario-responsable">Responsable de compra:</label>
         <?php if ($nuevoUsuario["tipo"] == "ADMINISTRADOR") { ?>
           <input id="usuario-responsable" name="usuario-responsable" type="checkbox" checked="checked"></div>
     <?php } else { ?>
       <input id="usuario-responsable" name="usuario-responsable" type="checkbox"></div>
 <?php } ?>
 
-<input type="submit" name="enviar" value="Enviar">
+<input type="submit" name="enviar" value="Crear usuario">
 </form>
 </div>
 
