@@ -17,42 +17,47 @@
 	if (isset($_REQUEST["mobiliario_temperatura_ambiente"]) && isset($_REQUEST["mobiliario_equipo_frio"])) {
         $conexion = crearConexionBD();
 
-        if($_REQUEST["mobiliario_temperatura_ambiente"] != "" && $_REQUEST["mobiliario_equipo_frio"] == ""){
-
-            $id_ta = $_REQUEST["mobiliario_temperatura_ambiente"];	
-            $excepcionTA = quitar_temperatura_ambiente($conexion, $id_ta);
-
-        }else if($_REQUEST["mobiliario_temperatura_ambiente"] == "" && $_REQUEST["mobiliario_equipo_frio"] != "") {
-
-            $id_ef = $_REQUEST["mobiliario_equipo_frio"];	
-            $excepcionEF = quitar_equipo_frio($conexion, $id_ef);
-            
-        }else {
-
-            $id_ta = $_REQUEST["mobiliario_temperatura_ambiente"];
-            $id_ef = $_REQUEST["mobiliario_equipo_frio"];
-            $excepcionTA = quitar_temperatura_ambiente($conexion, $id_ta);	
-            $excepcionEF = quitar_equipo_frio($conexion, $id_ef);
-            
-        }
-        cerrarConexionBD($conexion);
-
-		if (($excepcionTA != "" && isset($excepcionTA)) && ($excepcionEF == "" || !isset($excepcionEF))) {
-			$_SESSION["excepcion"] = $excepcionTA;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-		}elseif (($excepcionTA == "" || !isset($excepcionTA)) && ($excepcionEF != "" && isset($excepcionEF))) {
-            $_SESSION["excepcion"] = $excepcionEF;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-        }elseif (($excepcionTA != "" && isset($excepcionTA)) && ($excepcionEF != "" && isset($excepcionEF))) {
-            $_SESSION["excepcion"] = $excepcionEF . $excepcionTA;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-        }
-		else{
-            $_SESSION["mensjMobiliario"] = "Mobiliario eliminado correctamente";
+        if(($_REQUEST["mobiliario_temperatura_ambiente"] == "") && ($_REQUEST["mobiliario_equipo_frio"] == "")){
+            $_SESSION["mensjMobiliario"] = "Elija uno de los mobiliarios listados";
             Header("Location: formulario_baja.php");
+        }else {
+            if($_REQUEST["mobiliario_temperatura_ambiente"] != "" && $_REQUEST["mobiliario_equipo_frio"] == ""){
+
+                $id_ta = $_REQUEST["mobiliario_temperatura_ambiente"];	
+                $excepcionTA = quitar_temperatura_ambiente($conexion, $id_ta);
+    
+            }else if($_REQUEST["mobiliario_temperatura_ambiente"] == "" && $_REQUEST["mobiliario_equipo_frio"] != "") {
+    
+                $id_ef = $_REQUEST["mobiliario_equipo_frio"];	
+                $excepcionEF = quitar_equipo_frio($conexion, $id_ef);
+                
+            }else {
+    
+                $id_ta = $_REQUEST["mobiliario_temperatura_ambiente"];
+                $id_ef = $_REQUEST["mobiliario_equipo_frio"];
+                $excepcionTA = quitar_temperatura_ambiente($conexion, $id_ta);	
+                $excepcionEF = quitar_equipo_frio($conexion, $id_ef);
+                
+            }
+            cerrarConexionBD($conexion);
+    
+            if (($excepcionTA != "" && isset($excepcionTA)) && ($excepcionEF == "" || !isset($excepcionEF))) {
+                $_SESSION["excepcion"] = $excepcionTA;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }elseif (($excepcionTA == "" || !isset($excepcionTA)) && ($excepcionEF != "" && isset($excepcionEF))) {
+                $_SESSION["excepcion"] = $excepcionEF;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }elseif (($excepcionTA != "" && isset($excepcionTA)) && ($excepcionEF != "" && isset($excepcionEF))) {
+                $_SESSION["excepcion"] = $excepcionEF . $excepcionTA;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }
+            else{
+                $_SESSION["mensjMobiliario"] = "Mobiliario eliminado correctamente";
+                Header("Location: formulario_baja.php");
+            }
         } 
 	}
 	else{

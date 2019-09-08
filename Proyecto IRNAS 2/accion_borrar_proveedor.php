@@ -16,20 +16,25 @@
 
 	if (isset($_REQUEST["proveedor-elemento"])) {
 		$proveedor = $_REQUEST["proveedor-elemento"];
-		
-		$conexion = crearConexionBD();		
-		$excepcion = quitar_proveedor($conexion, $proveedor);
-		cerrarConexionBD($conexion);
-			
-		if ($excepcion != "") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-		}
-		else{
-            $_SESSION["mensjProveedor"] = "Proveedor eliminado correctamente";
+        
+        if($proveedor == "proveedor"){
+            $_SESSION["mensjProveedor"] = "Elija uno de los proveedores listados";
             Header("Location: formulario_baja.php");
-        } 
+        }else {
+            $conexion = crearConexionBD();		
+            $excepcion = quitar_proveedor($conexion, $proveedor);
+            cerrarConexionBD($conexion);
+            
+            if ($excepcion != "") {
+                $_SESSION["excepcion"] = $excepcion;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }
+            else{
+                $_SESSION["mensjProveedor"] = "Proveedor eliminado correctamente";
+                Header("Location: formulario_baja.php");
+            } 
+        }
 	}
 	else{
         Header("Location: interfaz_buscador.php"); 

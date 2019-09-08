@@ -116,7 +116,7 @@ cerrarConexionBD($conexion);
                 <form action="accion_borrar_proveedor.php" id="proveedor-form" method="post" class="formulario">
                     <div><label for="proveedor-elemento">Proveedor</label>
                         <select id="proveedor-elemento" name="proveedor-elemento">
-                            <option value="">--Elija el proveedor que quiera eliminar--</option>
+                            <option value="proveedor">--Elija el proveedor que quiera eliminar--</option>
                             <?php foreach ($proveedores as $proveedor) {
                                 echo "<option value='" . $proveedor["ID_PR"] . "'>" . $proveedor["NOMBREEMPRESA"] . " - " . $proveedor["NOMBRECOMERCIAL"] . "</option>";
                             } ?>

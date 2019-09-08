@@ -16,20 +16,25 @@
 
 	if (isset($_REQUEST["usuario-elemento"])) {
 		$usuario = $_REQUEST["usuario-elemento"];
-		
-		$conexion = crearConexionBD();		
-		$excepcion = quitar_usuario($conexion, $usuario);
-		cerrarConexionBD($conexion);
-			
-		if ($excepcion != "") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-		}
-		else{
-            $_SESSION["mensjUsuario"] = "Usuario eliminado correctamente";
+        
+        if($_REQUEST["usuario-elemento"] == ""){
+            $_SESSION["mensjUsuario"] = "Elija uno de los usuarios listados";
             Header("Location: formulario_baja.php");
-        } 
+        }else {
+            $conexion = crearConexionBD();		
+            $excepcion = quitar_usuario($conexion, $usuario);
+            cerrarConexionBD($conexion);
+                
+            if ($excepcion != "") {
+                $_SESSION["excepcion"] = $excepcion;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }
+            else{
+                $_SESSION["mensjUsuario"] = "Usuario eliminado correctamente";
+                Header("Location: formulario_baja.php");
+            }
+        }
 	}
 	else{
         Header("Location: interfaz_buscador.php"); 

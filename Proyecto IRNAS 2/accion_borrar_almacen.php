@@ -15,22 +15,26 @@
     }
 
 	if (isset($_REQUEST["almacen-elemento"])) {
-		$almacen = $_REQUEST["almacen-elemento"];
-		unset($_SESSION["almacen-elemento"]);
-		
-		$conexion = crearConexionBD();		
-		$excepcion = quitar_almacen($conexion, $almacen);
-		cerrarConexionBD($conexion);
-			
-		if ($excepcion != "") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "formulario_baja.php";
-			Header("Location: excepcion.php");
-		}
-		else{
-            $_SESSION["mensjAlmacen"] = "Almacen eliminado correctamente";
+        $almacen = $_REQUEST["almacen-elemento"];
+        
+        if($almacen == ""){
+            $_SESSION["mensjAlmacen"] = "Elija uno de los almacenes listados";
             Header("Location: formulario_baja.php");
-        } 
+        }else {
+            $conexion = crearConexionBD();		
+            $excepcion = quitar_almacen($conexion, $almacen);
+            cerrarConexionBD($conexion);
+                
+            if ($excepcion != "") {
+                $_SESSION["excepcion"] = $excepcion;
+                $_SESSION["destino"] = "formulario_baja.php";
+                Header("Location: excepcion.php");
+            }
+            else{
+                $_SESSION["mensjAlmacen"] = "Almacen eliminado correctamente";
+                Header("Location: formulario_baja.php");
+            }
+        }
 	}
 	else{
         Header("Location: interfaz_buscador.php"); 
