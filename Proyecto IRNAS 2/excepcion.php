@@ -34,10 +34,7 @@
 		<p>Ocurrió un problema para acceder a la base de datos. </p>
 		<?php } ?>
 	</div>
-		
-	<div class='excepcion'>	
-		<?php echo "Información relativa al problema: $excepcion;" ?>
-	</div>
+
 
 <?php	
 	include_once("pie.php");
