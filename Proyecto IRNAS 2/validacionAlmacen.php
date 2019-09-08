@@ -33,15 +33,19 @@ function validarDatosAlmacen($nuevoAlmacen){
 		$errores[] = "<p>El tipo-iluminacion no puede estar vacío</p>";
 	}
     
-    if(!preg_match("/^[0-9][A-Z]$/", $nuevoAlmacen["tipo-iluminacion"]) && $nuevoAlmacen["tipo-iluminacion"] != "Natural"){ 
+    if(!preg_match("/[0-9][A-Z]/", $nuevoAlmacen["tipo-iluminacion"]) && $nuevoAlmacen["tipo-iluminacion"] != "Natural"){ 
         $errores[] = "<p> El tipo de iluminacion tiene que contener números y letras mayúsculas o ser 'Natural'</p>";
     }
 
     if($nuevoAlmacen["temperatura"] == ""){ 
 		$errores[] = "<p>La temperatura no puede estar vacía</p>";
+    }
+    
+    if($nuevoAlmacen["temperatura"] < -10){ 
+		$errores[] = "<p>La temperatura no puede ser inferior a -10</p>";
 	}
     
-    if($nuevoAlmacen["tipo-camara"] != "NORMAL" && $nuevoAlmacen["tipo-camara"] != "CAMARA IN-VITRO" && $nuevoAlmacen["tipo-camara"] != "CAMARA FRIO") {
+    if($nuevoAlmacen["tipo-camara"] != "Normal" && $nuevoAlmacen["tipo-camara"] != "Cámara In-Vitro" && $nuevoAlmacen["tipo-camara"] != "Cámara Frío") {
         $errores[] = "<p>El tipo de camara debe ser Almacen, invitro o frio</p>";
     }
 

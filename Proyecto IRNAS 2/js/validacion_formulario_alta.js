@@ -198,7 +198,7 @@
 		return error;
 	}
 
-	function temperaturaValidation(){
+	function temperaturaMobValidation(){
 		var temperatura = document.getElementById("mobiliario-temperatura");
 		var temp = temperatura.value;
 		var valid = true;
@@ -208,6 +208,23 @@
 		// Si no cumple las restricciones, devolvemos un error
 		if(!valid){
             var error = "La temperatura debe ser inferior a 15ºC";
+		}else{
+			var error = "";
+		}
+	        temperatura.setCustomValidity(error);
+		return error;
+	}
+
+	function temperaturaValidation(){
+		var temperatura = document.getElementById("almacen-temperatura");
+		var temp = temperatura.value;
+		var valid = true;
+		
+		valid = valid && (temp >= -10);
+		
+		// Si no cumple las restricciones, devolvemos un error
+		if(!valid){
+            var error = "La temperatura debe ser superior a -10ºC";
 		}else{
 			var error = "";
 		}

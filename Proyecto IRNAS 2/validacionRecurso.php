@@ -13,14 +13,14 @@ if (isset($_SESSION["formularioRecurso"])) {
     $nuevoRecurso["tipo"] = $_REQUEST["recurso-tipo"];
     $nuevoRecurso["posicion"] = $_REQUEST["recurso-posicion"];
 
-    if($nuevoRecurso["tipo"] == "FUNGIBLE" || $nuevoRecurso["tipo"] == "REACTIVO"){
+    if($nuevoRecurso["tipo"] == "Fungible" || $nuevoRecurso["tipo"] == "Reactivo"){
 
         $nuevoRecurso["unidades"] = $_REQUEST["recurso-unidades"];
         $nuevoRecurso["cantidad"] = $_REQUEST["recurso-cantidad"];
         $nuevoRecurso["reserva"] = $_REQUEST["recurso-reserva"];
         $nuevoRecurso["proveedor"] = $_REQUEST["recurso-proveedores"];
 
-        if($nuevoRecurso["tipo"] == "REACTIVO"){
+        if($nuevoRecurso["tipo"] == "Reactivo"){
 
             $nuevoRecurso["formula"] = $_REQUEST["recurso-formula"];
 
@@ -55,8 +55,8 @@ function validarDatosRecurso($conexion, $nuevoRecurso){
 		$errores[] = $error;
     }
     
-    if($nuevoRecurso["tipo"] != "REACTIVO" && $nuevoRecurso["tipo"] != "FUNGIBLE" 
-    &&  $nuevoRecurso["tipo"] != "BIOLOGICO") {
+    if($nuevoRecurso["tipo"] != "Reactivo" && $nuevoRecurso["tipo"] != "Fungible" 
+    &&  $nuevoRecurso["tipo"] != "Biológico") {
         $errores[] = "<p>El tipo de recurso debe ser Compuesto quimico, Fungible y kits o Material biologico</p>";
     }
 
@@ -65,7 +65,7 @@ function validarDatosRecurso($conexion, $nuevoRecurso){
     }
 
     //Validación de datos general de Fungibles y kits y de Compuestos químicos
-    if($nuevoRecurso["tipo"] != "BIOLOGICO"){
+    if($nuevoRecurso["tipo"] != "Biológico"){
 
         if($nuevoRecurso["unidades"] == "") {
             $errores[] = "<p>Las unidades no puede estar vacías</p>";
@@ -93,7 +93,7 @@ function validarDatosRecurso($conexion, $nuevoRecurso){
         }
 
         //Validación de datos específica de Compuestos químicos
-        if($nuevoRecurso["tipo"] == "REACTIVO"){
+        if($nuevoRecurso["tipo"] == "Reactivo"){
 
             if($nuevoRecurso["formula"] == "") {
                 $errores[] = "<p>La fórmula no puede estar vacía</p>";

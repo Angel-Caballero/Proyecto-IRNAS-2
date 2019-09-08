@@ -36,7 +36,7 @@
 	?>
 
 	<main>
-		<?php if($nuevoRecurso["tipo"] == "BIOLOGICO"){ ?>
+		<?php if($nuevoRecurso["tipo"] == "Biológico"){ ?>
 			<?php if (alta_recurso($conexion, $nuevoRecurso) 
 			|| alta_posicion($conexion, $nuevoRecurso["posicion"], $nuevoRecurso, $nuevoRecurso["almacen"])) {?>
 					<h1>Creado el recurso <?php echo $nuevoRecurso["nombre"]; ?> correctamente</h1>

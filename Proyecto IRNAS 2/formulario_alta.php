@@ -196,22 +196,22 @@ cerrarConexionBD($conexion);
 
           <div><label for="recurso-tipo">Tipo recurso</label>
             <select id="recurso-tipo" name="recurso-tipo">
-              <?php if ($nuevoRecurso["tipo"] == "REACTIVO") { ?>
-                <option value="REACTIVO" selected>Compuesto químico</option>
-                <option value="FUNGIBLE">Fungible y kits</option>
-                <option value="BIOLOGICO">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo"] == "FUNGIBLE") { ?>
-                <option value="REACTIVO">Compuesto químico</option>
-                <option value="FUNGIBLE" selected>Fungible y kits</option>
-                <option value="BIOLOGICO">Material biológico</option>
-              <?php } elseif ($nuevoRecurso["tipo"] == "BIOLOGICO") { ?>
-                <option value="REACTIVO">Compuesto químico</option>
-                <option value="FUNGIBLE">Fungible y kits</option>
-                <option value="BIOLOGICO" selected>Material biológico</option>
+              <?php if ($nuevoRecurso["tipo"] == "Reactivo") { ?>
+                <option value="Reactivo" selected>Compuesto químico</option>
+                <option value="Fungible">Fungible y kits</option>
+                <option value="Biológico">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo"] == "Fungible") { ?>
+                <option value="Reactivo">Compuesto químico</option>
+                <option value="Fungible" selected>Fungible y kits</option>
+                <option value="Biológico">Material biológico</option>
+              <?php } elseif ($nuevoRecurso["tipo"] == "Biológico") { ?>
+                <option value="Reactivo">Compuesto químico</option>
+                <option value="Fungible">Fungible y kits</option>
+                <option value="Biológico" selected>Material biológico</option>
               <?php } else { ?>
-                <option value="REACTIVO">Compuesto químico</option>
-                <option value="FUNGIBLE">Fungible y kits</option>
-                <option value="BIOLOGICO">Material biológico</option>
+                <option value="Reactivo">Compuesto químico</option>
+                <option value="Fungible">Fungible y kits</option>
+                <option value="Biológico">Material biológico</option>
               <?php } ?>
             </select></div>
 
@@ -302,26 +302,26 @@ cerrarConexionBD($conexion);
             <input id="almacen-iluminacion" name="almacen-iluminacion" type="text" value="<?php echo $nuevoAlmacen['tipo-iluminacion']; ?>" oninput="iluminacionValidation();" required></div>
 
           <div><label for="almacen-temperatura">Temperatura</label>
-            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>"></div>
+            <input id="almacen-temperatura" name="almacen-temperatura" type="number" value="<?php echo $nuevoAlmacen['temperatura']; ?>" oninput="temperaturaValidation();"></div>
 
           <div><label for="almacen-tipo-camara">Tipo cámara</label>
             <select id="almacen-tipo-camara" name="almacen-tipo-camara">
-              <?php if ($nuevoAlmacen["tipo-camara"] == "NORMAL") { ?>
-                <option value="NORMAL" selected>Almacén</option>
-                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
-                <option value="CAMARA FRIO">Cámara frío</option>
-              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "CAMARA IN-VITRO") { ?>
-                <option value="NORMAL">Almacén</option>
-                <option value="CAMARA IN-VITRO" selected>Cámara in vitro</option>
-                <option value="CAMARA FRIO">Cámara frío</option>
-              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "CAMARA FRIO") { ?>
-                <option value="NORMAL">Almacén</option>
-                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
-                <option value="CAMARA FRIO" selected>Cámara frío</option>
+              <?php if ($nuevoAlmacen["tipo-camara"] == "Normal") { ?>
+                <option value="Normal" selected>Almacén</option>
+                <option value="Cámara In-Vitro">Cámara in vitro</option>
+                <option value="Cámara Frío">Cámara frío</option>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Cámara In-Vitro") { ?>
+                <option value="Normal">Almacén</option>
+                <option value="Cámara In-Vitro" selected>Cámara in vitro</option>
+                <option value="Cámara Frío">Cámara frío</option>
+              <?php } elseif ($nuevoAlmacen["tipo-camara"] == "Cámara Frío") { ?>
+                <option value="Normal">Almacén</option>
+                <option value="Cámara In-Vitro">Cámara in vitro</option>
+                <option value="Cámara Frío" selected>Cámara frío</option>
               <?php } else { ?>
-                <option value="NORMAL">Almacén</option>
-                <option value="CAMARA IN-VITRO">Cámara in vitro</option>
-                <option value="CAMARA FRIO">Cámara frío</option>
+                <option value="Normal">Almacén</option>
+                <option value="Cámara In-Vitro">Cámara in vitro</option>
+                <option value="Cámara Frío">Cámara frío</option>
               <?php } ?>
             </select></div>
 
@@ -381,7 +381,8 @@ cerrarConexionBD($conexion);
     </select></div>
 
   <div><label for="mobiliario-temperatura">Temperatura</label>
-    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" oninput="temperaturaValidation();" disabled></div>
+	function temperaturaMobValidation(){
+    <input id="mobiliario-temperatura" name="mobiliario-temperatura" type="number" value="<?php echo $nuevoMobiliario['temperatura'];?>" oninput="temperaturaMobValidation();" disabled></div>
 
   <input type="submit" name="enviar" value="Enviar">
   </form>
